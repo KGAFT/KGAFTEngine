@@ -1,0 +1,6 @@
+/home/daniil/Documents/TarBalls/clion-2022.3.1/bin/cmake/linux/bin/cmake -DCMAKE_MAKE_PROGRAM=/home/daniil/Documents/TarBalls/clion-2022.3.1/bin/ninja/linux/ninja -G Ninja -S /home/daniil/Documents/VulkanCXXLearn -B /home/daniil/Documents/VulkanCXXLearn
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+-- Using X11 for window creation
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/daniil/Documents/VulkanCXXLearn

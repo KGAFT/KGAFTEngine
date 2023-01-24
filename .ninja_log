@@ -1,0 +1,26 @@
+# ninja log v5
+405	537	1674584408701243034	lib/glfw/src/CMakeFiles/glfw.dir/window.c.o	92864cce3e27857d
+944	1084	1674584409245261704	lib/glfw/src/CMakeFiles/glfw.dir/glx_context.c.o	a1098220ca8045f7
+982	1088	1674584409249261841	lib/glfw/src/CMakeFiles/glfw.dir/egl_context.c.o	8037fdefc990f47a
+1	162	1674584408321229938	lib/glfw/src/CMakeFiles/glfw.dir/context.c.o	c2ef3f1fc2637b8a
+1185	1201	1674584409365265802	lib/glfw/src/libglfw3.a	334b16596ac30ab0
+1084	1162	1674584409325264436	lib/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.o	5ecd0de6cfb617cd
+747	813	1674584408977252546	lib/glfw/src/CMakeFiles/glfw.dir/posix_time.c.o	2183cea4fa365fdf
+877	982	1674584409145258290	lib/glfw/src/CMakeFiles/glfw.dir/posix_thread.c.o	12e3019f306e0ede
+411	611	1674584408773245515	lib/glfw/src/CMakeFiles/glfw.dir/x11_init.c.o	af13798abaa86e3a
+611	747	1674584408909250202	lib/glfw/src/CMakeFiles/glfw.dir/x11_monitor.c.o	331823cce036b7fb
+537	944	1674584409109257061	lib/glfw/src/CMakeFiles/glfw.dir/x11_window.c.o	3dc2256188efbec2
+326	411	1674584408573238623	lib/glfw/src/CMakeFiles/glfw.dir/vulkan.c.o	9578485a3a8bb479
+1	156	1674584408317229801	lib/glfw/src/CMakeFiles/glfw.dir/init.c.o	89158b4ad2876cf1
+1201	1307	1674584409469269352	VulkanCXXLearn	937a7348bdce74ea
+813	877	1674584409041254739	lib/glfw/src/CMakeFiles/glfw.dir/xkb_unicode.c.o	4e094d63c5a804b6
+1088	1185	1674584409349265255	lib/glfw/src/CMakeFiles/glfw.dir/linux_joystick.c.o	96cd12dab3d41c38
+0	1092	1674584409253261978	CMakeFiles/VulkanCXXLearn.dir/src/cxx/main.cpp.o	af392e74c2bbe61b
+156	405	1674584408569238485	lib/glfw/src/CMakeFiles/glfw.dir/input.c.o	37b6a7da2087d3f6
+162	326	1674584408489235728	lib/glfw/src/CMakeFiles/glfw.dir/monitor.c.o	33d43b0d62132db7
+1	1094	1674588272866720669	CMakeFiles/VulkanCXXLearn.dir/src/cxx/main.cpp.o	af392e74c2bbe61b
+1094	1209	1674588272982722348	VulkanCXXLearn	937a7348bdce74ea
+1	1112	1674588349615859440	CMakeFiles/VulkanCXXLearn.dir/src/cxx/main.cpp.o	af392e74c2bbe61b
+1112	1215	1674588349719861018	VulkanCXXLearn	937a7348bdce74ea
+1	1101	1674588411568814832	CMakeFiles/VulkanCXXLearn.dir/src/cxx/main.cpp.o	af392e74c2bbe61b
+1101	1205	1674588411668816398	VulkanCXXLearn	937a7348bdce74ea

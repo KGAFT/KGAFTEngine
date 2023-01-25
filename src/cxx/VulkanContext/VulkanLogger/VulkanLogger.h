@@ -9,6 +9,8 @@ class VulkanLogger {
     friend class VulkanInstance;
 
 public:
+    static inline const std::vector<const char *> validationLayers = {"VK_LAYER_KHRONOS_validation"};
+
     static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(
             VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
             VkDebugUtilsMessageTypeFlagsEXT messageType,
@@ -84,7 +86,7 @@ private:
 
 private:
     static inline VkDebugUtilsMessengerEXT debugMessenger = nullptr;
-    static inline const std::vector<const char *> validationLayers = {"VK_LAYER_KHRONOS_validation"};
+
     static inline std::vector<IVulkanLoggerCallback *> rawCallbacks = std::vector<IVulkanLoggerCallback *>();
     static inline std::vector<IVulkanLoggerCallback *> translatedCallbacks = std::vector<IVulkanLoggerCallback *>();
     static inline std::vector<IVulkanLoggerCallback *> bothCallbacks = std::vector<IVulkanLoggerCallback *>();

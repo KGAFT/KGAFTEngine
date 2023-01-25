@@ -77,7 +77,7 @@
 			},
 			"sourceIndexes" : 
 			[
-				9
+				11
 			]
 		}
 	],
@@ -150,14 +150,16 @@
 				5,
 				6,
 				7,
-				8
+				8,
+				9,
+				10
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
-				9
+				11
 			]
 		}
 	],
@@ -186,6 +188,16 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/cxx/VulkanContext/VulkanLogger/VulkanLogger.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/cxx/VulkanContext/VulkanSwapChain/VulkanRenderPass.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/cxx/VulkanContext/VulkanSwapChain/VulkanSwapChain.h",
 			"sourceGroupIndex" : 0
 		},
 		{

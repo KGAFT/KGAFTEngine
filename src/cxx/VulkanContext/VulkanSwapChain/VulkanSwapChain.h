@@ -9,6 +9,7 @@
 #pragma once
 
 class VulkanSwapChain {
+    friend class VulkanRenderPass;
 private:
     std::vector<VkImage> swapChainImages;
     std::vector<VkImageView> swapChainImageViews;
@@ -21,6 +22,25 @@ public:
     VulkanSwapChain(VulkanDevice* device): device(device){
         createSwapChain();
         createImageViews();
+    }
+
+    VkFormat getSwapChainImageFormat() {
+        return swapChainImageFormat;
+    }
+    void destroy(){
+        for (auto imageView : swapChainImageViews) {
+            vkDestroyImageView(device->getDevice(), imageView, nullptr);
+        }
+        swapChainImageViews.clear();
+
+        if (swapChain != nullptr) {
+            vkDestroySwapchainKHR(device->getDevice(), swapChain, nullptr);
+            swapChain = nullptr;
+        }
+
+    }
+    ~VulkanSwapChain(){
+        destroy();
     }
 private:
     void createSwapChain() {

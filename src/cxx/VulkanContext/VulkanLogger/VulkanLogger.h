@@ -9,13 +9,14 @@ class VulkanLogger {
     friend class VulkanInstance;
 
 public:
-    static inline const std::vector<const char *> validationLayers = {"VK_LAYER_KHRONOS_validation"};
+    static inline const std::vector<const char *> validationLayers = {"VK_LAYER_KHORONOS_validation"};
 
     static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback(
             VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
             VkDebugUtilsMessageTypeFlagsEXT messageType,
             const VkDebugUtilsMessengerCallbackDataEXT *pCallbackData,
             void *pUserData) {
+        std::cerr<<"Vulkan: "<<pCallbackData->pMessage<<std::endl;
         for (const auto &item: rawCallbacks) {
             item->messageRaw(messageSeverity, messageType, pCallbackData, pUserData);
         }
@@ -35,7 +36,7 @@ public:
             }
 
         }
-        std::cerr<<pCallbackData->pMessage<<std::endl;
+
         return VK_FALSE;
     }
 

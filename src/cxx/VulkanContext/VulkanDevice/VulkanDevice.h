@@ -32,6 +32,8 @@ public:
         return result;
     }
 
+
+
 private:
     VkPhysicalDevice deviceToCreate;
     VkDevice device;
@@ -52,10 +54,68 @@ public:
     void destroy(){
         vkDestroyCommandPool(device, commandPool, nullptr);
         vkDestroyDevice(device, nullptr);
+
     }
     ~VulkanDevice(){
         destroy();
     }
+
+    void createImageWithInfo(
+            const VkImageCreateInfo &imageInfo,
+            VkMemoryPropertyFlags properties,
+            VkImage &image,
+            VkDeviceMemory &imageMemory) {
+        if (vkCreateImage(device, &imageInfo, nullptr, &image) != VK_SUCCESS) {
+            throw std::runtime_error("failed to create image!");
+        }
+
+        VkMemoryRequirements memRequirements;
+        vkGetImageMemoryRequirements(device, image, &memRequirements);
+
+        VkMemoryAllocateInfo allocInfo{};
+        allocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
+        allocInfo.allocationSize = memRequirements.size;
+        allocInfo.memoryTypeIndex = findMemoryType(memRequirements.memoryTypeBits, properties);
+
+        if (vkAllocateMemory(device, &allocInfo, nullptr, &imageMemory) != VK_SUCCESS) {
+            throw std::runtime_error("failed to allocate image memory!");
+        }
+
+        if (vkBindImageMemory(device, image, imageMemory, 0) != VK_SUCCESS) {
+            throw std::runtime_error("failed to bind image memory!");
+        }
+    }
+
+    VkFormat findSupportedFormat(
+            const std::vector<VkFormat> &candidates, VkImageTiling tiling, VkFormatFeatureFlags features) {
+        for (VkFormat format : candidates) {
+            VkFormatProperties props;
+            vkGetPhysicalDeviceFormatProperties(deviceToCreate, format, &props);
+
+            if (tiling == VK_IMAGE_TILING_LINEAR && (props.linearTilingFeatures & features) == features) {
+                return format;
+            } else if (
+                    tiling == VK_IMAGE_TILING_OPTIMAL && (props.optimalTilingFeatures & features) == features) {
+                return format;
+            }
+        }
+        throw std::runtime_error("failed to find supported format!");
+    }
+
+
+    unsigned int findMemoryType(uint32_t typeFilter, VkMemoryPropertyFlags properties) {
+        VkPhysicalDeviceMemoryProperties memProperties;
+        vkGetPhysicalDeviceMemoryProperties(deviceToCreate, &memProperties);
+        for (uint32_t i = 0; i < memProperties.memoryTypeCount; i++) {
+            if ((typeFilter & (1 << i)) &&
+                (memProperties.memoryTypes[i].propertyFlags & properties) == properties) {
+                return i;
+            }
+        }
+
+        throw std::runtime_error("failed to find suitable memory type!");
+    }
+
 
     VkPhysicalDevice getDeviceToCreate() {
         return deviceToCreate;
@@ -143,6 +203,5 @@ private:
             throw std::runtime_error("failed to create command pool!");
         }
     }
-
 
 };

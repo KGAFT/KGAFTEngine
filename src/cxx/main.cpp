@@ -2,6 +2,7 @@
 #include "VulkanContext/VulkanInstance.h"
 #include "VulkanContext/VulkanDevice/VulkanDevice.h"
 #include "VulkanContext/VulkanSwapChain/VulkanSwapChain.h"
+#include "VulkanContext/VulkanSwapChain/VulkanRenderPass.h"
 
 int main(){
 	VulkanInstance instance;
@@ -16,8 +17,12 @@ int main(){
     }
     VulkanDevice device(toCreate, Window::getWindowInstance(), instance.getInstance(), true);
     VulkanSwapChain swapChain(&device);
+    VulkanRenderPass renderPass(&device, &swapChain);
     while(!Window::getWindowInstance()->isWindowNeedToClose()){
         Window::getWindowInstance()->postRenderEvents();
     }
+    renderPass.destroy();
+    swapChain.destroy();
+    device.destroy();
 	return 0;
 }

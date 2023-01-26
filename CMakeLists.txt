@@ -9,7 +9,7 @@ file(GLOB_RECURSE CPP_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/cxx/*.cpp)
 
 find_package(Vulkan REQUIRED)
 
-add_executable(VulkanCXXLearn ${HPP_FILES} ${CPP_FILES} src/cxx/VulkanContext/VulkanSwapChain/VulkanRenderingPipeline.h)
+add_executable(VulkanCXXLearn ${HPP_FILES} ${CPP_FILES} src/cxx/VulkanContext/VulkanSwapChain/VulkanRenderingPipeline.h src/cxx/VulkanContext/GraphicsPipeline/GraphicsPipeline.h src/cxx/VulkanContext/GraphicsPipeline/PipelineConfig.h)
 
 add_subdirectory(lib/glm)
 add_subdirectory(lib/glfw)

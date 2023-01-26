@@ -1870,6 +1870,12 @@
 		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/windows.c">
 			<Option target="windows"/>
 		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/src/cxx/VulkanContext/GraphicsPipeline/GraphicsPipeline.h">
+			<Option target="VulkanCXXLearn"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/src/cxx/VulkanContext/GraphicsPipeline/PipelineConfig.h">
+			<Option target="VulkanCXXLearn"/>
+		</Unit>
 		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/src/cxx/VulkanContext/VulkanDevice/DeviceSuitability.h">
 			<Option target="VulkanCXXLearn"/>
 		</Unit>

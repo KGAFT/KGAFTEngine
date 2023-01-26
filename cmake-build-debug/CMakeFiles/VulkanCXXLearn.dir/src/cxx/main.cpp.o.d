@@ -183,4 +183,32 @@ CMakeFiles/VulkanCXXLearn.dir/src/cxx/main.cpp.o: \
  /home/daniil/Documents/VulkanCXXLearn/src/cxx/VulkanContext/VulkanDevice/../../Window/WindowResizeCallback.h \
  /home/daniil/Documents/VulkanCXXLearn/src/cxx/VulkanContext/VulkanSwapChain/VulkanSwapChain.h \
  /usr/include/c++/11/limits \
- /home/daniil/Documents/VulkanCXXLearn/src/cxx/VulkanContext/VulkanSwapChain/VulkanRenderPass.h
+ /home/daniil/Documents/VulkanCXXLearn/src/cxx/VulkanContext/VulkanSwapChain/VulkanRenderPass.h \
+ /home/daniil/Documents/VulkanCXXLearn/src/cxx/VulkanContext/GraphicsPipeline/VulkanShader.h \
+ /usr/include/shaderc/shaderc.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
+ /usr/include/shaderc/env.h /usr/include/shaderc/status.h \
+ /usr/include/shaderc/visibility.h /usr/include/c++/11/filesystem \
+ /usr/include/c++/11/bits/fs_fwd.h /usr/include/c++/11/chrono \
+ /usr/include/c++/11/ratio /usr/include/c++/11/ctime \
+ /usr/include/c++/11/bits/parse_numbers.h \
+ /usr/include/c++/11/bits/fs_path.h /usr/include/c++/11/locale \
+ /usr/include/c++/11/bits/locale_facets_nonio.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/11/bits/locale_conv.h \
+ /usr/include/c++/11/bits/unique_ptr.h /usr/include/c++/11/iomanip \
+ /usr/include/c++/11/bits/quoted_string.h /usr/include/c++/11/sstream \
+ /usr/include/c++/11/bits/sstream.tcc /usr/include/c++/11/codecvt \
+ /usr/include/c++/11/ext/concurrence.h \
+ /usr/include/c++/11/bits/shared_ptr.h \
+ /usr/include/c++/11/bits/shared_ptr_base.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/bits/refwrap.h /usr/include/c++/11/bits/fs_dir.h \
+ /usr/include/c++/11/bits/fs_ops.h /usr/include/c++/11/fstream \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc /usr/include/c++/11/cstring \
+ /usr/include/string.h /usr/include/strings.h

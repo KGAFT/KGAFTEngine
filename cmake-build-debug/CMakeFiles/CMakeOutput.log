@@ -565,3 +565,33 @@ gmake[1]: Leaving directory '/home/daniil/Documents/VulkanCXXLearn/cmake-build-d
 
 
 
+Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_FALLTHROUGH_WARNING succeeded with the following output:
+Change Dir: /home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_b1a91/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b1a91.dir/build.make CMakeFiles/cmTC_b1a91.dir/build
+gmake[1]: Entering directory '/home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_b1a91.dir/src.cxx.o
+/usr/bin/c++ -DCOMPILER_SUPPORTS_FALLTHROUGH_WARNING  -fdiagnostics-color=always   -Wimplicit-fallthrough -o CMakeFiles/cmTC_b1a91.dir/src.cxx.o -c /home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_b1a91
+/home/daniil/Documents/TarBalls/clion-2022.3.1/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b1a91.dir/link.txt --verbose=1
+/usr/bin/c++ CMakeFiles/cmTC_b1a91.dir/src.cxx.o -o cmTC_b1a91 
+gmake[1]: Leaving directory '/home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }
+Performing C++ SOURCE FILE Test COMPILER_SUPPORTS_EXTRA_SEMI_WARNING succeeded with the following output:
+Change Dir: /home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_ab4a5/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_ab4a5.dir/build.make CMakeFiles/cmTC_ab4a5.dir/build
+gmake[1]: Entering directory '/home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_ab4a5.dir/src.cxx.o
+/usr/bin/c++ -DCOMPILER_SUPPORTS_EXTRA_SEMI_WARNING  -Wimplicit-fallthrough  -fdiagnostics-color=always   -Wextra-semi -o CMakeFiles/cmTC_ab4a5.dir/src.cxx.o -c /home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/CMakeFiles/CMakeTmp/src.cxx
+Linking CXX executable cmTC_ab4a5
+/home/daniil/Documents/TarBalls/clion-2022.3.1/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ab4a5.dir/link.txt --verbose=1
+/usr/bin/c++  -Wimplicit-fallthrough  CMakeFiles/cmTC_ab4a5.dir/src.cxx.o -o cmTC_ab4a5 
+gmake[1]: Leaving directory '/home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/CMakeFiles/CMakeTmp'
+
+
+Source file was:
+int main() { return 0; }

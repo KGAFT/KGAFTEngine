@@ -44,10 +44,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/daniil/Documents/clion-2022.3.1/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/daniil/Documents/TarBalls/clion-2022.3.1/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/daniil/Documents/clion-2022.3.1/bin/cmake/linux/bin/cmake -E rm -f
+RM = /home/daniil/Documents/TarBalls/clion-2022.3.1/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -68,7 +68,7 @@ include lib/glfw/src/CMakeFiles/update_mappings.dir/progress.make
 
 lib/glfw/src/CMakeFiles/update_mappings:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Updating gamepad mappings from upstream repository"
-	cd /home/daniil/Documents/VulkanCXXLearn/lib/glfw/src && /home/daniil/Documents/clion-2022.3.1/bin/cmake/linux/bin/cmake -P /home/daniil/Documents/VulkanCXXLearn/lib/glfw/CMake/GenerateMappings.cmake mappings.h.in mappings.h
+	cd /home/daniil/Documents/VulkanCXXLearn/lib/glfw/src && /home/daniil/Documents/TarBalls/clion-2022.3.1/bin/cmake/linux/bin/cmake -P /home/daniil/Documents/VulkanCXXLearn/lib/glfw/CMake/GenerateMappings.cmake mappings.h.in mappings.h
 
 update_mappings: lib/glfw/src/CMakeFiles/update_mappings
 update_mappings: lib/glfw/src/CMakeFiles/update_mappings.dir/build.make

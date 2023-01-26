@@ -5,7 +5,7 @@
 #include <vulkan/vulkan.h>
 
 #pragma once
-namespace PipelineCOnfiguration{
+namespace PipelineConfiguration{
     struct PipelineConfigInfo {
         VkViewport viewport;
         VkRect2D scissor;

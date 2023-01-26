@@ -10,8 +10,8 @@
 
 class VulkanSwapChain {
     friend class VulkanRenderPass;
-
     friend class VulkanRenderingPipeline;
+    friend class VulkanSwapChainControl;
 
 private:
     std::vector<VkImage> swapChainImages;

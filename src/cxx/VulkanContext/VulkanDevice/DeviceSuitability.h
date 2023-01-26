@@ -64,7 +64,7 @@ namespace DeviceSuitability {
                 &extensionCount,
                 availableExtensions.data());
         std::set<std::string> requiredExtensions(deviceExtensions.begin(), deviceExtensions.end());
-        for (const auto &extension : availableExtensions) {
+        for (const auto &extension: availableExtensions) {
             requiredExtensions.erase(extension.extensionName);
         }
         return requiredExtensions.empty();

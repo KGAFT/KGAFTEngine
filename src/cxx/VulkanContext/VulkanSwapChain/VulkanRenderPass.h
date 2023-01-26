@@ -8,7 +8,7 @@
 #pragma once
 
 class VulkanRenderPass {
-
+    friend class VulkanRenderingPipeline;
 public:
     VulkanRenderPass(VulkanDevice *device, VulkanSwapChain *swapChain) : device(device), swapChain(swapChain) {
         createRenderPass();

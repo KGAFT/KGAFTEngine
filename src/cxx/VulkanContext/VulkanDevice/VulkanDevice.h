@@ -33,7 +33,6 @@ public:
     }
 
 
-
 private:
     VkPhysicalDevice deviceToCreate;
     VkDevice device;
@@ -51,12 +50,14 @@ public:
         createLogicalDevice(logDevice);
         createCommandPool();
     }
-    void destroy(){
+
+    void destroy() {
         vkDestroyCommandPool(device, commandPool, nullptr);
         vkDestroyDevice(device, nullptr);
 
     }
-    ~VulkanDevice(){
+
+    ~VulkanDevice() {
         destroy();
     }
 
@@ -88,7 +89,7 @@ public:
 
     VkFormat findSupportedFormat(
             const std::vector<VkFormat> &candidates, VkImageTiling tiling, VkFormatFeatureFlags features) {
-        for (VkFormat format : candidates) {
+        for (VkFormat format: candidates) {
             VkFormatProperties props;
             vkGetPhysicalDeviceFormatProperties(deviceToCreate, format, &props);
 
@@ -129,7 +130,7 @@ public:
         return graphicsQueue;
     }
 
-    VkQueue getPresentQueue()  {
+    VkQueue getPresentQueue() {
         return presentQueue;
     }
 
@@ -191,7 +192,9 @@ private:
     }
 
     void createCommandPool() {
-        DeviceSuitability::QueueFamilyIndices queueFamilyIndices = DeviceSuitability::findQueueFamilies(deviceToCreate, windowInstance->getWindowSurface(vkInstance));
+        DeviceSuitability::QueueFamilyIndices queueFamilyIndices = DeviceSuitability::findQueueFamilies(deviceToCreate,
+                                                                                                        windowInstance->getWindowSurface(
+                                                                                                                vkInstance));
 
         VkCommandPoolCreateInfo poolInfo = {};
         poolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;

@@ -16,7 +16,7 @@ public:
             VkDebugUtilsMessageTypeFlagsEXT messageType,
             const VkDebugUtilsMessengerCallbackDataEXT *pCallbackData,
             void *pUserData) {
-        std::cerr<<"Vulkan: "<<pCallbackData->pMessage<<std::endl;
+        std::cerr << "Vulkan: " << pCallbackData->pMessage << std::endl;
         for (const auto &item: rawCallbacks) {
             item->messageRaw(messageSeverity, messageType, pCallbackData, pUserData);
         }

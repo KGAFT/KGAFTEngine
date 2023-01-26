@@ -3,16 +3,15 @@
 #include <vector>
 #include <unordered_set>
 #include "VulkanLogger/VulkanLogger.h"
+
 #pragma once
 
-class VulkanInstance
-{
+class VulkanInstance {
 private:
     VkInstance instance;
 
 public:
-    bool createInstance(const char *appName, bool enableLogging)
-    {
+    bool createInstance(const char *appName, bool enableLogging) {
         VkApplicationInfo appInfo = {};
         appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
         appInfo.pApplicationName = appName;
@@ -30,56 +29,47 @@ public:
         createInfo.ppEnabledExtensionNames = extensions.data();
 
         VkDebugUtilsMessengerCreateInfoEXT debugCreateInfo;
-        if (enableLogging)
-        {
+        if (enableLogging) {
             VulkanLogger::describeLogger(debugCreateInfo, &createInfo);
-        }
-        else
-        {
+        } else {
             createInfo.enabledLayerCount = 0;
             createInfo.pNext = nullptr;
         }
 
-        if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS)
-        {
+        if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
             return false;
         }
-        return true && checkGlfwExtensions(enableLogging) && enableLogging?VulkanLogger::init(instance):true;
+        return true && checkGlfwExtensions(enableLogging) && enableLogging ? VulkanLogger::init(instance) : true;
     }
 
 private:
-    bool checkGlfwExtensions(bool logging)
-    {
+    bool checkGlfwExtensions(bool logging) {
         uint32_t extensionCount = 0;
         vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, nullptr);
         std::vector<VkExtensionProperties> extensions(extensionCount);
         vkEnumerateInstanceExtensionProperties(nullptr, &extensionCount, extensions.data());
 
         std::unordered_set<std::string> available;
-        for (const auto &extension : extensions)
-        {
+        for (const auto &extension: extensions) {
             available.insert(extension.extensionName);
         }
 
         auto requiredExtensions = getRequiredExtensions(logging);
-        for (const auto &required : requiredExtensions)
-        {
-            if (available.find(required) == available.end())
-            {
+        for (const auto &required: requiredExtensions) {
+            if (available.find(required) == available.end()) {
                 return false;
             }
         }
     }
-    std::vector<const char *> getRequiredExtensions(bool enableValidationLayers)
-    {
+
+    std::vector<const char *> getRequiredExtensions(bool enableValidationLayers) {
         uint32_t glfwExtensionCount = 0;
         const char **glfwExtensions;
         glfwExtensions = glfwGetRequiredInstanceExtensions(&glfwExtensionCount);
 
         std::vector<const char *> extensions(glfwExtensions, glfwExtensions + glfwExtensionCount);
 
-        if (enableValidationLayers)
-        {
+        if (enableValidationLayers) {
             extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
         }
 
@@ -87,7 +77,7 @@ private:
     }
 
 public:
-    VkInstance getInstance(){
+    VkInstance getInstance() {
         return instance;
     }
 };

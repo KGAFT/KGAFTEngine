@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="glm"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\lib\;CMake Files\lib\glfw\;CMake Files\lib\glfw\src\;CMake Files\lib\glfw\examples\;CMake Files\lib\glfw\tests\;CMake Files\lib\glm\;CMake Files\lib\glm\glm\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/lib/glm"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/lib/glm/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/lib/glm/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/lib/glm/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/lib/glm/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glfw\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/cmake_uninstall.cmake.in">
+			<Option virtualFolder="CMake Files\lib\glfw\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glfw\src\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/glfw3.pc.in">
+			<Option virtualFolder="CMake Files\lib\glfw\src\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/glfw3Config.cmake.in">
+			<Option virtualFolder="CMake Files\lib\glfw\src\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/glfw_config.h.in">
+			<Option virtualFolder="CMake Files\lib\glfw\src\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glfw\examples\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glfw\tests\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glm/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glm\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glm/glm/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glm\glm\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

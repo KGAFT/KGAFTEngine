@@ -10,6 +10,9 @@
 
 class VulkanSwapChain {
     friend class VulkanRenderPass;
+
+    friend class VulkanRenderingPipeline;
+
 private:
     std::vector<VkImage> swapChainImages;
     std::vector<VkImageView> swapChainImageViews;
@@ -19,7 +22,7 @@ private:
     VkFormat swapChainImageFormat;
     VkExtent2D swapChainExtent;
 public:
-    VulkanSwapChain(VulkanDevice* device): device(device){
+    VulkanSwapChain(VulkanDevice *device) : device(device) {
         createSwapChain();
         createImageViews();
     }
@@ -27,8 +30,9 @@ public:
     VkFormat getSwapChainImageFormat() {
         return swapChainImageFormat;
     }
-    void destroy(){
-        for (auto imageView : swapChainImageViews) {
+
+    void destroy() {
+        for (auto imageView: swapChainImageViews) {
             vkDestroyImageView(device->getDevice(), imageView, nullptr);
         }
         swapChainImageViews.clear();
@@ -39,9 +43,11 @@ public:
         }
 
     }
-    ~VulkanSwapChain(){
+
+    ~VulkanSwapChain() {
         destroy();
     }
+
 private:
     void createSwapChain() {
         DeviceSuitability::SwapChainSupportDetails swapChainSupport = DeviceSuitability::querySwapChainSupport(

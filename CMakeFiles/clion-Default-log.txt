@@ -1,6 +1,0 @@
-/snap/clion/219/bin/cmake/linux/bin/cmake -DCMAKE_MAKE_PROGRAM=/snap/clion/219/bin/ninja/linux/ninja -G Ninja -S /home/daniil/Documents/VulkanCXXLearn -B /home/daniil/Documents/VulkanCXXLearn
--- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
--- Using X11 for window creation
--- Configuring done
--- Generating done
--- Build files have been written to: /home/daniil/Documents/VulkanCXXLearn

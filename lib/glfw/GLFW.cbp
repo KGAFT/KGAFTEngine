@@ -1,0 +1,1797 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="GLFW"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\lib\;CMake Files\lib\glfw\;CMake Files\lib\glfw\src\;CMake Files\lib\glfw\examples\;CMake Files\lib\glfw\tests\;CMake Files\lib\glm\;CMake Files\lib\glm\glm\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="uninstall">
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/Makefile&quot;  VERBOSE=1 uninstall"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="update_mappings">
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 update_mappings"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glfw">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/libglfw3.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D_GLFW_USE_CONFIG_H"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 glfw"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glfw/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/libglfw3.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-D_GLFW_USE_CONFIG_H"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 glfw/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="boing">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/boing" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 boing"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="boing/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/boing" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 boing/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gears">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/gears" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 gears"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gears/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/gears" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 gears/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="heightmap">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/heightmap" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 heightmap"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="heightmap/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/heightmap" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 heightmap/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="offscreen">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/offscreen" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 offscreen"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="offscreen/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/offscreen" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 offscreen/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="particles">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/particles" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 particles"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="particles/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/particles" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 particles/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sharing">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/sharing" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 sharing"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sharing/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/sharing" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 sharing/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simple">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/simple" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 simple"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="simple/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/simple" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 simple/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="splitview">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/splitview" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 splitview"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="splitview/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/splitview" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 splitview/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="wave">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/wave" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 wave"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="wave/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/wave" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 wave/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="clipboard">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/clipboard" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clipboard"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="clipboard/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/clipboard" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clipboard/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="events">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/events" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 events"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="events/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/events" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 events/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="msaa">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/msaa" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 msaa"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="msaa/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/msaa" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 msaa/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glfwinfo">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/glfwinfo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 glfwinfo"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="glfwinfo/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/glfwinfo" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 glfwinfo/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="iconify">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/iconify" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 iconify"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="iconify/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/iconify" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 iconify/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="monitors">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/monitors" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 monitors"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="monitors/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/monitors" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 monitors/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="reopen">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/reopen" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 reopen"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="reopen/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/reopen" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 reopen/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cursor">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/cursor" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 cursor"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cursor/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/cursor" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 cursor/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="empty">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/empty" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 empty"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="empty/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/empty" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 empty/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gamma">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/gamma" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 gamma"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gamma/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/gamma" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 gamma/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="icon">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/icon" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 icon"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="icon/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/icon" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 icon/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="inputlag">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/inputlag" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 inputlag"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="inputlag/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/inputlag" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 inputlag/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="joysticks">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/joysticks" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 joysticks"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="joysticks/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/joysticks" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 joysticks/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="opacity">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/opacity" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 opacity"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="opacity/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/opacity" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 opacity/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tearing">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/tearing" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 tearing"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tearing/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/tearing" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 tearing/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="threads">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/threads" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 threads"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="threads/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/threads" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 threads/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="timeout">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/timeout" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 timeout"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="timeout/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/timeout" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 timeout/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="title">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/title" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 title"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="title/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/title" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 title/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="triangle-vulkan">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/triangle-vulkan" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 triangle-vulkan"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="triangle-vulkan/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/triangle-vulkan" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 triangle-vulkan/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="windows">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/windows" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 windows"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="windows/fast">
+				<Option output="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/windows" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps"/>
+					<Add directory="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include"/>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 windows/fast"/>
+					<CompileFile command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j2 -f &quot;/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/CMake/GenerateMappings.cmake">
+			<Option target="update_mappings"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps/getopt.c">
+			<Option target="particles"/>
+			<Option target="clipboard"/>
+			<Option target="events"/>
+			<Option target="msaa"/>
+			<Option target="glfwinfo"/>
+			<Option target="iconify"/>
+			<Option target="monitors"/>
+			<Option target="inputlag"/>
+			<Option target="windows"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps/getopt.h">
+			<Option target="particles"/>
+			<Option target="clipboard"/>
+			<Option target="events"/>
+			<Option target="msaa"/>
+			<Option target="glfwinfo"/>
+			<Option target="iconify"/>
+			<Option target="monitors"/>
+			<Option target="inputlag"/>
+			<Option target="windows"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps/glad/gl.h">
+			<Option target="boing"/>
+			<Option target="gears"/>
+			<Option target="heightmap"/>
+			<Option target="offscreen"/>
+			<Option target="particles"/>
+			<Option target="sharing"/>
+			<Option target="simple"/>
+			<Option target="splitview"/>
+			<Option target="wave"/>
+			<Option target="clipboard"/>
+			<Option target="events"/>
+			<Option target="msaa"/>
+			<Option target="glfwinfo"/>
+			<Option target="iconify"/>
+			<Option target="monitors"/>
+			<Option target="reopen"/>
+			<Option target="cursor"/>
+			<Option target="empty"/>
+			<Option target="gamma"/>
+			<Option target="icon"/>
+			<Option target="inputlag"/>
+			<Option target="joysticks"/>
+			<Option target="opacity"/>
+			<Option target="tearing"/>
+			<Option target="threads"/>
+			<Option target="timeout"/>
+			<Option target="title"/>
+			<Option target="windows"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps/glad/vulkan.h">
+			<Option target="glfwinfo"/>
+			<Option target="triangle-vulkan"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps/glad_gl.c">
+			<Option target="boing"/>
+			<Option target="gears"/>
+			<Option target="heightmap"/>
+			<Option target="offscreen"/>
+			<Option target="particles"/>
+			<Option target="sharing"/>
+			<Option target="simple"/>
+			<Option target="splitview"/>
+			<Option target="wave"/>
+			<Option target="clipboard"/>
+			<Option target="events"/>
+			<Option target="msaa"/>
+			<Option target="glfwinfo"/>
+			<Option target="iconify"/>
+			<Option target="monitors"/>
+			<Option target="reopen"/>
+			<Option target="cursor"/>
+			<Option target="empty"/>
+			<Option target="gamma"/>
+			<Option target="icon"/>
+			<Option target="inputlag"/>
+			<Option target="joysticks"/>
+			<Option target="opacity"/>
+			<Option target="tearing"/>
+			<Option target="threads"/>
+			<Option target="timeout"/>
+			<Option target="title"/>
+			<Option target="windows"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps/glad_vulkan.c">
+			<Option target="glfwinfo"/>
+			<Option target="triangle-vulkan"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps/tinycthread.c">
+			<Option target="particles"/>
+			<Option target="empty"/>
+			<Option target="threads"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/deps/tinycthread.h">
+			<Option target="particles"/>
+			<Option target="empty"/>
+			<Option target="threads"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/boing.c">
+			<Option target="boing"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/gears.c">
+			<Option target="gears"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/heightmap.c">
+			<Option target="heightmap"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/offscreen.c">
+			<Option target="offscreen"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/particles.c">
+			<Option target="particles"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/sharing.c">
+			<Option target="sharing"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/simple.c">
+			<Option target="simple"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/splitview.c">
+			<Option target="splitview"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/wave.c">
+			<Option target="wave"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include/GLFW/glfw3.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/include/GLFW/glfw3native.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/context.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/egl_context.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/egl_context.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/glfw_config.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/glx_context.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/glx_context.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/init.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/input.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/internal.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/linux_joystick.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/linux_joystick.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/mappings.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/mappings.h.in">
+			<Option target="update_mappings"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/monitor.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/osmesa_context.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/osmesa_context.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/posix_thread.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/posix_thread.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/posix_time.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/posix_time.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/vulkan.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/window.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/x11_init.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/x11_monitor.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/x11_platform.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/x11_window.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/xkb_unicode.c">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/xkb_unicode.h">
+			<Option target="glfw"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/clipboard.c">
+			<Option target="clipboard"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/cursor.c">
+			<Option target="cursor"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/empty.c">
+			<Option target="empty"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/events.c">
+			<Option target="events"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/gamma.c">
+			<Option target="gamma"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/glfwinfo.c">
+			<Option target="glfwinfo"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/icon.c">
+			<Option target="icon"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/iconify.c">
+			<Option target="iconify"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/inputlag.c">
+			<Option target="inputlag"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/joysticks.c">
+			<Option target="joysticks"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/monitors.c">
+			<Option target="monitors"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/msaa.c">
+			<Option target="msaa"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/opacity.c">
+			<Option target="opacity"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/reopen.c">
+			<Option target="reopen"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/tearing.c">
+			<Option target="tearing"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/threads.c">
+			<Option target="threads"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/timeout.c">
+			<Option target="timeout"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/title.c">
+			<Option target="title"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/triangle-vulkan.c">
+			<Option target="triangle-vulkan"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/windows.c">
+			<Option target="windows"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glfw\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/cmake_uninstall.cmake.in">
+			<Option virtualFolder="CMake Files\lib\glfw\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glfw\src\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/glfw3.pc.in">
+			<Option virtualFolder="CMake Files\lib\glfw\src\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/glfw3Config.cmake.in">
+			<Option virtualFolder="CMake Files\lib\glfw\src\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/src/glfw_config.h.in">
+			<Option virtualFolder="CMake Files\lib\glfw\src\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/examples/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glfw\examples\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glfw/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glfw\tests\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glm/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glm\"/>
+		</Unit>
+		<Unit filename="/home/daniil/Documents/VulkanCXXLearn/lib/glm/glm/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\lib\glm\glm\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

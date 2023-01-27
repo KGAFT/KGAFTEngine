@@ -17,16 +17,20 @@ private:
 public:
     static VulkanShader* loadShaderBlock(const char* directoryPath, VulkanDevice* device){
         std::vector<VkShaderModule> shaders;
+        std::vector<shaderc_shader_kind> types;
         for (const auto & entry : std::filesystem::directory_iterator(directoryPath)){
-            shaders.push_back(loadShaderFromFile(entry.path().c_str(), device));
+            shaderc_shader_kind type;
+            shaders.push_back(loadShaderFromFile(entry.path().c_str(), device, &type));
+            types.push_back(type);
         }
-        return nullptr;
+        return new VulkanShader(device, shaders, types);
     }
-    static VkShaderModule loadShaderFromFile(const char* path, VulkanDevice* device){
+    static VkShaderModule loadShaderFromFile(const char* path, VulkanDevice* device, shaderc_shader_kind* outType){
         std::string tPath = std::string(path);
         int offSetToName = tPath.find_last_of('/');
         std::string name = tPath.substr(offSetToName+1, tPath.size());
         shaderc_shader_kind type = getShaderType(name);
+        *outType = type;
         size_t size = 0;
         const char* content = compileShader(path, type, name.c_str(), &size);
         VkShaderModuleCreateInfo createInfo = {};
@@ -88,6 +92,48 @@ public:
             fileReader.close();
             return content;
         }
-
+    }
+private:
+    std::vector<VkShaderModule> shaders;
+    std::vector<VkPipelineShaderStageCreateInfo> stages;
+    VulkanDevice* device;
+    VulkanShader(VulkanDevice* device, std::vector<VkShaderModule> shaders, std::vector<shaderc_shader_kind>& types){
+        this->shaders = shaders;
+        this->device=device;
+        stages.resize(shaders.size());
+        for(unsigned int i = 0; i<shaders.size(); i++){
+            VkPipelineShaderStageCreateInfo stage = {};
+            stage.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+            stage.stage = getShaderStage(types[i]);
+            stage.module = shaders[i];
+            stage.pName = "main";
+            stage.flags = 0;
+            stage.pNext = nullptr;
+            stages.push_back(stage);
+        }
+    }
+    VkShaderStageFlagBits getShaderStage(shaderc_shader_kind type){
+        switch(type){
+            case shaderc_glsl_fragment_shader:
+                return VK_SHADER_STAGE_FRAGMENT_BIT;
+            case shaderc_glsl_geometry_shader:
+                return VK_SHADER_STAGE_GEOMETRY_BIT;
+            case shaderc_glsl_vertex_shader:
+                return VK_SHADER_STAGE_VERTEX_BIT;
+            default:
+                break;
+        }
+    }
+public:
+    VkPipelineShaderStageCreateInfo* getStages(){
+        return stages.data();
+    }
+    void destroy(){
+        for (const auto &item: shaders){
+            vkDestroyShaderModule(device->getDevice(), item, nullptr);
+        }
+    }
+    ~VulkanShader(){
+        destroy();
     }
 };

@@ -44,10 +44,10 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/daniil/Documents/TarBalls/clion-2022.3.1/bin/cmake/linux/bin/cmake
+CMAKE_COMMAND = /home/daniil/Documents/clion-2022.3.1/bin/cmake/linux/bin/cmake
 
 # The command to remove a file.
-RM = /home/daniil/Documents/TarBalls/clion-2022.3.1/bin/cmake/linux/bin/cmake -E rm -f
+RM = /home/daniil/Documents/clion-2022.3.1/bin/cmake/linux/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -67,7 +67,7 @@ include lib/glfw/CMakeFiles/uninstall.dir/compiler_depend.make
 include lib/glfw/CMakeFiles/uninstall.dir/progress.make
 
 lib/glfw/CMakeFiles/uninstall:
-	cd /home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/lib/glfw && /home/daniil/Documents/TarBalls/clion-2022.3.1/bin/cmake/linux/bin/cmake -P /home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/lib/glfw/cmake_uninstall.cmake
+	cd /home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/lib/glfw && /home/daniil/Documents/clion-2022.3.1/bin/cmake/linux/bin/cmake -P /home/daniil/Documents/VulkanCXXLearn/cmake-build-debug/lib/glfw/cmake_uninstall.cmake
 
 uninstall: lib/glfw/CMakeFiles/uninstall
 uninstall: lib/glfw/CMakeFiles/uninstall.dir/build.make

@@ -100,7 +100,6 @@ private:
     VulkanShader(VulkanDevice* device, std::vector<VkShaderModule> shaders, std::vector<shaderc_shader_kind>& types){
         this->shaders = shaders;
         this->device=device;
-        stages.resize(shaders.size());
         for(unsigned int i = 0; i<shaders.size(); i++){
             VkPipelineShaderStageCreateInfo stage = {};
             stage.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;

@@ -6,6 +6,7 @@
 #include "PipelineConfig.h"
 #include "../VulkanDevice/VulkanDevice.h"
 #include "VulkanShader.h"
+#include "../VulkanVertexBuffer/VertexBufferManager.h"
 
 #pragma once
 
@@ -16,6 +17,17 @@ private:
     VkPipeline graphicsPipeline;
 
     VkPipelineLayout pipelineLayout;
+
+
+
+public:
+    GraphicsPipeline(VulkanShader* shader, VulkanDevice* device, PipelineConfiguration::PipelineConfigInfo& configInfo, VertexBufferManager* manager){
+        this->device = device;
+        createPipelineLayout();
+        create(shader, configInfo, manager);
+    }
+private:
+
     void createPipelineLayout(){
         VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
         pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
@@ -29,15 +41,15 @@ private:
         }
     }
 
-    void create(VulkanShader* shader, PipelineConfiguration::PipelineConfigInfo& configInfo){
+    void create(VulkanShader* shader, PipelineConfiguration::PipelineConfigInfo& configInfo, VertexBufferManager* manager){
 
 
         VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
         vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-        vertexInputInfo.vertexAttributeDescriptionCount = 0;
-        vertexInputInfo.vertexBindingDescriptionCount = 0;
-        vertexInputInfo.pVertexAttributeDescriptions = nullptr;
-        vertexInputInfo.pVertexBindingDescriptions = nullptr;
+        vertexInputInfo.vertexAttributeDescriptionCount = manager->getAttributeDescriptions().size();
+        vertexInputInfo.vertexBindingDescriptionCount = manager->getBindingDescription().size();
+        vertexInputInfo.pVertexAttributeDescriptions = manager->getAttributeDescriptions().data();
+        vertexInputInfo.pVertexBindingDescriptions = manager->getBindingDescription().data();
 
         VkPipelineViewportStateCreateInfo viewportInfo{};
         viewportInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;

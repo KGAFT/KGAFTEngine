@@ -1,0 +1,57 @@
+//
+// Created by daniil on 27.01.23.
+//
+#pragma once
+
+#include <cstring>
+#include "../VulkanDevice/VulkanDevice.h"
+
+class VertexBuffer{
+private:
+    VkBuffer vertexBuffer;
+    VkDeviceMemory vertexBufferMemory;
+    VulkanDevice* device;
+    unsigned int verticesAmount;
+
+public:
+    VertexBuffer(unsigned int verticesAmount, size_t typeSize, unsigned int vertexCoordsAmount, VulkanDevice* device, void *data){
+        this->device = device;
+        createVertexBuffers(data, typeSize, vertexCoordsAmount, verticesAmount);
+    }
+    ~VertexBuffer(){
+        destroy();
+    }
+
+    void destroy(){
+        vkDestroyBuffer(device->getDevice(), vertexBuffer, nullptr);
+        vkFreeMemory(device->getDevice(), vertexBufferMemory, nullptr);
+    }
+
+
+    void draw(VkCommandBuffer commandBuffer) {
+        vkCmdDraw(commandBuffer, verticesAmount, 1, 0, 0);
+    }
+
+    void bind(VkCommandBuffer commandBuffer) {
+        VkBuffer buffers[] = {vertexBuffer};
+        VkDeviceSize offsets[] = {0};
+        vkCmdBindVertexBuffers(commandBuffer, 0, 1, buffers, offsets);
+    }
+
+private:
+    void createVertexBuffers(void* vertices, size_t typeSize,  unsigned int vertexCoordsAmount, unsigned int verticesAmount) {
+        VkDeviceSize bufferSize = typeSize * verticesAmount*vertexCoordsAmount;
+        this->verticesAmount = verticesAmount;
+        device->createBuffer(
+                bufferSize,
+                VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
+                vertexBuffer,
+                vertexBufferMemory);
+        void* data;
+        vkMapMemory(device->getDevice(), vertexBufferMemory, 0, bufferSize, 0, &data);
+        memcpy(data, vertices, static_cast<size_t>(bufferSize));
+        vkUnmapMemory(device->getDevice(), vertexBufferMemory);
+    }
+};
+

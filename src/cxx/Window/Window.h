@@ -57,6 +57,9 @@ private:
     int width;
     int height;
     const char *title;
+    long long counter = 0;
+    double prevTime = 0;
+    bool fpsCounter = true;
     GLFWwindow *handle;
     std::vector<WindowResizeCallback *> resizeCallBacks;
     std::vector<MouseMovedCallBack *> mouseMoveCallBacks;
@@ -149,7 +152,10 @@ public:
 
     void setTitle(const char *title) {
         this->title = title;
-        glfwSetWindowTitle(handle, title);
+        if(!fpsCounter){
+            glfwSetWindowTitle(handle, title);
+        }
+
     }
 
     bool isWindowNeedToClose() {
@@ -158,6 +164,30 @@ public:
 
     void postRenderEvents() {
         glfwPollEvents();
+        if(fpsCounter){
+            double crntTime = glfwGetTime();
+            double timeDiff = crntTime - prevTime;
+            counter++;
+
+            if (timeDiff >= 1.0 / 30.0)
+            {
+                std::string FPS = std::to_string((int)((1.0 / timeDiff) * counter));
+                std::string ms = std::to_string((timeDiff / counter) * 1000);
+                glfwSetWindowTitle(handle, (std::string(title)+" FPS: "+FPS+" ms: "+ms).c_str());
+
+                prevTime = crntTime;
+                counter = 0;
+            }
+        }
+
+    }
+
+    bool isFpsCounter() const {
+        return fpsCounter;
+    }
+
+    void setFpsCounter(bool fpsCounter) {
+        Window::fpsCounter = fpsCounter;
     }
 
     int getWidth() const {

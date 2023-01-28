@@ -36,6 +36,11 @@ public:
     ~VulkanRenderPass(){
         destroy();
     }
+
+    VkRenderPass getRenderPass() {
+        return renderPass;
+    }
+
 private:
     VulkanDevice *device;
     VkRenderPass renderPass;

@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/VulkanCXXLearn.dir/src/cxx/main.cpp.o -o VulkanCXXLearn  lib/glfw/src/libglfw3.a /usr/lib/x86_64-linux-gnu/libvulkan.so -Wl,-Bstatic -lshaderc_combined -Wl,-Bdynamic /usr/lib/x86_64-linux-gnu/librt.a -lm -ldl /usr/lib/x86_64-linux-gnu/libX11.so 

@@ -6,7 +6,8 @@
 #include "PipelineConfig.h"
 #include "../VulkanDevice/VulkanDevice.h"
 #include "VulkanShader.h"
-#include "../VulkanVertexBuffer/VertexBufferManager.h"
+#include "../VulkanBuffers/VertexBufferDescriptionManager.h"
+#include "../VulkanImmediateShaderData/PushConstants/PushConstantDescriptionManager.h"
 
 #pragma once
 
@@ -15,14 +16,15 @@ class GraphicsPipeline{
 private:
     VulkanDevice* device;
     VkPipeline graphicsPipeline;
-
+    PushConstantDescriptionManager* pcDescs;
     VkPipelineLayout pipelineLayout;
 
 
 
 public:
-    GraphicsPipeline(VulkanShader* shader, VulkanDevice* device, PipelineConfiguration::PipelineConfigInfo& configInfo, VertexBufferManager* manager){
+    GraphicsPipeline(VulkanShader* shader, VulkanDevice* device, PipelineConfiguration::PipelineConfigInfo& configInfo, VertexBufferDescriptionManager* manager, PushConstantDescriptionManager* pcDescs){
         this->device = device;
+        this->pcDescs = pcDescs;
         createPipelineLayout();
         create(shader, configInfo, manager);
     }
@@ -33,15 +35,15 @@ private:
         pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
         pipelineLayoutInfo.setLayoutCount = 0;
         pipelineLayoutInfo.pSetLayouts = nullptr;
-        pipelineLayoutInfo.pushConstantRangeCount = 0;
-        pipelineLayoutInfo.pPushConstantRanges = nullptr;
+        pipelineLayoutInfo.pushConstantRangeCount = pcDescs->getPushConstantRanges().size();
+        pipelineLayoutInfo.pPushConstantRanges = pcDescs->getPushConstantRanges().data();
         if (vkCreatePipelineLayout(device->getDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) !=
             VK_SUCCESS) {
             throw std::runtime_error("failed to create pipeline layout!");
         }
     }
 
-    void create(VulkanShader* shader, PipelineConfiguration::PipelineConfigInfo& configInfo, VertexBufferManager* manager){
+    void create(VulkanShader* shader, PipelineConfiguration::PipelineConfigInfo& configInfo, VertexBufferDescriptionManager* manager){
 
 
         VkPipelineVertexInputStateCreateInfo vertexInputInfo{};

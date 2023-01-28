@@ -42,16 +42,31 @@ private:
     void createVertexBuffers(void* vertices, size_t typeSize,  unsigned int vertexCoordsAmount, unsigned int verticesAmount) {
         VkDeviceSize bufferSize = typeSize * verticesAmount*vertexCoordsAmount;
         this->verticesAmount = verticesAmount;
+        VkBuffer stagingBuffer;
+        VkDeviceMemory stagingBufferMemory;
         device->createBuffer(
                 bufferSize,
-                VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+                VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
                 VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
+                stagingBuffer,
+                stagingBufferMemory);
+
+        void *data;
+        vkMapMemory(device->getDevice(), stagingBufferMemory, 0, bufferSize, 0, &data);
+        memcpy(data, vertices, static_cast<size_t>(bufferSize));
+        vkUnmapMemory(device->getDevice(), stagingBufferMemory);
+
+        device->createBuffer(
+                bufferSize,
+                VK_BUFFER_USAGE_VERTEX_BUFFER_BIT | VK_BUFFER_USAGE_TRANSFER_DST_BIT,
+                VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
                 vertexBuffer,
                 vertexBufferMemory);
-        void* data;
-        vkMapMemory(device->getDevice(), vertexBufferMemory, 0, bufferSize, 0, &data);
-        memcpy(data, vertices, static_cast<size_t>(bufferSize));
-        vkUnmapMemory(device->getDevice(), vertexBufferMemory);
+
+        device->copyBuffer(stagingBuffer, vertexBuffer, bufferSize);
+
+        vkDestroyBuffer(device->getDevice(), stagingBuffer, nullptr);
+        vkFreeMemory(device->getDevice(), stagingBufferMemory, nullptr);
     }
 };
 

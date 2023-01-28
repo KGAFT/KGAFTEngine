@@ -41,7 +41,10 @@ int main(){
 
         Window::getWindowInstance()->postRenderEvents();
     }
+
+
     renderPipeline.prepareToDestroy();
+    buffer.destroy();
     renderPass.destroy();
     swapChain.destroy();
     device.destroy();

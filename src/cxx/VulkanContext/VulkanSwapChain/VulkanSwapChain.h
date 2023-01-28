@@ -2,7 +2,7 @@
 // Created by daniil on 25.01.23.
 //
 #include <vulkan/vulkan.h>
-#include <limits>
+
 #include "../VulkanDevice/DeviceSuitability.h"
 #include "../VulkanDevice/VulkanDevice.h"
 
@@ -149,7 +149,7 @@ private:
     }
 
     VkExtent2D chooseSwapExtent(const VkSurfaceCapabilitiesKHR &capabilities) {
-        if (capabilities.currentExtent.width != std::numeric_limits<uint32_t>::max()) {
+        if (capabilities.currentExtent.width != 0xFFFFFFFF) {
             return capabilities.currentExtent;
         } else {
             VkExtent2D actualExtent = {(unsigned int) device->getWindowInstance()->getWidth(),

@@ -7,6 +7,7 @@
 #include "VulkanSwapChainControl.h"
 #include "../GraphicsPipeline/GraphicsPipeline.h"
 #include "../VulkanVertexBuffer/VertexBuffer.h"
+#include "../VulkanVertexBuffer/IndexBuffer.h"
 
 class VulkanRenderingPipeline {
 private:
@@ -15,6 +16,7 @@ private:
     GraphicsPipeline *pipeline;
     VulkanDevice *device;
     VertexBuffer* buffer;
+    IndexBuffer* ibo;
     std::vector<VkCommandBuffer> commandBuffers;
 public:
     VulkanRenderingPipeline(VulkanSwapChainControl *control, VulkanRenderPass *renderPass, GraphicsPipeline *pipeline,
@@ -36,8 +38,10 @@ public:
             VK_SUCCESS) {
             throw std::runtime_error("failed to allocate command buffers!");
         }
-
-
+        unsigned int indices[]{
+            0,1,2
+        };
+        ibo = new IndexBuffer(device, indices, 3);
     }
 
     void redrawCommandBuffers() {
@@ -63,7 +67,8 @@ public:
 
         vkCmdBindPipeline(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline->graphicsPipeline);
         buffer->bind(commandBuffers[i]);
-        buffer->draw(commandBuffers[i]);
+        ibo->bind(commandBuffers[i]);
+        ibo->draw(commandBuffers[i]);
 
         vkCmdEndRenderPass(commandBuffers[i]);
         if (vkEndCommandBuffer(commandBuffers[i]) != VK_SUCCESS) {

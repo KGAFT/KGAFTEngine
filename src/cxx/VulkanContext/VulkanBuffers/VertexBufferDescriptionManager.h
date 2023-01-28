@@ -6,7 +6,7 @@
 #include <stdexcept>
 #pragma once
 
-class VertexBufferManager{
+class VertexBufferDescriptionManager{
 private:
     std::vector<VkVertexInputAttributeDescription> attributeDescriptions;
     std::vector<VkVertexInputBindingDescription> bindingDescription;

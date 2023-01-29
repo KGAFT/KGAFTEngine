@@ -24,7 +24,7 @@ public:
 
     void destroy(){
         vkDestroyBuffer(device->getDevice(), vertexBuffer, nullptr);
-        vkFreeMemory(device->getDevice(), vertexBufferMemory, nullptr);
+        //vkFreeMemory(device->getDevice(), vertexBufferMemory, nullptr);
     }
 
 

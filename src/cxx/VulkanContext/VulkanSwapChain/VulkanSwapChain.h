@@ -16,13 +16,14 @@ class VulkanSwapChain {
 private:
     std::vector<VkImage> swapChainImages;
     std::vector<VkImageView> swapChainImageViews;
-
+    unsigned int width;
+    unsigned int height;
     VulkanDevice *device;
     VkSwapchainKHR swapChain;
     VkFormat swapChainImageFormat;
     VkExtent2D swapChainExtent;
 public:
-    VulkanSwapChain(VulkanDevice *device) : device(device) {
+    VulkanSwapChain(VulkanDevice *device, unsigned int width, unsigned int height) : device(device), width(width), height(height) {
         createSwapChain();
         createImageViews();
     }
@@ -41,7 +42,14 @@ public:
             vkDestroySwapchainKHR(device->getDevice(), swapChain, nullptr);
             swapChain = nullptr;
         }
-
+        swapChainImages.clear();
+    }
+    void recreate(unsigned int width, unsigned int height) {
+        this->width = width;
+        this->height = height;
+        destroy();
+        createSwapChain();
+        createImageViews();
     }
 
     ~VulkanSwapChain() {
@@ -152,8 +160,8 @@ private:
         if (capabilities.currentExtent.width != 0xFFFFFFFF) {
             return capabilities.currentExtent;
         } else {
-            VkExtent2D actualExtent = {(unsigned int) device->getWindowInstance()->getWidth(),
-                                       (unsigned int) device->getWindowInstance()->getHeight()};
+            VkExtent2D actualExtent = {width,
+                                       height};
             actualExtent.width = std::max(
                     capabilities.minImageExtent.width,
                     std::min(capabilities.maxImageExtent.width, actualExtent.width));

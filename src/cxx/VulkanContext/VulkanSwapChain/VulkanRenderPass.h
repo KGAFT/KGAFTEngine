@@ -2,6 +2,7 @@
 // Created by daniil on 25.01.23.
 //
 #include <vulkan/vulkan.h>
+#include <array>
 #include "../VulkanDevice/VulkanDevice.h"
 #include "VulkanSwapChain.h"
 
@@ -19,18 +20,18 @@ public:
         for (const auto &item: frameBuffers){
             vkDestroyFramebuffer(device->getDevice(), item, nullptr);
         }
-        for (const auto &item: depthImageViews){
+        for (const auto& item : depthImageViews) {
             vkDestroyImageView(device->getDevice(), item, nullptr);
-        }
-        for (const auto &item: depthImages){
-            vkDestroyImage(device->getDevice(), item, nullptr);
         }
         for (const auto &item: depthImageMemories){
             vkFreeMemory(device->getDevice(), item, nullptr);
         }
 
         vkDestroyRenderPass(device->getDevice(), renderPass, nullptr);
-
+        depthImages.clear();
+        frameBuffers.clear();
+        depthImageViews.clear();
+        depthImageMemories.clear();
 
     }
     ~VulkanRenderPass(){
@@ -39,6 +40,12 @@ public:
 
     VkRenderPass getRenderPass() {
         return renderPass;
+    }
+    void recreate() {
+        destroy();
+        createRenderPass();
+        createDepthResources();
+        createFrameBuffers();
     }
 
 private:
@@ -172,7 +179,7 @@ private:
             VkFramebufferCreateInfo framebufferInfo = {};
             framebufferInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
             framebufferInfo.renderPass = renderPass;
-            framebufferInfo.attachmentCount = static_cast<uint32_t>(attachments.size());
+            framebufferInfo.attachmentCount = attachments.size();
             framebufferInfo.pAttachments = attachments.data();
             framebufferInfo.width = swapChainExtent.width;
             framebufferInfo.height = swapChainExtent.height;

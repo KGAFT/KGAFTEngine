@@ -16,7 +16,14 @@ private:
     VkShaderStageFlags shaderStages;
     void* data;
 public:
-    PushConstant(size_t size, VkShaderStageFlags shaderStages) : size(size), shaderStages(shaderStages) {}
+    PushConstant(size_t size, VkShaderStageFlags shaderStages) : size(size), shaderStages(shaderStages) {
+        /*
+        while (this->size % 16 != 0) {
+            this->size += 1;
+        }
+        */
+        
+    }
 
     size_t getSize(){
         return size;

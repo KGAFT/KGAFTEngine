@@ -18,21 +18,25 @@ public:
     static VulkanShader* loadShaderBlock(const char* directoryPath, VulkanDevice* device){
         std::vector<VkShaderModule> shaders;
         std::vector<shaderc_shader_kind> types;
-        for (const auto & entry : std::filesystem::directory_iterator(directoryPath)){
-            shaderc_shader_kind type;
-            shaders.push_back(loadShaderFromFile(entry.path().c_str(), device, &type));
-            types.push_back(type);
+        try {
+            for (const auto& entry : std::filesystem::directory_iterator(directoryPath)) {
+                shaderc_shader_kind type;
+                shaders.push_back(loadShaderFromFile(entry.path(), device, &type));
+                types.push_back(type);
+            }
         }
+        catch (std::filesystem::filesystem_error e) {
+            std::cerr << e.what() << std::endl;
+            return nullptr;
+        }
+        
         return new VulkanShader(device, shaders, types);
     }
-    static VkShaderModule loadShaderFromFile(const char* path, VulkanDevice* device, shaderc_shader_kind* outType){
-        std::string tPath = std::string(path);
-        int offSetToName = tPath.find_last_of('/');
-        std::string name = tPath.substr(offSetToName+1, tPath.size());
-        shaderc_shader_kind type = getShaderType(name);
+    static VkShaderModule loadShaderFromFile(std::filesystem::path path, VulkanDevice* device, shaderc_shader_kind* outType){
+        shaderc_shader_kind type = getShaderType(path.extension().string());
         *outType = type;
         size_t size = 0;
-        const char* content = compileShader(path, type, name.c_str(), &size);
+        const char* content = compileShader(path.string().c_str(), type, path.filename().string().c_str(), &size);
         VkShaderModuleCreateInfo createInfo = {};
         createInfo.codeSize = size;
         createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
@@ -45,24 +49,15 @@ public:
         delete content;
         return result;
     }
-    static shaderc_shader_kind getShaderType(std::string fileName){
-        std::string extension = "";
-        bool started = false;
-        for (char ch: fileName){
-            if(started){
-                extension+=ch;
-            }
-            if(!started && ch=='.'){
-                started = true;
-            }
-        }
-        if(!std::strcmp(extension.c_str(), "frag")){
+    static shaderc_shader_kind getShaderType(std::string extension){
+       
+        if(!std::strcmp(extension.c_str(), ".frag")){
             return shaderc_glsl_fragment_shader;
         }
-        if(!std::strcmp(extension.c_str(), "vert")){
+        if(!std::strcmp(extension.c_str(), ".vert")){
             return shaderc_glsl_vertex_shader;
         }
-        if(!std::strcmp(extension.c_str(), "geom")){
+        if(!std::strcmp(extension.c_str(), ".geom")){
             return shaderc_glsl_geometry_shader;
         }
     }

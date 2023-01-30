@@ -79,8 +79,8 @@
     <LibraryPath>$(ProjectDir)\lib\glfw\lib;C:\VulkanSDK\1.3.236.0\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ExternalIncludePath>$(ProjectDir)\lib\glm;$(ProjectDir)\lib\glfw\include;C:\VulkanSDK\1.3.236.0\Include;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>$(ProjectDir)\lib\glfw\lib;C:\VulkanSDK\1.3.236.0\Lib;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>$(ProjectDir)\lib\glm;$(ProjectDir)\lib\glfw\include;C:\VulkanSDK\1.3.231.1\Include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>$(ProjectDir)\lib\glfw\lib;C:\VulkanSDK\1.3.231.1\Lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ExternalIncludePath>$(ProjectDir)\lib\glm;$(ProjectDir)\lib\glfw\include;C:\VulkanSDK\1.3.236.0\Include;$(ExternalIncludePath)</ExternalIncludePath>
@@ -183,6 +183,7 @@
     <ClInclude Include="src\cxx\Window\Window.h" />
     <ClInclude Include="src\cxx\Window\WindowResizeCallback.h" />
     <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\VulkanDescriptorPool.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanImmediateShaderData\UniformBuffer\UniformBuffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

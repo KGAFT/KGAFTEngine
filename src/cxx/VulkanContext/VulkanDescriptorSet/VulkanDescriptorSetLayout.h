@@ -24,7 +24,6 @@ public:
 		layoutInfo.pBindings = bindings.data();
 		layoutInfo.bindingCount = bindings.size();
 		layoutInfo.pNext = nullptr;
-
 		if (vkCreateDescriptorSetLayout(device->getDevice(), &layoutInfo, nullptr, &descriptorSetLayout) != VK_SUCCESS) {
 			throw std::runtime_error("failed to create descriptor set descriptorSetLayout!");
 		}

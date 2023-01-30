@@ -6,6 +6,8 @@
 
 #include "VulkanSwapChainControl.h"
 #include "../GraphicsPipeline/GraphicsPipeline.h"
+#include "../VulkanDescriptorSet/VulkanDescriptorSet.h"
+#include "../VulkanImmediateShaderData/UniformBuffer/UniformBuffer.h"
 #include "../VulkanBuffers/VertexBuffer.h"
 #include "../VulkanBuffers/IndexBuffer.h"
 
@@ -13,7 +15,10 @@ class VulkanRenderingPipeline : public WindowResizeCallback{
 private:
     VulkanSwapChainControl *control;
     VulkanRenderPass *renderPass;
-    GraphicsPipeline *pipeline;
+    GraphicsPipeline* pipeline;;
+    UniformBuffer *ubo;
+    std::vector<VulkanDescriptorSet*>& descriptorSets;
+
     VulkanDevice *device;
     VertexBuffer* buffer;
     IndexBuffer* ibo;
@@ -21,8 +26,10 @@ private:
     std::vector<VkCommandBuffer> commandBuffers;
 public:
     VulkanRenderingPipeline(VulkanSwapChainControl *control, VulkanRenderPass *renderPass, GraphicsPipeline *pipeline,
-                            VulkanDevice *device, VertexBuffer* buffer) : control(control), renderPass(renderPass), pipeline(pipeline),
-                                                    device(device), buffer(buffer) {
+                            VulkanDevice *device, VertexBuffer* buffer, std::vector<VulkanDescriptorSet*>& descriptorSets, UniformBuffer* ubo) : control(control), renderPass(renderPass), pipeline(pipeline),
+                                                    device(device), buffer(buffer), descriptorSets(descriptorSets) {
+        
+        this->ubo = ubo;
     }
 
 public:
@@ -48,11 +55,18 @@ public:
     void redrawCommandBuffers() {
         if (!pause) {
             unsigned int i = control->acquireNextImage();
+
+          
+
             VkCommandBufferBeginInfo beginInfo{};
             beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
             if (vkBeginCommandBuffer(commandBuffers[i], &beginInfo) != VK_SUCCESS) {
                 throw std::runtime_error("failed to begin recording command buffer!");
             }
+
+            descriptorSets[i]->write(ubo, 0, 0);
+            descriptorSets[i]->bind(commandBuffers[i], pipeline->pipelineLayout);
+
             VkRenderPassBeginInfo renderPassInfo{};
             renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
             renderPassInfo.renderPass = renderPass->renderPass;
@@ -64,6 +78,8 @@ public:
             clearValues[1].depthStencil = { 1.0f, 0 };
             renderPassInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
             renderPassInfo.pClearValues = clearValues.data();
+            
+            
 
             vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 

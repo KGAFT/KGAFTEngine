@@ -23,6 +23,7 @@ private:
     VulkanShader* shader;
     VertexBufferDescriptionManager* manager;
     VulkanDescriptorSetLayout* descriptorSetLayout;
+  
 public:
     GraphicsPipeline(VulkanShader* shader, VulkanDevice* device, PipelineConfiguration::PipelineConfigInfo configInfo, VertexBufferDescriptionManager* manager, PushConstantDescriptionManager* pcDescs, VulkanDescriptorSetLayout* layout){
         this->device = device;
@@ -31,6 +32,7 @@ public:
         this->shader = shader;
         this->manager = manager;
         this->descriptorSetLayout = layout;
+        
         createPipelineLayout();
         create(shader, configInfo, manager);
     }
@@ -57,6 +59,7 @@ private:
         pipelineLayoutInfo.pSetLayouts = descriptorSetLayout->getLayout();
         pipelineLayoutInfo.pushConstantRangeCount = pcDescs->getPushConstantRanges().size();
         pipelineLayoutInfo.pPushConstantRanges = pcDescs->getPushConstantRanges().data();
+
         if (vkCreatePipelineLayout(device->getDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) !=
             VK_SUCCESS) {
             throw std::runtime_error("failed to create pipeline layout!");

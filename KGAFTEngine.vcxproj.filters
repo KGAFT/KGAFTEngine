@@ -99,5 +99,8 @@
     <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\VulkanDescriptorSet.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanImmediateShaderData\UniformBuffer\UniformBuffer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

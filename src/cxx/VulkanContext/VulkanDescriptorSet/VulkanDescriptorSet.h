@@ -17,7 +17,20 @@ public:
 		allocInfo.descriptorPool = descriptorPool->getDescriptorPool();
 		allocInfo.descriptorSetCount = 1;
 		allocInfo.pSetLayouts = layout->getLayout();
-		if (vkAllocateDescriptorSets(device->getDevice(), &allocInfo, &descriptorSet) != VK_SUCCESS) {
+		VkResult result = vkAllocateDescriptorSets(device->getDevice(), &allocInfo, &descriptorSet);
+		if (result != VK_SUCCESS) {
+			if (result == VK_ERROR_OUT_OF_HOST_MEMORY) {
+				std::cout << "HM" << std::endl;
+			}
+			if (result == VK_ERROR_OUT_OF_DEVICE_MEMORY) {
+				std::cout << "DM" << std::endl;
+			}
+			if (result == VK_ERROR_FRAGMENTED_POOL) {
+				std::cout << "FP" << std::endl;
+			}
+			if (result == VK_ERROR_OUT_OF_POOL_MEMORY) {
+				std::cout << "OFP" << std::endl;
+			}
 			throw std::runtime_error("failed to allocate descriptor set!");
 		}
 	}
@@ -44,5 +57,4 @@ public:
 	void bind(VkCommandBuffer commandBuffer, VkPipelineLayout pipelineLayout) {
 		vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, 1, &descriptorSet, 0, nullptr);
 	}
-	
 };

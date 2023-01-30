@@ -157,6 +157,10 @@
     <None Include="src\spir-v\simple_shader.frag" />
     <None Include="src\spir-v\simple_shader.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\IVulkanDescriptorSetElement.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\VulkanDescriptorSetLayout.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

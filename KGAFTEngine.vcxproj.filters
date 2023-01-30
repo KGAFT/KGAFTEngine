@@ -23,4 +23,12 @@
     <None Include="src\spir-v\simple_shader.frag" />
     <None Include="src\spir-v\simple_shader.vert" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\VulkanDescriptorSetLayout.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\IVulkanDescriptorSetElement.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

@@ -8,6 +8,7 @@
 #include "VulkanShader.h"
 #include "../VulkanBuffers/VertexBufferDescriptionManager.h"
 #include "../VulkanImmediateShaderData/PushConstants/PushConstantDescriptionManager.h"
+#include "../VulkanDescriptorSet/VulkanDescriptorSetLayout.h"
 
 #pragma once
 
@@ -21,13 +22,15 @@ private:
     PipelineConfiguration::PipelineConfigInfo config;
     VulkanShader* shader;
     VertexBufferDescriptionManager* manager;
+    VulkanDescriptorSetLayout* descriptorSetLayout;
 public:
-    GraphicsPipeline(VulkanShader* shader, VulkanDevice* device, PipelineConfiguration::PipelineConfigInfo configInfo, VertexBufferDescriptionManager* manager, PushConstantDescriptionManager* pcDescs){
+    GraphicsPipeline(VulkanShader* shader, VulkanDevice* device, PipelineConfiguration::PipelineConfigInfo configInfo, VertexBufferDescriptionManager* manager, PushConstantDescriptionManager* pcDescs, VulkanDescriptorSetLayout* layout){
         this->device = device;
         this->pcDescs = pcDescs;
         this->config = configInfo;
         this->shader = shader;
         this->manager = manager;
+        this->descriptorSetLayout = layout;
         createPipelineLayout();
         create(shader, configInfo, manager);
     }
@@ -50,8 +53,8 @@ private:
     void createPipelineLayout(){
         VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
         pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-        pipelineLayoutInfo.setLayoutCount = 0;
-        pipelineLayoutInfo.pSetLayouts = nullptr;
+        pipelineLayoutInfo.setLayoutCount = 1;
+        pipelineLayoutInfo.pSetLayouts = descriptorSetLayout->getLayout();
         pipelineLayoutInfo.pushConstantRangeCount = pcDescs->getPushConstantRanges().size();
         pipelineLayoutInfo.pPushConstantRanges = pcDescs->getPushConstantRanges().data();
         if (vkCreatePipelineLayout(device->getDevice(), &pipelineLayoutInfo, nullptr, &pipelineLayout) !=

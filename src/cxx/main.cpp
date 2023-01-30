@@ -21,7 +21,7 @@ int main(){
 
     VkPhysicalDevice toCreate = VulkanDevice::enumerateSupportedDevices(instance.getInstance(), Window::getWindowInstance()).crbegin()->first;
     VulkanDevice device(toCreate, Window::getWindowInstance(), instance.getInstance(), true);
-    VulkanShader* shader = VulkanShader::loadShaderBlock("E:/documents/projects/GitHub/KGAFTEngine/src/spir-v", &device);
+    VulkanShader* shader = VulkanShader::loadShaderBlock("C:/Users/Daniil/Documents/KGAFTEngine/src/spir-v", &device);
     VulkanSwapChain swapChain(&device, Window::getWindowInstance()->getWidth(), Window::getWindowInstance()->getHeight());
     VulkanRenderPass renderPass(&device, &swapChain);
     VulkanSwapChainControl control(&swapChain, &renderPass, &device);

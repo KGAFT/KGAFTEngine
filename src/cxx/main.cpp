@@ -16,7 +16,7 @@ struct PushConstantData {
 
 int main(){
 	VulkanInstance instance;
-    Window::initWindow("HelloVulkan", 1920, 1080);
+    Window::initWindow("HelloVulkan", 800, 600);
 	std::cout<<instance.createInstance("KGAFTTest", true)<<std::endl;
 
     VkPhysicalDevice toCreate = VulkanDevice::enumerateSupportedDevices(instance.getInstance(), Window::getWindowInstance()).crbegin()->first;

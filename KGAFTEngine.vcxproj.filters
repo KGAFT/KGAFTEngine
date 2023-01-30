@@ -30,5 +30,74 @@
     <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\IVulkanDescriptorSetElement.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\GraphicsPipeline\GraphicsPipeline.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\GraphicsPipeline\PipelineConfig.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\GraphicsPipeline\VulkanShader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanBuffers\IndexBuffer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanBuffers\VertexBuffer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanBuffers\VertexBufferDescriptionManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDevice\DeviceSuitability.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDevice\VulkanDevice.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanImmediateShaderData\PushConstants\PushConstant.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanImmediateShaderData\PushConstants\PushConstantDescriptionManager.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanLogger\IVulkanLoggerCallback.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanLogger\VulkanLogger.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanSwapChain\VulkanRenderingPipeline.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanSwapChain\VulkanRenderPass.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanSwapChain\VulkanSwapChain.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanSwapChain\VulkanSwapChainControl.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanInstance.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\Window\KeyBoardCallBack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\Window\MouseMovedCallBack.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\Window\Window.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\Window\WindowResizeCallback.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\VulkanDescriptorPool.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\VulkanDescriptorSet.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

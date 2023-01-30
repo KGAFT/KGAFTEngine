@@ -15,4 +15,9 @@ public:
 	VkDescriptorSetLayoutBinding getDescription() {
 		return this->description;
 	}
+	VkDescriptorSetLayoutBinding* getPDescription() {
+		return &description;
+	}
+	virtual VkBuffer getBufferToWrite() = 0;
+	virtual size_t getBufferSize() = 0;
 };

@@ -7,6 +7,7 @@
 class VulkanDescriptorSetLayout
 {
 private:
+	VulkanDevice* device;
 	VkDescriptorSetLayout descriptorSetLayout;
 	std::vector< VkDescriptorSetLayoutBinding> bindings;
 	void loadBindings(std::vector<IVulkanDescriptorSetElement*>& descriptorElements) {
@@ -16,6 +17,7 @@ private:
 	}
 public:
 	VulkanDescriptorSetLayout(VulkanDevice* device, std::vector<IVulkanDescriptorSetElement*>& descriptorElements) {
+		this->device = device;
 		VkDescriptorSetLayoutCreateInfo layoutInfo{};
 		layoutInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_SET_LAYOUT_CREATE_INFO;
 		loadBindings(descriptorElements);
@@ -30,6 +32,8 @@ public:
 	VkDescriptorSetLayout* getLayout() {
 		return &descriptorSetLayout;
 	}
-	
+	void destroy() {
+		vkDestroyDescriptorSetLayout(device->getDevice(), descriptorSetLayout, nullptr);
+	}
 };
 

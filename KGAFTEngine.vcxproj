@@ -158,8 +158,31 @@
     <None Include="src\spir-v\simple_shader.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\cxx\VulkanContext\GraphicsPipeline\GraphicsPipeline.h" />
+    <ClInclude Include="src\cxx\VulkanContext\GraphicsPipeline\PipelineConfig.h" />
+    <ClInclude Include="src\cxx\VulkanContext\GraphicsPipeline\VulkanShader.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanBuffers\IndexBuffer.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanBuffers\VertexBuffer.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanBuffers\VertexBufferDescriptionManager.h" />
     <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\IVulkanDescriptorSetElement.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\VulkanDescriptorSet.h" />
     <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\VulkanDescriptorSetLayout.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDevice\DeviceSuitability.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDevice\VulkanDevice.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanImmediateShaderData\PushConstants\PushConstant.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanImmediateShaderData\PushConstants\PushConstantDescriptionManager.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanInstance.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanLogger\IVulkanLoggerCallback.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanLogger\VulkanLogger.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanSwapChain\VulkanRenderingPipeline.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanSwapChain\VulkanRenderPass.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanSwapChain\VulkanSwapChain.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanSwapChain\VulkanSwapChainControl.h" />
+    <ClInclude Include="src\cxx\Window\KeyBoardCallBack.h" />
+    <ClInclude Include="src\cxx\Window\MouseMovedCallBack.h" />
+    <ClInclude Include="src\cxx\Window\Window.h" />
+    <ClInclude Include="src\cxx\Window\WindowResizeCallback.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\VulkanDescriptorPool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

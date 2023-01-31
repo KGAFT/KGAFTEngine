@@ -33,7 +33,7 @@ int main(){
     VulkanSwapChain swapChain(&device, Window::getWindowInstance()->getWidth(), Window::getWindowInstance()->getHeight());
     VulkanRenderPass renderPass(&device, &swapChain);
     VulkanSwapChainControl control(&swapChain, &renderPass, &device);
-    VulkanImage image = VulkanImage::loadTextureFromFiles(&device, "C:/Users/Daniil/Documents/KGAFTEngine/x64/Debug/texture.jpg");
+    VulkanImage image = VulkanImage::loadTextureFromFiles(&device, "C:/Users/Daniil/Documents/KGAFTEngine/x64/Debug/tex.png");
     PipelineConfiguration::PipelineConfigInfo config = PipelineConfiguration::defaultPipelineConfigInfo(Window::getWindowInstance()->getWidth(), Window::getWindowInstance()->getHeight());
     config.renderPass = renderPass.getRenderPass();
 

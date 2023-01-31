@@ -36,9 +36,18 @@ public:
 	}
 	void write(IVulkanDescriptorSetElement* descElement, unsigned int binding, unsigned int arrayElement = 0) {
 		VkDescriptorBufferInfo bufferInfo{};
-		bufferInfo.buffer = descElement->getBufferToWrite();
-		bufferInfo.offset = 0;
-		bufferInfo.range = sizeof(descElement->getBufferSize());
+		VkDescriptorImageInfo imageInfo{};
+		if (descElement->getPDescription()->descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER) {
+			bufferInfo.buffer = descElement->getBufferToWrite();
+			bufferInfo.offset = 0;
+			bufferInfo.range = sizeof(descElement->getBufferSize());
+		}
+		else {
+			imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+			imageInfo.imageView = descElement->getSamplerImageView();
+			imageInfo.sampler = descElement->getSampler();
+		}
+		
 
 		VkWriteDescriptorSet descriptorWrite{};
 		descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
@@ -47,9 +56,13 @@ public:
 		descriptorWrite.dstArrayElement = arrayElement;
 		descriptorWrite.descriptorCount = 1;
 		descriptorWrite.descriptorType = descElement->getPDescription()->descriptorType;
-		descriptorWrite.pBufferInfo = &bufferInfo;
+		if (descElement->getPDescription()->descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER) {
+			descriptorWrite.pBufferInfo = &bufferInfo;
+		}
+		else {
+			descriptorWrite.pImageInfo = &imageInfo;
+		}
 
-		descriptorWrite.pImageInfo = nullptr; // Optional
 		descriptorWrite.pTexelBufferView = nullptr;
 
 		vkUpdateDescriptorSets(device->getDevice(), 1, &descriptorWrite, 0, nullptr);

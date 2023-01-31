@@ -36,5 +36,11 @@ public:
 	 size_t getBufferSize() override {
 		 return bufferSize;
 	 }
+	 VkSampler getSampler() override {
+		 return VK_NULL_HANDLE;
+	 }
+	 virtual VkImageView getSamplerImageView() {
+		 return VK_NULL_HANDLE;
+	 }
 };
 

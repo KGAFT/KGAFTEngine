@@ -5,12 +5,13 @@
 #pragma once
 class VulkanImage
 {
+    friend class VulkanTexture;
 public:
     static VulkanImage loadTextureFromFiles(VulkanDevice* device, const char* pathToTexture) {
-        int texWidth, texHeight, texChannels;
-        stbi_uc* pixels = stbi_load(pathToTexture, &texWidth, &texHeight, &texChannels, STBI_rgb_alpha);
-        VulkanImage result(device, texWidth, texHeight, texChannels, pixels);
-        stbi_image_free(pixels);
+        int imageWidth, imageHeight, imageChannels;
+        stbi_uc* pixels = stbi_load(pathToTexture, &imageWidth, &imageHeight, &imageChannels, STBI_rgb_alpha);
+        VulkanImage result(device, imageWidth, imageHeight, imageChannels, pixels);
+       
         return result;
     }
 private:
@@ -18,9 +19,13 @@ private:
     VkDeviceMemory imageMemory;
     VulkanDevice* device;
 public:
-	VulkanImage(VulkanDevice* device, int imageWidth, int imageHeight, int imageChannels, unsigned char* imageData) {
+	VulkanImage(VulkanDevice* device, int imageWidth, int imageHeight, int imageChannels, stbi_uc* imageData) {
         this->device = device;
-        VkDeviceSize imageSize = imageWidth * imageHeight * imageChannels;
+        VkDeviceSize imageSize = imageWidth * imageHeight * 4;
+
+        if (!imageData) {
+            throw std::runtime_error("failed to load imageture image!");
+        }
 
         VkBuffer stagingBuffer;
         VkDeviceMemory stagingBufferMemory;
@@ -31,6 +36,7 @@ public:
         memcpy(data, imageData, static_cast<size_t>(imageSize));
         vkUnmapMemory(device->getDevice(), stagingBufferMemory);
 
+        stbi_image_free(imageData);
 
         createImage(device, imageWidth, imageHeight, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_TILING_OPTIMAL, VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, image, imageMemory);
 

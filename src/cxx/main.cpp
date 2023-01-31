@@ -29,11 +29,11 @@ int main(){
 
     VkPhysicalDevice toCreate = VulkanDevice::enumerateSupportedDevices(instance.getInstance(), Window::getWindowInstance()).crbegin()->first;
     VulkanDevice device(toCreate, Window::getWindowInstance(), instance.getInstance(), true);
-    VulkanShader* shader = VulkanShader::loadShaderBlock("C:/Users/Daniil/Documents/KGAFTEngine/src/spir-v", &device);
+    VulkanShader* shader = VulkanShader::loadShaderBlock("E:/documents/projects/GitHub/KGAFTEngine/src/spir-v", &device);
     VulkanSwapChain swapChain(&device, Window::getWindowInstance()->getWidth(), Window::getWindowInstance()->getHeight());
     VulkanRenderPass renderPass(&device, &swapChain);
     VulkanSwapChainControl control(&swapChain, &renderPass, &device);
-    VulkanImage image = VulkanImage::loadTextureFromFiles(&device, "C:/Users/Daniil/Documents/KGAFTEngine/x64/Debug/tex.png");
+    VulkanImage image = VulkanImage::loadTextureFromFiles(&device, "E:/documents/projects/GitHub/KGAFTEngine/x64/Debug/norm.png");
     PipelineConfiguration::PipelineConfigInfo config = PipelineConfiguration::defaultPipelineConfigInfo(Window::getWindowInstance()->getWidth(), Window::getWindowInstance()->getHeight());
     config.renderPass = renderPass.getRenderPass();
 

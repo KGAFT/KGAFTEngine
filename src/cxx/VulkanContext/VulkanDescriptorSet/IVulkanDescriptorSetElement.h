@@ -20,4 +20,6 @@ public:
 	}
 	virtual VkBuffer getBufferToWrite() = 0;
 	virtual size_t getBufferSize() = 0;
+	virtual VkSampler getSampler() = 0;
+	virtual VkImageView getSamplerImageView() = 0;
 };

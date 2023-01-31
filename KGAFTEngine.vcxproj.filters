@@ -111,5 +111,11 @@
     <ClInclude Include="src\cxx\External\stb_image.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanImage\VulkanTexture.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx\VulkanContext\VulkanImage\VulkanSampler.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

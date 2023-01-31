@@ -187,6 +187,8 @@
     <ClInclude Include="src\cxx\VulkanContext\VulkanDescriptorSet\VulkanDescriptorPool.h" />
     <ClInclude Include="src\cxx\VulkanContext\VulkanImmediateShaderData\UniformBuffer\UniformBuffer.h" />
     <ClInclude Include="src\cxx\VulkanContext\VulkanImage\VulkanImage.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanImage\VulkanTexture.h" />
+    <ClInclude Include="src\cxx\VulkanContext\VulkanImage\VulkanSampler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

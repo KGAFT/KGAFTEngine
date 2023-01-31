@@ -26,7 +26,7 @@ public:
         return 0;
     }
     VkSampler getSampler() {
-        sampler;
+        return sampler;
     }
     VkImageView getSamplerImageView() {
         return texture->imageView;

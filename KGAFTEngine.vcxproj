@@ -155,10 +155,11 @@
     <ClCompile Include="src\cxx\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\spir-v\simple_shader.frag" />
-    <None Include="src\spir-v\simple_shader.vert" />
+    <None Include="src\spir-v\default.frag" />
+    <None Include="src\spir-v\default.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\cxx\Engine\RenderPipeline.h" />
     <ClInclude Include="src\cxx\External\stb_image.h" />
     <ClInclude Include="src\cxx\VulkanContext\GraphicsPipeline\GraphicsPipeline.h" />
     <ClInclude Include="src\cxx\VulkanContext\GraphicsPipeline\PipelineConfig.h" />

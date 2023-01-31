@@ -11,27 +11,39 @@
 #include "../VulkanBuffers/VertexBuffer.h"
 #include "../VulkanBuffers/IndexBuffer.h"
 
+class PreRenderPassCallback {
+public:
+    virtual void invokePreRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) = 0;
+};
+
+class RenderPassCallback {
+public:
+    virtual void invokeRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) = 0;
+};
+
 class VulkanRenderingPipeline : public WindowResizeCallback{
 private:
     VulkanSwapChainControl *control;
     VulkanRenderPass *renderPass;
     GraphicsPipeline* pipeline;;
-    UniformBuffer *ubo;
-    std::vector<VulkanDescriptorSet*>& descriptorSets;
 
     VulkanDevice *device;
-    VertexBuffer* buffer;
-    IndexBuffer* ibo;
     bool pause = false;
     std::vector<VkCommandBuffer> commandBuffers;
+    std::vector<PreRenderPassCallback*> preRenderPassCallbacks;
+    std::vector<RenderPassCallback*> renderPassCallbacks;
 public:
     VulkanRenderingPipeline(VulkanSwapChainControl *control, VulkanRenderPass *renderPass, GraphicsPipeline *pipeline,
-                            VulkanDevice *device, VertexBuffer* buffer, std::vector<VulkanDescriptorSet*>& descriptorSets, UniformBuffer* ubo) : control(control), renderPass(renderPass), pipeline(pipeline),
-                                                    device(device), buffer(buffer), descriptorSets(descriptorSets) {
+                            VulkanDevice *device) : control(control), renderPass(renderPass), pipeline(pipeline),
+                                                    device(device) {
         
-        this->ubo = ubo;
     }
-
+    void registerPreRenderPassCallback(PreRenderPassCallback* cb) {
+        preRenderPassCallbacks.push_back(cb);
+    }
+    void registerRenderPassCallback(RenderPassCallback* cb) {
+        renderPassCallbacks.push_back(cb);
+    }
 public:
     void createCommandBuffers() {
         commandBuffers.resize(control->swapChain->swapChainImages.size());
@@ -49,7 +61,6 @@ public:
         unsigned int indices[]{
             0,1,2
         };
-        ibo = new IndexBuffer(device, indices, 3);
     }
 
     void redrawCommandBuffers() {
@@ -64,8 +75,9 @@ public:
                 throw std::runtime_error("failed to begin recording command buffer!");
             }
 
-            descriptorSets[i]->write(ubo, 0, 0);
-            descriptorSets[i]->bind(commandBuffers[i], pipeline->pipelineLayout);
+            for (const auto& item : preRenderPassCallbacks) {
+                item->invokePreRender(commandBuffers[i], pipeline->pipelineLayout, i);
+            }
 
             VkRenderPassBeginInfo renderPassInfo{};
             renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
@@ -84,11 +96,9 @@ public:
             vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
 
             vkCmdBindPipeline(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline->graphicsPipeline);
-            pipeline->pcDescs->loadConstantsToShader(commandBuffers[i], pipeline->pipelineLayout);
-            buffer->bind(commandBuffers[i]);
-            ibo->bind(commandBuffers[i]);
-            ibo->draw(commandBuffers[i]);
-
+            for (const auto& item : renderPassCallbacks) {
+                item->invokeRender(commandBuffers[i], pipeline->pipelineLayout, i);
+            }
             vkCmdEndRenderPass(commandBuffers[i]);
             if (vkEndCommandBuffer(commandBuffers[i]) != VK_SUCCESS) {
                 throw std::runtime_error("failed to record command buffer!");

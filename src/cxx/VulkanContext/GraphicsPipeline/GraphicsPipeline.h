@@ -19,16 +19,16 @@ private:
     VkPipeline graphicsPipeline;
     PushConstantDescriptionManager* pcDescs;
     VkPipelineLayout pipelineLayout;
-    PipelineConfiguration::PipelineConfigInfo config;
+    
     VulkanShader* shader;
     VertexBufferDescriptionManager* manager;
     VulkanDescriptorSetLayout* descriptorSetLayout;
   
 public:
-    GraphicsPipeline(VulkanShader* shader, VulkanDevice* device, PipelineConfiguration::PipelineConfigInfo configInfo, VertexBufferDescriptionManager* manager, PushConstantDescriptionManager* pcDescs, VulkanDescriptorSetLayout* layout){
+    GraphicsPipeline(VulkanShader* shader, VulkanDevice* device, PipelineConfiguration::PipelineConfigInfo& configInfo, VertexBufferDescriptionManager* manager, PushConstantDescriptionManager* pcDescs, VulkanDescriptorSetLayout* layout){
         this->device = device;
         this->pcDescs = pcDescs;
-        this->config = configInfo;
+        
         this->shader = shader;
         this->manager = manager;
         this->descriptorSetLayout = layout;
@@ -42,9 +42,7 @@ public:
         vkDestroyPipelineLayout(device->getDevice(), pipelineLayout, nullptr);
     }
     void recreate(unsigned int width, unsigned int height, VkRenderPass renderPass) {
-        config.viewport.width = static_cast<float>(width);
-        config.viewport.height = static_cast<float>(height);
-        config.scissor.extent = { width, height };
+        PipelineConfiguration::PipelineConfigInfo config = PipelineConfiguration::defaultPipelineConfigInfo(width, height);
         config.renderPass = renderPass;
         vkDestroyPipeline(device->getDevice(), graphicsPipeline, nullptr);
         create(shader, config, manager);

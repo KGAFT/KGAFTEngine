@@ -6,7 +6,7 @@
 #include "../VulkanContext/GraphicsPipeline/GraphicsPipeline.h"
 #include "../VulkanContext/GraphicsPipeline/GraphicsPipeline.h"
 #include "../VulkanContext/VulkanSwapChain/VulkanRenderingPipeline.h"
-#include <glm.hpp>
+#include <glm/glm.hpp>
 #include "../VulkanContext/VulkanImage/VulkanSampler.h"
 
 struct PushConstantData {
@@ -40,6 +40,16 @@ private:
 	VulkanSampler* sampler;
 	UniformBuffer* ubo;
 	PushConstant* pushConstant;
+
+    VertexBuffer* vertexBuffer;
+    VertexBuffer* normalsBuffer;
+    VertexBuffer* uvsBuffer;
+    IndexBuffer* indexBuffer;
+    VulkanImage* textureImage;
+    VulkanTexture* texture;
+
+    UniformBufferData uboDat;
+    PushConstantData pushConstantDat;
 public:
 	RenderPipeline(VulkanDevice* device, Window* window, const char* targetDirectoryWithShaders) {
 		this->device = device;
@@ -90,13 +100,57 @@ public:
 		renderingPipeline->createCommandBuffers();
 		renderingPipeline->registerPreRenderPassCallback(this);
 		renderingPipeline->registerRenderPassCallback(this);
+        float vertices[]{-0.5f, -0.5f, 1.0f,
+                        0.5f, -0.5f, 1.0f,
+                        0.5f, 0.5f, 1.0f,
+                        -0.5f, 0.5f, 1.0f};
+        float normals[]{
+                1.0f, 0.0f, 0.0f,
+                0.0f, 1.0f, 0.0f,
+                0.0f, 0.0f, 1.0f,
+                1.0f, 1.0f, 1.0f
+        };
+        float uvs[]{
+                1.0f, 0.0f,
+                0.0f, 0.0f,
+                0.0f, 1.0f,
+                1.0f, 1.0f
+        };
+
+        unsigned int indices[]{
+                0, 1, 2, 2, 3, 0
+        };
+        vertexBuffer = new VertexBuffer(4, sizeof(float), 3, device, vertices);
+        normalsBuffer = new VertexBuffer(4, sizeof(float), 3, device, normals);
+        uvsBuffer = new VertexBuffer(4, sizeof(float), 2, device, uvs);
+        indexBuffer = new IndexBuffer(device, indices, 6);
+        textureImage = new VulkanImage(VulkanImage::loadTextureFromFiles(device, "texture.tga"));
+        texture = new VulkanTexture(textureImage, device);
+        sampler->setTexture(texture);
+        pushConstantDat.cameraMatrix = glm::mat4(1.0f);
+        pushConstantDat.worldMatrix = glm::mat4(1.0f);
+        pushConstant->setData(&pushConstantDat);
+        for(int i = 0; i<3; i++){
+            textureDescriptorSets[i]->write(sampler, 1);
+            uniformDescriptorSets[i]->write(ubo, 0);
+        }
 	}
 	void invokePreRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout,  unsigned int imageIndex) override {
+        ubo->write(&uboDat);
+        uniformDescriptorSets[imageIndex]->write(ubo, 0, 0);
 		textureDescriptorSets[imageIndex]->bind(commandBuffer, layout);
 		uniformDescriptorSets[imageIndex]->bind(commandBuffer, layout);
 	}
 	void invokeRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) override {
-		//pushConstantsDescription->loadConstantsToShader(commandBuffer, layout);
+		pushConstant->setData(&pushConstantDat);
+        pushConstantsDescription->loadConstantsToShader(commandBuffer, layout);
+
+
+        vertexBuffer->bind(commandBuffer);
+        normalsBuffer->bind(commandBuffer);
+        uvsBuffer->bind(commandBuffer);
+        indexBuffer->bind(commandBuffer);
+        indexBuffer->draw(commandBuffer);
 	}
 
 	void update() {

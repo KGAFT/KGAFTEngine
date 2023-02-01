@@ -32,6 +32,10 @@ public:
         return texture->imageView;
     }
 
+    void setTexture(VulkanTexture *texture) {
+        VulkanSampler::texture = texture;
+    }
+
 private:
 
     void createTextureSampler() {

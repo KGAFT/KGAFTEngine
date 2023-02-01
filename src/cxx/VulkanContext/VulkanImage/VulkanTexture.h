@@ -14,7 +14,7 @@ public:
 	VulkanTexture(VulkanImage* image, VulkanDevice* device) {
 		this->image = image;
 		this->device = device;
-		device->createImageView(image->image, VK_FORMAT_R8G8B8A8_SRGB);
+		imageView = device->createImageView(image->image, VK_FORMAT_R8G8B8A8_SRGB);
 	}
 
 	~VulkanTexture() {

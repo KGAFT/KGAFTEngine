@@ -1,5 +1,5 @@
 #include <vulkan/vulkan.h>
-#include <GLFW/glfw3.h>
+#include "GLFW/glfw3.h"
 #include <vector>
 #include <unordered_set>
 #include "VulkanLogger/VulkanLogger.h"

@@ -6,6 +6,44 @@
 
 class VulkanDescriptorSet {
 private:
+    static VkWriteDescriptorSet prepareWrite(VulkanDescriptorSet* set, IVulkanDescriptorSetElement* descElement, unsigned int binding){
+        VkDescriptorBufferInfo bufferInfo{};
+        VkDescriptorImageInfo imageInfo{};
+        if (descElement->getPDescription()->descriptorType == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER) {
+            bufferInfo.buffer = descElement->getBufferToWrite();
+            bufferInfo.offset = 0;
+            bufferInfo.range = sizeof(descElement->getBufferSize());
+        }
+        else {
+            imageInfo.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
+            imageInfo.imageView = descElement->getSamplerImageView();
+            imageInfo.sampler = descElement->getSampler();
+        }
+
+
+        VkWriteDescriptorSet descriptorWrite{};
+        descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+        descriptorWrite.dstSet = set->descriptorSet;
+        descriptorWrite.dstBinding = binding;
+        descriptorWrite.dstArrayElement = 0;
+        descriptorWrite.descriptorCount = 1;
+        descriptorWrite.descriptorType = descElement->getPDescription()->descriptorType;
+        if (descElement->getPDescription()->descriptorType == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER) {
+            descriptorWrite.pBufferInfo = &bufferInfo;
+        }
+        else {
+            descriptorWrite.pImageInfo = &imageInfo;
+        }
+    }
+public:
+    static void writeDescriptors(VulkanDescriptorSet* set, std::map<IVulkanDescriptorSetElement*, unsigned int> descriptors){
+        std::vector<VkWriteDescriptorSet> writes;
+        for (const auto &item: descriptors){
+            writes.push_back(prepareWrite(set, item.first, item.second));
+        }
+        vkUpdateDescriptorSets(set->device->getDevice(), writes.size(), writes.data(), 0, nullptr);
+    }
+private:
 	VkDescriptorSet descriptorSet;
 	VkDescriptorSetLayout layout;
 	VulkanDevice* device;
@@ -37,7 +75,7 @@ public:
 	void write(IVulkanDescriptorSetElement* descElement, unsigned int binding, unsigned int arrayElement = 0) {
 		VkDescriptorBufferInfo bufferInfo{};
 		VkDescriptorImageInfo imageInfo{};
-		if (descElement->getPDescription()->descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER) {
+		if (descElement->getPDescription()->descriptorType == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER) {
 			bufferInfo.buffer = descElement->getBufferToWrite();
 			bufferInfo.offset = 0;
 			bufferInfo.range = sizeof(descElement->getBufferSize());
@@ -47,7 +85,7 @@ public:
 			imageInfo.imageView = descElement->getSamplerImageView();
 			imageInfo.sampler = descElement->getSampler();
 		}
-		
+
 
 		VkWriteDescriptorSet descriptorWrite{};
 		descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
@@ -56,16 +94,14 @@ public:
 		descriptorWrite.dstArrayElement = arrayElement;
 		descriptorWrite.descriptorCount = 1;
 		descriptorWrite.descriptorType = descElement->getPDescription()->descriptorType;
-		if (descElement->getPDescription()->descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER) {
+		if (descElement->getPDescription()->descriptorType == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER) {
 			descriptorWrite.pBufferInfo = &bufferInfo;
 		}
 		else {
 			descriptorWrite.pImageInfo = &imageInfo;
 		}
-
-		descriptorWrite.pTexelBufferView = nullptr;
-
-		vkUpdateDescriptorSets(device->getDevice(), 1, &descriptorWrite, 0, nullptr);
+        VkWriteDescriptorSet writes[]{descriptorWrite};
+		vkUpdateDescriptorSets(device->getDevice(), 1, writes, 0, nullptr);
 	}
 	void bind(VkCommandBuffer commandBuffer, VkPipelineLayout pipelineLayout) {
 		vkCmdBindDescriptorSets(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout, 0, 1, &descriptorSet, 0, nullptr);

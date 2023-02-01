@@ -46,7 +46,7 @@ public:
             delete content;
             throw std::runtime_error("failed to create shader module");
         }
-        delete content;
+
         return result;
     }
     static shaderc_shader_kind getShaderType(std::string extension){

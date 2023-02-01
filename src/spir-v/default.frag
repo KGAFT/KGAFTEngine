@@ -3,7 +3,7 @@
 layout(location = 0) in vec3 normal;
 layout(location = 1) in vec2 uv;
 
-layout(binding = 1) uniform sampler2D baseColorSampler;
+layout(set = 0, binding = 1) uniform sampler2D baseColorSampler;
 
 layout (location = 0) out vec4 outColor;
 

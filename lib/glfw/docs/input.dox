@@ -394,7 +394,7 @@ glfwCreateCursor except that the system cursor theme provides the actual image.
 
 @subsubsection cursor_destruction Cursor destruction
 
-When a cursor is no longer needed, destroy it with @ref glfwDestroyCursor.
+When a cursor is no longer needed, destroyForRecreate it with @ref glfwDestroyCursor.
 
 @code
 glfwDestroyCursor(cursor);

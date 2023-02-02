@@ -177,7 +177,7 @@ Creating a Vulkan window surface</h1>
 <div class="line">}</div>
 <div class="ttc" id="agroup__vulkan_html_ga1a24536bec3f80b08ead18e28e6ae965"><div class="ttname"><a href="group__vulkan.html#ga1a24536bec3f80b08ead18e28e6ae965">glfwCreateWindowSurface</a></div><div class="ttdeci">VkResult glfwCreateWindowSurface(VkInstance instance, GLFWwindow *window, const VkAllocationCallbacks *allocator, VkSurfaceKHR *surface)</div><div class="ttdoc">Creates a Vulkan surface for the specified window.</div></div>
 </div><!-- fragment --><p >If an OpenGL or OpenGL ES context was created on the window, the context has ownership of the presentation on the window and a Vulkan surface cannot be created.</p>
-<p >It is your responsibility to destroy the surface. GLFW does not destroy it for you. Call <code>vkDestroySurfaceKHR</code> function from the same extension to destroy it. </p>
+<p >It is your responsibility to destroyForRecreate the surface. GLFW does not destroyForRecreate it for you. Call <code>vkDestroySurfaceKHR</code> function from the same extension to destroyForRecreate it. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <address class="footer">

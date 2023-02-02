@@ -120,7 +120,7 @@ been initialized.  This is done with @ref glfwTerminate.
 glfwTerminate();
 @endcode
 
-This will destroy any remaining window, monitor and cursor objects, restore any
+This will destroyForRecreate any remaining window, monitor and cursor objects, restore any
 modified gamma ramps, re-enable the screensaver if it had been disabled and free
 any other resources allocated by GLFW.
 

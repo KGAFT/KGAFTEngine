@@ -189,7 +189,7 @@ Full screen windows</h3>
 </div><!-- fragment --><p >Note that <a class="el" href="group__monitor.html#gaba376fa7e76634b4788bddc505d6c9d5">glfwGetVideoMode</a> returns the <em>current</em> video mode of a monitor, so if you already have a full screen window on that monitor that you want to make windowed full screen, you need to have saved the desktop resolution before.</p>
 <h2><a class="anchor" id="window_destruction"></a>
 Window destruction</h2>
-<p >When a window is no longer needed, destroy it with <a class="el" href="group__window.html#gacdf43e51376051d2c091662e9fe3d7b2">glfwDestroyWindow</a>.</p>
+<p >When a window is no longer needed, destroyForRecreate it with <a class="el" href="group__window.html#gacdf43e51376051d2c091662e9fe3d7b2">glfwDestroyWindow</a>.</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="group__window.html#gacdf43e51376051d2c091662e9fe3d7b2">glfwDestroyWindow</a>(window);</div>
 <div class="ttc" id="agroup__window_html_gacdf43e51376051d2c091662e9fe3d7b2"><div class="ttname"><a href="group__window.html#gacdf43e51376051d2c091662e9fe3d7b2">glfwDestroyWindow</a></div><div class="ttdeci">void glfwDestroyWindow(GLFWwindow *window)</div><div class="ttdoc">Destroys the specified window and its context.</div></div>
 </div><!-- fragment --><p >Window destruction always succeeds. Before the actual destruction, all callbacks are removed so no further events will be delivered for the window. All windows remaining when <a class="el" href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfwTerminate</a> is called are destroyed as well.</p>

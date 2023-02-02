@@ -16,7 +16,7 @@ public:
         createDepthResources();
         createFrameBuffers();
     }
-    void destroy(){
+    void destroyForRecreate(){
         for (const auto &item: frameBuffers){
             vkDestroyFramebuffer(device->getDevice(), item, nullptr);
         }
@@ -34,15 +34,17 @@ public:
         depthImageMemories.clear();
 
     }
+
+
     ~VulkanRenderPass(){
-        destroy();
+        destroyForRecreate();
     }
 
     VkRenderPass getRenderPass() {
         return renderPass;
     }
     void recreate() {
-        destroy();
+        destroyForRecreate();
         createRenderPass();
         createDepthResources();
         createFrameBuffers();

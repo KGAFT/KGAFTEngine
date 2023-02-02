@@ -127,7 +127,7 @@ make windowed full screen, you need to have saved the desktop resolution before.
 
 @subsection window_destruction Window destruction
 
-When a window is no longer needed, destroy it with @ref glfwDestroyWindow.
+When a window is no longer needed, destroyForRecreate it with @ref glfwDestroyWindow.
 
 @code
 glfwDestroyWindow(window);

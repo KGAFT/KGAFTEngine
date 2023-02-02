@@ -668,7 +668,7 @@ static void demo_prepare_buffers(struct demo *demo) {
     err = vkCreateSwapchainKHR(demo->device, &swapchain, NULL, &demo->swapchain);
     assert(!err);
 
-    // If we just re-created an existing swapchain, we should destroy the old
+    // If we just re-created an existing swapchain, we should destroyForRecreate the old
     // swapchain at this point.
     // Note: destroying the swapchain also cleans up all its associated
     // presentable images once the platform is done with them.

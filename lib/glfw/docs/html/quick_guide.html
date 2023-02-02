@@ -146,7 +146,7 @@ Creating a window and context</h2>
 <div class="ttc" id="agroup__window_html_ga7d9c8c62384b1e2821c4dc48952d2033"><div class="ttname"><a href="group__window.html#ga7d9c8c62384b1e2821c4dc48952d2033">glfwWindowHint</a></div><div class="ttdeci">void glfwWindowHint(int hint, int value)</div><div class="ttdoc">Sets the specified window hint to the desired value.</div></div>
 <div class="ttc" id="agroup__window_html_gafe5e4922de1f9932d7e9849bb053b0c0"><div class="ttname"><a href="group__window.html#gafe5e4922de1f9932d7e9849bb053b0c0">GLFW_CONTEXT_VERSION_MAJOR</a></div><div class="ttdeci">#define GLFW_CONTEXT_VERSION_MAJOR</div><div class="ttdoc">Context client API major version hint and attribute.</div><div class="ttdef"><b>Definition:</b> glfw3.h:955</div></div>
 </div><!-- fragment --><p >The window handle is passed to all window related functions and is provided to along to all window related callbacks, so they can tell which window received the event.</p>
-<p >When a window and context is no longer needed, destroy it.</p>
+<p >When a window and context is no longer needed, destroyForRecreate it.</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="group__window.html#gacdf43e51376051d2c091662e9fe3d7b2">glfwDestroyWindow</a>(window);</div>
 <div class="ttc" id="agroup__window_html_gacdf43e51376051d2c091662e9fe3d7b2"><div class="ttname"><a href="group__window.html#gacdf43e51376051d2c091662e9fe3d7b2">glfwDestroyWindow</a></div><div class="ttdeci">void glfwDestroyWindow(GLFWwindow *window)</div><div class="ttdoc">Destroys the specified window and its context.</div></div>
 </div><!-- fragment --><p >Once this function is called, no more events will be delivered for that window and its handle becomes invalid.</p>
@@ -162,7 +162,7 @@ Making the OpenGL context current</h2>
 </div><!-- fragment --><h2><a class="anchor" id="quick_window_close"></a>
 Checking the window close flag</h2>
 <p >Each window has a flag indicating whether the window should be closed.</p>
-<p >When the user attempts to close the window, either by pressing the close widget in the title bar or using a key combination like Alt+F4, this flag is set to 1. Note that <b>the window isn't actually closed</b>, so you are expected to monitor this flag and either destroy the window or give some kind of feedback to the user.</p>
+<p >When the user attempts to close the window, either by pressing the close widget in the title bar or using a key combination like Alt+F4, this flag is set to 1. Note that <b>the window isn't actually closed</b>, so you are expected to monitor this flag and either destroyForRecreate the window or give some kind of feedback to the user.</p>
 <div class="fragment"><div class="line"><span class="keywordflow">while</span> (!<a class="code hl_function" href="group__window.html#ga24e02fbfefbb81fc45320989f8140ab5">glfwWindowShouldClose</a>(window))</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// Keep running</span></div>

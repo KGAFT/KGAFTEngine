@@ -187,7 +187,7 @@ Each window has a flag indicating whether the window should be closed.
 When the user attempts to close the window, either by pressing the close widget
 in the title bar or using a key combination like Alt+F4, this flag is set to 1.
 Note that __the window isn't actually closed__, so you are expected to monitor
-this flag and either destroy the window or give some kind of feedback to the
+this flag and either destroyForRecreate the window or give some kind of feedback to the
 user.
 
 @code

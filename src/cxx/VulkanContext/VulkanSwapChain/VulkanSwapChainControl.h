@@ -118,4 +118,16 @@ public:
 
         return result;
     }
+
+    void destroy(){
+        for (size_t i = 0; i < MAX_FRAMES_IN_FLIGHT; i++) {
+            vkDestroySemaphore(device->getDevice(), renderFinishedSemaphores[i], nullptr);
+            vkDestroySemaphore(device->getDevice(), imageAvailableSemaphores[i], nullptr);
+            vkDestroyFence(device->getDevice(), inFlightFences[i], nullptr);
+        }
+    }
+
+    ~VulkanSwapChainControl(){
+        destroy();
+    }
 };

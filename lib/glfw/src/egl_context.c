@@ -70,7 +70,7 @@ static const char* getEGLErrorString(EGLint error)
         case EGL_BAD_NATIVE_WINDOW:
             return "A NativeWindowType argument does not refer to a valid native window";
         case EGL_CONTEXT_LOST:
-            return "The application must destroy all contexts and reinitialise";
+            return "The application must destroyForRecreate all contexts and reinitialise";
         default:
             return "ERROR: UNKNOWN EGL ERROR";
     }

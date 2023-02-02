@@ -12,6 +12,7 @@
 #include "VulkanContext/VulkanImage/VulkanImage.h"
 #include "VulkanContext/VulkanImage/VulkanTexture.h"
 #include "VulkanContext/VulkanImage/VulkanSampler.h"
+#include "Engine/TestRenderPipeline.h"
 
 class RenderImplCallback : public RenderPassCallback{
 private:
@@ -44,6 +45,7 @@ int main() {
     VulkanLogger::registerCallback(new DefaultVulkanLoggerCallback());
     VkPhysicalDevice deviceToCreate = VulkanDevice::enumerateSupportedDevices(instance.getInstance(), Window::getWindowInstance()).crbegin()->first;
     VulkanDevice device(deviceToCreate, Window::getWindowInstance(), instance.getInstance(), true);
+    /*
     VulkanSwapChain swapChain(&device, Window::getWindowInstance()->getWidth(), Window::getWindowInstance()->getHeight());
     VulkanRenderPass renderPass(&device, &swapChain);
     VulkanSwapChainControl control(&swapChain, &renderPass, &device);
@@ -100,6 +102,13 @@ int main() {
 
         renderingPipeline.redrawCommandBuffers();
 
+        Window::getWindowInstance()->postRenderEvents();
+    }
+     */
+    TestRenderPipeline* renderPipeline = new TestRenderPipeline(&device, Window::getWindowInstance());
+    while(!Window::getWindowInstance()->isWindowNeedToClose()) {
+        Window::getWindowInstance()->preRenderEvents();
+        renderPipeline->update();
         Window::getWindowInstance()->postRenderEvents();
     }
     return 0;

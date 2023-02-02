@@ -237,6 +237,6 @@ ownership of the presentation on the window and a Vulkan surface cannot be
 created.
 
 It is your responsibility to destroy the surface.  GLFW does not destroy it for
-you.  Call `vkDestroySurfaceKHR` function from the same extension to destroy it.
+you.  Call `vkDestroySurfaceKHR` function from the same extension to destroyForRecreate it.
 
 */

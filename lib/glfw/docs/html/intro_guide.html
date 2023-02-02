@@ -156,7 +156,7 @@ Terminating GLFW</h2>
 <p >Before your application exits, you should terminate the GLFW library if it has been initialized. This is done with <a class="el" href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfwTerminate</a>.</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfwTerminate</a>();</div>
 <div class="ttc" id="agroup__init_html_gaaae48c0a18607ea4a4ba951d939f0901"><div class="ttname"><a href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfwTerminate</a></div><div class="ttdeci">void glfwTerminate(void)</div><div class="ttdoc">Terminates the GLFW library.</div></div>
-</div><!-- fragment --><p >This will destroy any remaining window, monitor and cursor objects, restore any modified gamma ramps, re-enable the screensaver if it had been disabled and free any other resources allocated by GLFW.</p>
+</div><!-- fragment --><p >This will destroyForRecreate any remaining window, monitor and cursor objects, restore any modified gamma ramps, re-enable the screensaver if it had been disabled and free any other resources allocated by GLFW.</p>
 <p >Once the library is terminated, it is as if it had never been initialized and you will need to initialize it again before being able to use GLFW. If the library was not initialized or had already been terminated, it return immediately.</p>
 <h1><a class="anchor" id="error_handling"></a>
 Error handling</h1>

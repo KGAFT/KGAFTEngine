@@ -1314,7 +1314,7 @@ NK_API const struct nk_draw_command* nk__draw_next(const struct nk_draw_command*
 /// Windows by default are visible unless explicitly being defined with flag
 /// `NK_WINDOW_HIDDEN`, the user clicked the close button on windows with flag
 /// `NK_WINDOW_CLOSABLE` or if a window was explicitly hidden by calling
-/// `nk_window_show`. To explicitly close and destroy a window call `nk_window_close`.<br /><br />
+/// `nk_window_show`. To explicitly close and destroyForRecreate a window call `nk_window_close`.<br /><br />
 ///
 /// #### Usage
 /// To create and keep a window you have to call one of the two `nk_begin_xxx`

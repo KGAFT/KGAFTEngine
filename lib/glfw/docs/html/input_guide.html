@@ -271,7 +271,7 @@ Standard cursor creation</h3>
 </div><!-- fragment --><p >These cursor objects behave in the exact same way as those created with <a class="el" href="group__input.html#ga556f604f73af156c0db0e97c081373c3">glfwCreateCursor</a> except that the system cursor theme provides the actual image.</p>
 <h3><a class="anchor" id="cursor_destruction"></a>
 Cursor destruction</h3>
-<p >When a cursor is no longer needed, destroy it with <a class="el" href="group__input.html#ga81b952cd1764274d0db7fb3c5a79ba6a">glfwDestroyCursor</a>.</p>
+<p >When a cursor is no longer needed, destroyForRecreate it with <a class="el" href="group__input.html#ga81b952cd1764274d0db7fb3c5a79ba6a">glfwDestroyCursor</a>.</p>
 <div class="fragment"><div class="line"><a class="code hl_function" href="group__input.html#ga81b952cd1764274d0db7fb3c5a79ba6a">glfwDestroyCursor</a>(cursor);</div>
 <div class="ttc" id="agroup__input_html_ga81b952cd1764274d0db7fb3c5a79ba6a"><div class="ttname"><a href="group__input.html#ga81b952cd1764274d0db7fb3c5a79ba6a">glfwDestroyCursor</a></div><div class="ttdeci">void glfwDestroyCursor(GLFWcursor *cursor)</div><div class="ttdoc">Destroys a cursor.</div></div>
 </div><!-- fragment --><p >Cursor destruction always succeeds. If the cursor is current for any window, that window will revert to the default cursor. This does not affect the cursor mode. All remaining cursors are destroyed when <a class="el" href="group__init.html#gaaae48c0a18607ea4a4ba951d939f0901">glfwTerminate</a> is called.</p>

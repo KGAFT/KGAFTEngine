@@ -2698,7 +2698,7 @@ GLFWAPI GLFWwindow* glfwCreateWindow(int width, int height, const char* title, G
  *  If the context of the specified window is current on the main thread, it is
  *  detached before being destroyed.
  *
- *  @param[in] window The window to destroy.
+ *  @param[in] window The window to destroyForRecreate.
  *
  *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED and @ref
  *  GLFW_PLATFORM_ERROR.
@@ -4489,7 +4489,7 @@ GLFWAPI GLFWcursor* glfwCreateStandardCursor(int shape);
  *  If the specified cursor is current for any window, that window will be
  *  reverted to the default cursor.  This does not affect the cursor mode.
  *
- *  @param[in] cursor The cursor object to destroy.
+ *  @param[in] cursor The cursor object to destroyForRecreate.
  *
  *  @errors Possible errors include @ref GLFW_NOT_INITIALIZED and @ref
  *  GLFW_PLATFORM_ERROR.
@@ -5833,8 +5833,8 @@ GLFWAPI int glfwGetPhysicalDevicePresentationSupport(VkInstance instance, VkPhys
  *  and returns `VK_ERROR_NATIVE_WINDOW_IN_USE_KHR`.
  *
  *  The window surface must be destroyed before the specified Vulkan instance.
- *  It is the responsibility of the caller to destroy the window surface.  GLFW
- *  does not destroy it for you.  Call `vkDestroySurfaceKHR` to destroy the
+ *  It is the responsibility of the caller to destroyForRecreate the window surface.  GLFW
+ *  does not destroy it for you.  Call `vkDestroySurfaceKHR` to destroyForRecreate the
  *  surface.
  *
  *  @param[in] instance The Vulkan instance to create the surface in.

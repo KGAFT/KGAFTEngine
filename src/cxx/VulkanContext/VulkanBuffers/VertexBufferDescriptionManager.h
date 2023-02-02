@@ -19,21 +19,7 @@ public:
         bindingDescription.push_back(bindDesc);
     }
     void registerAttribute(int binding, int location, unsigned int vertexCoordsAmount, size_t offset){
-        bool exist = false;
-        for (const auto &item: bindingDescription){
-            if(item.binding==binding){
-                exist = true;
-            }
-        }
-        if(!exist){
-            throw std::runtime_error("Error: you cannot register attribute with unexisting binding");
-        }
 
-        for (const auto &item: attributeDescriptions){
-            if(item.location == location){
-                throw std::runtime_error("Error: you cannot register attribute with already registered location");
-            }
-        }
         VkVertexInputAttributeDescription attributeDescription{};
         attributeDescription.binding = binding;
         attributeDescription.offset = offset;

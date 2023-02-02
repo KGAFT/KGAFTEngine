@@ -11,7 +11,7 @@ for creating windows, contexts and surfaces, reading input, handling events, etc
 @ref news_33 list new features, caveats and deprecations.
 
 @ref quick_guide is a guide for users new to GLFW.  It takes you through how to
-write a small but complete program.
+writeAllDescriptors a small but complete program.
 
 There are guides for each section of the API:
 

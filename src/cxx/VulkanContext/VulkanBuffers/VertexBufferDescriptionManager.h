@@ -18,7 +18,7 @@ public:
         bindDesc.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
         bindingDescription.push_back(bindDesc);
     }
-    void registerAttribute(int binding, int location, unsigned int vertexCoordsAmount){
+    void registerAttribute(int binding, int location, unsigned int vertexCoordsAmount, size_t offset){
         bool exist = false;
         for (const auto &item: bindingDescription){
             if(item.binding==binding){
@@ -36,7 +36,7 @@ public:
         }
         VkVertexInputAttributeDescription attributeDescription{};
         attributeDescription.binding = binding;
-        attributeDescription.offset = 0;
+        attributeDescription.offset = offset;
         attributeDescription.location = location;
         attributeDescription.format = prepareFormatForVertexCoordsAmount(vertexCoordsAmount);
         attributeDescriptions.push_back(attributeDescription);

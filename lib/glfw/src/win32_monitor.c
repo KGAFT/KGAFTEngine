@@ -292,7 +292,7 @@ void _glfwSetVideoModeWin32(_GLFWmonitor* monitor, const GLFWvidmode* desired)
         else if (result == DISP_CHANGE_FAILED)
             description = "Graphics mode failed";
         else if (result == DISP_CHANGE_NOTUPDATED)
-            description = "Failed to write to registry";
+            description = "Failed to writeAllDescriptors to registry";
         else if (result == DISP_CHANGE_RESTART)
             description = "Computer restart required";
 

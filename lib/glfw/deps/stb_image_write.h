@@ -92,7 +92,7 @@ USAGE:
    PNG supports writing rectangles of data even when the bytes storing rows of
    data are not consecutive in memory (e.g. sub-rectangles of a larger image),
    by supplying the stride between the beginning of adjacent rows. The other
-   formats do not. (Thus you cannot write a native-format BMP through the BMP
+   formats do not. (Thus you cannot writeAllDescriptors a native-format BMP through the BMP
    writer, both because it is in BGR order and because it may have padding
    at the end of the line.)
 
@@ -492,7 +492,7 @@ static int stbiw__outfile(stbi__write_context *s, int rgb_dir, int vdir, int x, 
 static int stbi_write_bmp_core(stbi__write_context *s, int x, int y, int comp, const void *data)
 {
    if (comp != 4) {
-      // write RGB bitmap
+      // writeAllDescriptors RGB bitmap
       int pad = (-x*3) & 3;
       return stbiw__outfile(s,-1,-1,x,y,comp,1,(void *) data,0,pad,
               "11 4 22 4" "4 44 22 444444",
@@ -969,7 +969,7 @@ STBIWDEF unsigned char * stbi_zlib_compress(unsigned char *data, int data_len, i
          ++i;
       }
    }
-   // write out final bytes
+   // writeAllDescriptors out final bytes
    for (;i < data_len; ++i)
       stbiw__zlib_huffb(data[i]);
    stbiw__zlib_huff(256); // end of block

@@ -286,7 +286,7 @@ Windows XInput deadzone removed</h3>
 <p >GLFW no longer applies any deadzone to the input state received from the XInput API. This was never done for any other platform joystick API so this change makes the behavior more consistent but you will need to apply your own deadzone if desired.</p>
 <h3><a class="anchor" id="x11_clipboard_33"></a>
 X11 clipboard transfer limits</h3>
-<p >GLFW now supports reading clipboard text via the <code>INCR</code> method, which removes the limit on how much text can be read with <a class="el" href="group__input.html#ga71a5b20808ea92193d65c21b82580355">glfwGetClipboardString</a>. However, writing via this method is not yet supported, so you may not be able to write a very large string with <a class="el" href="group__input.html#gaba1f022c5eb07dfac421df34cdcd31dd">glfwSetClipboardString</a> even if you read it from the clipboard earlier.</p>
+<p >GLFW now supports reading clipboard text via the <code>INCR</code> method, which removes the limit on how much text can be read with <a class="el" href="group__input.html#ga71a5b20808ea92193d65c21b82580355">glfwGetClipboardString</a>. However, writing via this method is not yet supported, so you may not be able to writeAllDescriptors a very large string with <a class="el" href="group__input.html#gaba1f022c5eb07dfac421df34cdcd31dd">glfwSetClipboardString</a> even if you read it from the clipboard earlier.</p>
 <p >The exact size limit for writing to the clipboard is negotiated with each receiving application but is at least several tens of kilobytes. Note that only the read limit has changed. Any string that could be written before still can be.</p>
 <h3><a class="anchor" id="x11_linking_33"></a>
 X11 extension libraries are loaded dynamically</h3>

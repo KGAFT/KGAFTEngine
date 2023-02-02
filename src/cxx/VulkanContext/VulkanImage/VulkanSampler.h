@@ -1,15 +1,15 @@
-#include "../VulkanDescriptorSet/IVulkanDescriptorSetElement.h"
+#include "../GraphicsPipeline/IDescriptorLayoutObject.h"
 #include "VulkanTexture.h"
 
 #pragma once
-class VulkanSampler : public IVulkanDescriptorSetElement
+class VulkanSampler : public IDescriptorLayoutObject
 {
 private:
 	VulkanTexture* texture;
     VulkanDevice* device;
     VkSampler sampler;
 public:
-    VulkanSampler(VulkanDevice* device, unsigned int binding) : IVulkanDescriptorSetElement(binding, VK_SHADER_STAGE_FRAGMENT_BIT, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER) {
+    VulkanSampler(VulkanDevice* device, unsigned int binding) : IDescriptorLayoutObject(binding, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT) {
         this->device = device;
         createTextureSampler();
        
@@ -18,18 +18,20 @@ public:
         vkDestroySampler(device->getDevice(), sampler, nullptr);
     }
 
-    VkBuffer getBufferToWrite() override {
-        return VK_NULL_HANDLE;
+    VkBuffer getBuffer(unsigned int number) override {
+        return nullptr;
     }
 
-    size_t getBufferSize() {
-        return 0;
-    }
-    VkSampler getSampler() {
+    VkSampler getSampler() override {
         return sampler;
     }
-    VkImageView getSamplerImageView() {
+
+    VkImageView getSamplerImageView() override {
         return texture->imageView;
+    }
+
+    size_t getBufferSize() override {
+        return 0;
     }
 
     void setTexture(VulkanTexture *texture) {

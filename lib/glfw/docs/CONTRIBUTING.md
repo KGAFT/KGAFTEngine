@@ -307,7 +307,7 @@ source repository](https://github.com/glfw/website/issues).
 
 Please explain why you need the feature and how you intend to use it.  If you
 have a specific API design in mind, please add that as well.  If you have or are
-planning to write code for the feature, see the section below.
+planning to writeAllDescriptors code for the feature, see the section below.
 
 If there already is a request for the feature you need, add your specific use
 case unless it is already mentioned.  If it is, give it a :+1:.
@@ -317,7 +317,7 @@ case unless it is already mentioned.  If it is, give it a :+1:.
 
 __Note:__ You must have all necessary [intellectual
 property rights](https://en.wikipedia.org/wiki/Intellectual_property) to any
-code you contribute.  If you did not write the code yourself, you must explain
+code you contribute.  If you did not writeAllDescriptors the code yourself, you must explain
 where it came from and under what license you received it.  Even code using the
 same license as GLFW may not be copied without attribution.
 
@@ -343,7 +343,7 @@ Message](https://chris.beams.io/posts/git-commit/).
 ## Contributing a feature
 
 __Note:__ You must have all necessary rights to any code you contribute.  If you
-did not write the code yourself, you must explain where it came from and under
+did not writeAllDescriptors the code yourself, you must explain where it came from and under
 what license.  Even code using the same license as GLFW may not be copied
 without attribution.
 

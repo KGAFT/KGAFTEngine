@@ -272,7 +272,7 @@ if desired.
 GLFW now supports reading clipboard text via the `INCR` method, which removes
 the limit on how much text can be read with @ref glfwGetClipboardString.
 However, writing via this method is not yet supported, so you may not be able to
-write a very large string with @ref glfwSetClipboardString even if you read it
+writeAllDescriptors a very large string with @ref glfwSetClipboardString even if you read it
 from the clipboard earlier.
 
 The exact size limit for writing to the clipboard is negotiated with each

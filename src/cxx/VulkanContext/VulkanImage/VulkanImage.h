@@ -1,3 +1,6 @@
+//
+// Created by Daniil on 02.02.2023.
+//
 #include "../VulkanDevice/VulkanDevice.h"
 #include "../../External/stb_image.h"
 #include <vulkan/vulkan.h>
@@ -11,7 +14,7 @@ public:
         int imageWidth, imageHeight, imageChannels;
         stbi_uc* pixels = stbi_load(pathToTexture, &imageWidth, &imageHeight, &imageChannels, STBI_rgb_alpha);
         VulkanImage result(device, imageWidth, imageHeight, imageChannels, pixels);
-       
+
         return result;
     }
 private:
@@ -19,7 +22,7 @@ private:
     VkDeviceMemory imageMemory;
     VulkanDevice* device;
 public:
-	VulkanImage(VulkanDevice* device, int imageWidth, int imageHeight, int imageChannels, stbi_uc* imageData) {
+    VulkanImage(VulkanDevice* device, int imageWidth, int imageHeight, int imageChannels, stbi_uc* imageData) {
         this->device = device;
         VkDeviceSize imageSize = imageWidth * imageHeight * 4;
 
@@ -46,7 +49,7 @@ public:
 
         vkDestroyBuffer(device->getDevice(), stagingBuffer, nullptr);
         vkFreeMemory(device->getDevice(), stagingBufferMemory, nullptr);
-	}
+    }
 
     void destroy() {
         vkDestroyImage(device->getDevice(), image, nullptr);
@@ -127,12 +130,12 @@ private:
         }
 
         vkCmdPipelineBarrier(
-            commandBuffer,
-            sourceStage, destinationStage,
-            0,
-            0, nullptr,
-            0, nullptr,
-            1, &barrier
+                commandBuffer,
+                sourceStage, destinationStage,
+                0,
+                0, nullptr,
+                0, nullptr,
+                1, &barrier
         );
 
         device->endSingleTimeCommands(commandBuffer);
@@ -151,9 +154,9 @@ private:
         region.imageSubresource.layerCount = 1;
         region.imageOffset = { 0, 0, 0 };
         region.imageExtent = {
-            width,
-            height,
-            1
+                width,
+                height,
+                1
         };
 
         vkCmdCopyBufferToImage(commandBuffer, buffer, image, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 1, &region);
@@ -162,4 +165,3 @@ private:
     }
 
 };
-

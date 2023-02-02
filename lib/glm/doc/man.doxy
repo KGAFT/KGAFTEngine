@@ -1789,7 +1789,7 @@ COMPACT_RTF            = NO
 # browsing using Word or some other Word compatible readers that support those
 # fields.
 #
-# Note: WordPad (write) and others do not support links.
+# Note: WordPad (writeAllDescriptors) and others do not support links.
 # The default value is: NO.
 # This tag requires that the tag GENERATE_RTF is set to YES.
 

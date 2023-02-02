@@ -6,8 +6,7 @@
 
 #include "VulkanSwapChainControl.h"
 #include "../GraphicsPipeline/GraphicsPipeline.h"
-#include "../VulkanDescriptorSet/VulkanDescriptorSet.h"
-#include "../VulkanImmediateShaderData/UniformBuffer/UniformBuffer.h"
+
 #include "../VulkanBuffers/VertexBuffer.h"
 #include "../VulkanBuffers/IndexBuffer.h"
 
@@ -36,7 +35,7 @@ public:
     VulkanRenderingPipeline(VulkanSwapChainControl *control, VulkanRenderPass *renderPass, GraphicsPipeline *pipeline,
                             VulkanDevice *device) : control(control), renderPass(renderPass), pipeline(pipeline),
                                                     device(device) {
-        
+        createCommandBuffers();
     }
     void registerPreRenderPassCallback(PreRenderPassCallback* cb) {
         preRenderPassCallbacks.push_back(cb);

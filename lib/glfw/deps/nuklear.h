@@ -1336,7 +1336,7 @@ NK_API const struct nk_draw_command* nk__draw_next(const struct nk_draw_command*
 /// handling and before drawing to screen. Not doing so can result in higher
 /// latency or at worst invalid behavior. Furthermore make sure that `nk_clear`
 /// is called at the end of the frame. While nuklear's default platform backends
-/// already call `nk_clear` for you if you write your own backend not calling
+/// already call `nk_clear` for you if you writeAllDescriptors your own backend not calling
 /// `nk_clear` can cause asserts or even worse undefined behavior.
 ///
 /// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~c
@@ -13193,7 +13193,7 @@ nk_decompress_length(unsigned char *input)
 NK_INTERN void
 nk__match(unsigned char *data, unsigned int length)
 {
-    /* INVERSE of memmove... write each byte before copying the next...*/
+    /* INVERSE of memmove... writeAllDescriptors each byte before copying the next...*/
     NK_ASSERT (nk__dout + length <= nk__barrier);
     if (nk__dout + length > nk__barrier) { nk__dout += length; return; }
     if (data < nk__barrier4) { nk__dout = nk__barrier+1; return; }

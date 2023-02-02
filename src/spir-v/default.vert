@@ -15,6 +15,11 @@ layout(push_constant) uniform Push{
 } push;
 
 
+layout(binding = 0) uniform UniformBufferObject {
+	mat4 cameraMatrix;
+	mat4 worldMatrix;
+} ubo;
+
 
 vec2 fixVectorPositioning(vec2 base){
 	base.y*=-1;
@@ -29,5 +34,5 @@ vec3 fixVectorPositioning(vec3 base){
 void main() {
 	normals = fixVectorPositioning(normal);
 	UVS = fixVectorPositioning(uv);
-	gl_Position = push.cameraMatrix*push.worldMatrix*vec4(fixVectorPositioning(position), 1.0);
+	gl_Position = ubo.cameraMatrix*ubo.worldMatrix*vec4(fixVectorPositioning(position), 1.0f);
 }

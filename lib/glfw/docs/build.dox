@@ -5,7 +5,7 @@
 @tableofcontents
 
 This is about compiling and linking applications that use GLFW.  For information on
-how to write such applications, start with the
+how to writeAllDescriptors such applications, start with the
 [introductory tutorial](@ref quick_guide).  For information on how to compile
 the GLFW library itself, see @ref compile_guide.
 

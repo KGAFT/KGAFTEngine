@@ -9,13 +9,15 @@
 class IDescriptorLayoutObject{
 protected:
     VkDescriptorSetLayoutBinding  descriptorSetLayoutBind;
+    unsigned int nativeType;
 public:
-    IDescriptorLayoutObject(unsigned int binding, VkDescriptorType type, VkShaderStageFlags shaderStages){
+    IDescriptorLayoutObject(unsigned int binding, unsigned int type, VkShaderStageFlags shaderStages){
         descriptorSetLayoutBind = {};
         descriptorSetLayoutBind.binding = binding;
-        descriptorSetLayoutBind.descriptorType = type;
+        descriptorSetLayoutBind.descriptorType = VkDescriptorType(type);
         descriptorSetLayoutBind.descriptorCount = 1;
         descriptorSetLayoutBind.stageFlags = shaderStages;
+        this->nativeType = type;
     }
 
     VkDescriptorSetLayoutBinding getDescriptorSetLayoutBind(){
@@ -24,6 +26,11 @@ public:
     VkDescriptorSetLayoutBinding* getPDescriptorSetLayoutBind(){
         return &descriptorSetLayoutBind;
     }
+
+    unsigned int getNativeType() const {
+        return nativeType;
+    }
+
     virtual VkBuffer getBuffer(unsigned int number) = 0;
     virtual VkSampler getSampler() = 0;
     virtual VkImageView getSamplerImageView() = 0;

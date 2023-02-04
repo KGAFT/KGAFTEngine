@@ -8,9 +8,11 @@ private:
 	VulkanTexture* texture;
     VulkanDevice* device;
     VkSampler sampler;
+    unsigned int binding;
 public:
     VulkanSampler(VulkanDevice* device, unsigned int binding) : IDescriptorLayoutObject(binding, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT) {
         this->device = device;
+        this->binding = binding;
         createTextureSampler();
        
     }
@@ -36,6 +38,10 @@ public:
 
     void setTexture(VulkanTexture *texture) {
         VulkanSampler::texture = texture;
+    }
+
+    unsigned int getBinding() {
+        return binding;
     }
 
 private:

@@ -18,7 +18,7 @@
 
 #pragma once
 
-class RenderPipeline  : public RenderPassCallback, PreRenderPassCallback{
+class RenderPipeline{
 protected:
     VulkanDevice* device;
 
@@ -136,12 +136,8 @@ private:
         }
         descriptors = new VulkanDescriptors(device, graphicsPipeline->getDescriptorSetLayout(), 3, descriptorLayoutObjects.data(), descriptorLayoutObjects.size());
     }
-    virtual void invokeCurrentRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) = 0;
-    virtual void invokeCurrentPreRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) = 0;
 public:
-    void invokeRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) override {
-        pushConstantDescriptionManager->loadConstantsToShader(commandBuffer, layout);
-
+    void updateUniformsAndSamplers()  {
         std::vector<IDescriptorLayoutObject*> descriptorLayoutObjects;
         for (int i = 0; i < uniformBuffers.size(); ++i){
             descriptorLayoutObjects.push_back(uniformBuffers[i]);
@@ -149,16 +145,19 @@ public:
         for (int i = 0; i < textureSamplers.size(); ++i){
             descriptorLayoutObjects.push_back(textureSamplers[i]);
         }
-        descriptors->writeDescriptor(descriptorLayoutObjects.data(), descriptorLayoutObjects.size(), imageIndex);
-        invokeCurrentRender(commandBuffer, layout, imageIndex);
+        descriptors->writeDescriptor(descriptorLayoutObjects.data(), descriptorLayoutObjects.size(), renderingPipeline->getCurrentImage());
     }
-
-    void invokePreRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) override {
-        invokeCurrentPreRender(commandBuffer, layout, imageIndex);
+    void updatePushConstants(){
+        pushConstantDescriptionManager->loadConstantsToShader(renderingPipeline->getCurrentCommandBuffer(), renderingPipeline->getPipelineLayout());
     }
-
-    virtual void update(){
-        renderingPipeline->redrawCommandBuffers();;
+    void beginRender(){
+        renderingPipeline->beginRender();
+    }
+    void beginDraw(){
+        renderingPipeline->beginDraw();
+    }
+    void endRender(){
+        renderingPipeline->endRender();
     }
 
 

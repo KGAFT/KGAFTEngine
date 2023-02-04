@@ -3,7 +3,7 @@
 #include "VulkanContext/VulkanLogger/DefaultVulkanLoggerCallback.h"
 
 #include "Engine/TestRenderPipeline.h"
-
+#include "Engine/PbrRenderPipeline.h"
 
 
 int main() {
@@ -23,11 +23,17 @@ int main() {
     std::cin>>deviceIndex;
 
     VulkanDevice device(physDevices[deviceIndex], Window::getWindowInstance(), instance.getInstance(), true);
+    PbrRenderPipeline* renderPipeline = new PbrRenderPipeline(&device, Window::getWindowInstance());
+    PushConstantData data{};
+    CameraManager cameraManager(&data);
 
-    TestRenderPipeline* renderPipeline = new TestRenderPipeline(&device, Window::getWindowInstance());
+
     while(!Window::getWindowInstance()->isWindowNeedToClose()) {
         Window::getWindowInstance()->preRenderEvents();
-        renderPipeline->update();
+        cameraManager.update();
+        renderPipeline->startRenderProcess();
+        renderPipeline->setPushConstantData(&data);
+        renderPipeline->setPushConstantData();
         Window::getWindowInstance()->postRenderEvents();
     }
     return 0;

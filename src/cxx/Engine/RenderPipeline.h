@@ -146,6 +146,7 @@ public:
             descriptorLayoutObjects.push_back(textureSamplers[i]);
         }
         descriptors->writeDescriptor(descriptorLayoutObjects.data(), descriptorLayoutObjects.size(), renderingPipeline->getCurrentImage());
+        descriptors->bind(renderingPipeline->getCurrentImage(), renderingPipeline->getCurrentCommandBuffer(), renderingPipeline->getPipelineLayout());
     }
     void updatePushConstants(){
         pushConstantDescriptionManager->loadConstantsToShader(renderingPipeline->getCurrentCommandBuffer(), renderingPipeline->getPipelineLayout());

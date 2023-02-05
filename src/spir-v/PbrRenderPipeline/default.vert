@@ -30,7 +30,7 @@ vec4 fixVectorPositioning(vec4 base){
 }
 
 void main() {
-    UvsCoords = fixVectorPositioning(textureCoordinates);
+    UvsCoords = textureCoordinates;
     Normals = (vec4(normals, 0.0f)*worldTransformData.worldMatrix).xyz;
     fragmentPosition = vec3(worldTransformData.worldMatrix*vec4(position, 1.0));
 

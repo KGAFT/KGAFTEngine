@@ -6,6 +6,7 @@
 #include <glm/glm.hpp>
 #include "../Camera/CameraManager.h"
 #include "RenderPipeline.h"
+#include "GraphicalObjects/Mesh.h"
 
 struct PointLight{
     glm::vec3 position;
@@ -22,15 +23,15 @@ struct DirectLight{
 struct LightInfo{
     PointLight pointLights[100];
     DirectLight directLights[100];
-    int enabledSpotLights;
+
     int enabledDirectionalLights;
     int enabledPointLights;
     glm::vec3 cameraPosition;
 
-    float emissiveIntensity;
-    float emissiveShininess;
-    float gammaCorrect;
-    float ambientIntensity;
+    float emissiveIntensity = 2;
+    float emissiveShininess = 1;
+    float gammaCorrect  = 1.0f / 2.2f;
+    float ambientIntensity = 0.03f ;
 };
 
 
@@ -70,6 +71,11 @@ public:
         RenderPipeline::beginDraw();
 
     }
+
+    void drawMesh(Mesh* mesh){
+        mesh->draw(RenderPipeline::renderingPipeline->getCurrentCommandBuffer());
+    }
+
     void endRenderProcess(){
         RenderPipeline::endRender();
     }
@@ -84,6 +90,7 @@ public:
             item->write(&lightInfo);
         }
         RenderPipeline::updateUniformsAndSamplers();
+
     }
 
     LightInfo *getLightInfo(){

@@ -19,7 +19,7 @@ public:
     }
 
     void mouseMoved(int xChange, int yChange) override {
-        camera->rotateCam(sensitivity * xChange, sensitivity * yChange);
+        camera->rotateCam(sensitivity * xChange, sensitivity * yChange*-1);
     }
 
     Camera *getCamera() const {

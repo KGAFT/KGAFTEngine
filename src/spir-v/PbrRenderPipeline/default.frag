@@ -35,7 +35,6 @@ layout(binding = 0) uniform LightUbo {
     PointLight pointLights[LIGHT_BLOCKS_AMOUNT];
     DirectLight directLights[LIGHT_BLOCKS_AMOUNT];
 
-    int enabledSpotLights;
     int enabledDirectionalLights;
     int enabledPointLights;
     vec3 cameraPosition;
@@ -159,8 +158,13 @@ void main() {
     vec3 ambient = vec3(lightUbo.ambientIntensity) * albedo * ao;
 
     vec3 color = ambient + Lo;
+    if(lightUbo.enabledPointLights == 0 && lightUbo.enabledDirectionalLights == 0){
+        FragColor = vec4(albedo, 1.0);
+    }
+    else{
+        color+=(emissive*pow(emissive.a, lightUbo.emissiveShininess)*lightUbo.emissiveIntensity).rgb;
+        color = postProcessColor(color);
+        FragColor = vec4(color, 1.0);
+    }
 
-    color+=(emissive*pow(emissive.a, lightUbo.emissiveShininess)*lightUbo.emissiveIntensity).rgb;
-    color = postProcessColor(color);
-    FragColor = vec4(color, 1.0);
 }

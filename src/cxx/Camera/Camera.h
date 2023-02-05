@@ -58,7 +58,7 @@ public:
     {
         position += forwardBackWardAmplifier * orientation;
         position += -1 * leftRightAmplifier * glm::normalize(glm::cross(orientation, up));
-        position += -1 * upDownAmplifier * up;
+        position += upDownAmplifier * up;
     }
 
     void rotateCam(float xSpeed, float ySpeed)

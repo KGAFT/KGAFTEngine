@@ -14,15 +14,12 @@
 class Mesh{
 private:
     glm::mat4 worldMatrix = glm::mat4(1.0f);
-    VertexBuffer* positions;
-    VertexBuffer* normals;
-    VertexBuffer* uvs;
+    VertexBuffer* data;
     IndexBuffer* indices;
     std::vector<VulkanTexture*> textures;
 public:
-    Mesh(VertexBuffer *positions, VertexBuffer *normals, VertexBuffer *uvs, IndexBuffer *indices,
-         std::vector<VulkanTexture *> &textures) : positions(positions), normals(normals), uvs(uvs),
-                                                         indices(indices), textures(textures) {}
+    Mesh(VertexBuffer *data,  IndexBuffer *indices) : data(data),
+                                                         indices(indices) {}
     void addTexture(VulkanTexture* texture){
         textures.push_back(texture);
     }
@@ -35,16 +32,18 @@ public:
     void setPosition(glm::vec3 position){
         worldMatrix = glm::translate(worldMatrix, position);
     }
-
+    void draw(VkCommandBuffer commandBuffer){
+        data->bind(commandBuffer);
+        indices->bind(commandBuffer);
+        indices->draw(commandBuffer);
+    }
     ~Mesh(){
         destroy();
     }
 
     void destroy(){
-        delete positions;
-        delete normals;
-        delete indices;
-        delete uvs;
+
+        delete data;
         delete indices;
     }
 };

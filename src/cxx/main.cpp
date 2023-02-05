@@ -1,3 +1,5 @@
+#include <assimp/Importer.hpp>
+
 #include "VulkanContext/VulkanInstance.h"
 #include "VulkanContext/VulkanDevice/VulkanDevice.h"
 #include "VulkanContext/VulkanLogger/DefaultVulkanLoggerCallback.h"
@@ -33,7 +35,7 @@ int main() {
         cameraManager.update();
         renderPipeline->startRenderProcess();
         renderPipeline->setPushConstantData(&data);
-        renderPipeline->setPushConstantData();
+        renderPipeline->endRenderProcess();
         Window::getWindowInstance()->postRenderEvents();
     }
     return 0;

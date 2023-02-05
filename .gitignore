@@ -1,4 +1,5 @@
 cmake-build-debug/
+LibNativeWin/
 x64/
 x32/
 .vs/

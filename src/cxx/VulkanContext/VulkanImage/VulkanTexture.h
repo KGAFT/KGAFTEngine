@@ -22,8 +22,9 @@ public:
 	}
 
 	void destroy() {
+        vkDeviceWaitIdle(device->getDevice());
 		vkDestroyImageView(device->getDevice(), imageView, nullptr);
-
+        delete image;
 	}
 private:
     

@@ -1,167 +1,110 @@
 //
-// Created by Daniil on 02.02.2023.
+// Created by Daniil on 06.02.2023.
 //
-#include <vulkan/vulkan.h>
-#include "../VulkanContext/VulkanDevice/VulkanDevice.h"
+#pragma once
+
 #include "../VulkanContext/VulkanSwapChain/VulkanSwapChain.h"
 #include "../VulkanContext/VulkanSwapChain/VulkanRenderPass.h"
 #include "../VulkanContext/VulkanSwapChain/VulkanSwapChainControl.h"
 #include "../VulkanContext/VulkanBuffers/VertexBufferDescriptionManager.h"
 #include "../VulkanContext/VulkanImmediateShaderData/PushConstants/PushConstant.h"
 #include "../VulkanContext/VulkanImmediateShaderData/PushConstants/PushConstantDescriptionManager.h"
-#include "../VulkanContext/VulkanImmediateShaderData/UniformBuffers/UniformBuffer.h"
+#include "../VulkanContext/GraphicsPipeline/PipelineConfig.h"
 #include "../VulkanContext/VulkanImage/VulkanSampler.h"
+#include "../VulkanContext/VulkanImmediateShaderData/UniformBuffers/UniformBuffer.h"
+#include "../VulkanContext/GraphicsPipeline/GraphicsPipeline.h"
 #include "../VulkanContext/VulkanSwapChain/VulkanRenderingPipeline.h"
 #include "../VulkanContext/VulkanDescriptor/VulkanDescritptors.h"
 #include "ShaderInputDataConfiguration.h"
 
-
-#pragma once
-
-class RenderPipeline{
+class RenderPipeline : public RenderPassCallback{
 protected:
     VulkanDevice* device;
-
     VulkanSwapChain* swapChain;
     VulkanRenderPass* renderPass;
-    VulkanSwapChainControl* control;
-
+    VulkanSwapChainControl* swapChainControl;
     VertexBufferDescriptionManager* vertexBufferDescriptionManager;
-
     PushConstantDescriptionManager* pushConstantDescriptionManager;
-
-    std::vector<UniformBuffer*> uniformBuffers;
-    std::vector<PushConstant*> pushConstants;
-    std::vector<VulkanSampler*> textureSamplers;
-
+    PipelineConfiguration::PipelineConfigInfo pipelineConfig;
+    GraphicsPipeline* pipeline;
     VulkanRenderingPipeline* renderingPipeline;
     VulkanDescriptors* descriptors;
-    GraphicsPipeline* graphicsPipeline;
-    Window* window;
-    VulkanShader* shader;
-    RenderPipeline(VulkanDevice* device, Window* window) : device(device), window(window){
 
+    std::vector<VulkanSampler*> samplers;
+    std::vector<PushConstant*> pushConstants;
+    std::vector<UniformBuffer*> uniformBuffers;
+protected:
+    virtual void preInvokeRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) = 0;
+    virtual void invokeRenderImm(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) = 0;
+public:
+    void invokeRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) override {
+        preInvokeRender(commandBuffer, layout, imageIndex);
+        std::vector<IDescriptorLayoutObject*> objectsToWrite;
+        for(VulkanSampler* sampler : samplers){
+            objectsToWrite.push_back(sampler);
+        }
+        for (const auto item: uniformBuffers){
+            objectsToWrite.push_back(item);
+        }
+        pushConstantDescriptionManager->loadConstantsToShader(commandBuffer, layout);
+        descriptors->writeDescriptor(objectsToWrite.data(), objectsToWrite.size(), imageIndex);
+        descriptors->bind(imageIndex, commandBuffer, layout);
+        invokeRenderImm(commandBuffer, layout, imageIndex);
     }
-    void load(ShaderInputDataConfiguration& configuration){
-        swapChain = new VulkanSwapChain(device, Window::getWindowInstance()->getWidth(), Window::getWindowInstance()->getHeight());
+
+
+    RenderPipeline(VulkanDevice* device, Window* window, ShaderInputDataConfiguration& config) : device(device){
+        swapChain = new VulkanSwapChain(device, window->getWidth(), window->getHeight());
         renderPass = new VulkanRenderPass(device, swapChain);
-        control = new VulkanSwapChainControl(swapChain, renderPass, device);
+        swapChainControl = new VulkanSwapChainControl(swapChain, renderPass, device);
         vertexBufferDescriptionManager = new VertexBufferDescriptionManager();
+        populateVertexBuffersDescription(config);
         pushConstantDescriptionManager = new PushConstantDescriptionManager();
-        PipelineConfiguration::PipelineConfigInfo config = PipelineConfiguration::defaultPipelineConfigInfo(Window::getWindowInstance()->getWidth(), Window::getWindowInstance()->getHeight());
-        config.renderPass = renderPass->getRenderPass();
-        populatePipelineDescriptorObjects(configuration);
-        this->shader = configuration.shader;
-        loadGraphicsPipeline(shader,config );
-        loadDescriptors();
-        renderingPipeline = new VulkanRenderingPipeline(control, renderPass, graphicsPipeline, device);
+        populatePushConstantsManager(config);
+
+        pipelineConfig = PipelineConfiguration::defaultPipelineConfigInfo(window->getWidth(), window->getHeight());
+        populateUniforms(config);
+
+        std::vector<IDescriptorLayoutObject*> objectsToWrite;
+        for(VulkanSampler* sampler : samplers){
+            objectsToWrite.push_back(sampler);
+        }
+        for (const auto item: uniformBuffers){
+            objectsToWrite.push_back(item);
+        }
+
+        pipeline = new GraphicsPipeline(config.shader, device, pipelineConfig, vertexBufferDescriptionManager, pushConstantDescriptionManager, objectsToWrite.data(), objectsToWrite.size());
+
+        renderingPipeline = new VulkanRenderingPipeline(swapChainControl, renderPass, pipeline, device);
+
         window->registerResizeCallback(renderingPipeline);
+
+        descriptors = new VulkanDescriptors(device, pipeline->getDescriptorSetLayout(), 3, objectsToWrite.data(), objectsToWrite.size());
+
+        renderingPipeline->registerRenderPassCallback(this);
+
     }
-
-
-    ~RenderPipeline(){
-        destroy();
-    }
-
-    void destroy(){
-        vkDeviceWaitIdle(device->getDevice());
-        delete swapChain;
-        delete renderPass;
-        VkDescriptorSetLayout layout = graphicsPipeline->getDescriptorSetLayout();
-        delete graphicsPipeline;
-        for (const auto &item: uniformBuffers){
-            delete item;
-        }
-        uniformBuffers.clear();
-        for (const auto &item: pushConstants){
-            delete item;
-        }
-        pushConstants.clear();
-        delete descriptors;
-        for (const auto &item: textureSamplers){
-            delete item;
-        }
-        vkDestroyDescriptorSetLayout(device->getDevice(), layout, nullptr);
-        delete control;
-        delete renderingPipeline;
-        delete vertexBufferDescriptionManager;
-        delete pushConstantDescriptionManager;
-        delete shader;
+    void update(){
+        renderingPipeline->redrawCommandBuffers();
     }
 private:
-    void populatePipelineDescriptorObjects(ShaderInputDataConfiguration& configuration){
-        if (configuration.vertexBufferDescriptionAmount == 0){
-            throw new std::runtime_error("Error: you cannot create pipeline withount vertex inputs!");
+    void populateVertexBuffersDescription(ShaderInputDataConfiguration& config){
+        size_t stepSize = 0;
+        for (int i = 0; i < config.vertexBufferDescriptionAmount; ++i){
+            vertexBufferDescriptionManager->registerAttribute(0, config.pVertexBufferDescription[i].location, config.pVertexBufferDescription[i].vertexCoordinatesAmount, config.pVertexBufferDescription[i].offset);
+            stepSize+=config.pVertexBufferDescription[i].vertexCoordinatesAmount*sizeof(float);
         }
-
-        size_t bindingSize = 0;
-        for (int i = 0; i < configuration.vertexBufferDescriptionAmount; ++i){
-            vertexBufferDescriptionManager->registerAttribute(0, configuration.pVertexBufferDescription[i].location, configuration.pVertexBufferDescription[i].vertexCoordinatesAmount, configuration.pVertexBufferDescription[i].offset);
-            bindingSize+=configuration.pVertexBufferDescription[i].vertexCoordinatesAmount*sizeof(float);
-        }
-        vertexBufferDescriptionManager->createBinding(0, bindingSize);
-        for (int i = 0; i < configuration.pushConstantDescriptionAmount; ++i){
-            PushConstant* pushConstant = new PushConstant(configuration.pushConstantDescription[i].constantSize, configuration.pushConstantDescription[i].shaderStages);
-            pushConstantDescriptionManager->registerPushConstant(pushConstant);
-            pushConstants.push_back(pushConstant);
-        }
-        for (int i = 0; i < configuration.uniformBufferDescriptionAmount; ++i){
-            UniformBuffer* buffer = new UniformBuffer(device, configuration.pUniformBufferDescription[i].bufferSize, configuration.pUniformBufferDescription[i].shaderLocation, configuration.pUniformBufferDescription[i].targetBinding, 3);
-            uniformBuffers.push_back(buffer);
-        }
-        for (int i = 0; i < configuration.samplerDescAmount; ++i){
-            VulkanSampler* sampler = new VulkanSampler(device, configuration.pSamplerDescriptions[i].binding);
-            textureSamplers.push_back(sampler);
+        vertexBufferDescriptionManager->createBinding(0, stepSize);
+    }
+    void populatePushConstantsManager(ShaderInputDataConfiguration& config){
+        for (int i = 0; i < config.pushConstantDescriptionAmount; ++i){
+            pushConstants.push_back(new PushConstant(config.pushConstantDescription[i].constantSize, config.pushConstantDescription[i].shaderStages));
+            pushConstantDescriptionManager->registerPushConstant(pushConstants[i]);
         }
     }
-
-    void loadGraphicsPipeline(VulkanShader* shader, PipelineConfiguration::PipelineConfigInfo& configInfo){
-        std::vector<IDescriptorLayoutObject*> descriptorLayoutObjects;
-        for (int i = 0; i < uniformBuffers.size(); ++i){
-            descriptorLayoutObjects.push_back(uniformBuffers[i]);
+    void populateUniforms(ShaderInputDataConfiguration& config){
+        for (int i = 0; i < config.uniformBufferDescriptionAmount; ++i){
+            uniformBuffers.push_back(new UniformBuffer(device, config.pUniformBufferDescription[i].bufferSize, config.pUniformBufferDescription[i].shaderLocation, config.pUniformBufferDescription[i].targetBinding, 3));
         }
-        for (int i = 0; i < textureSamplers.size(); ++i){
-            descriptorLayoutObjects.push_back(textureSamplers[i]);
-        }
-        graphicsPipeline = new GraphicsPipeline(shader, device, configInfo, vertexBufferDescriptionManager, pushConstantDescriptionManager, descriptorLayoutObjects.data(), descriptorLayoutObjects.size());
     }
-
-    void loadDescriptors(){
-        std::vector<IDescriptorLayoutObject*> descriptorLayoutObjects;
-        for (int i = 0; i < uniformBuffers.size(); ++i){
-            descriptorLayoutObjects.push_back(uniformBuffers[i]);
-        }
-        for (int i = 0; i < textureSamplers.size(); ++i){
-            descriptorLayoutObjects.push_back(textureSamplers[i]);
-        }
-        descriptors = new VulkanDescriptors(device, graphicsPipeline->getDescriptorSetLayout(), 3, descriptorLayoutObjects.data(), descriptorLayoutObjects.size());
-    }
-public:
-    void updateUniformsAndSamplers()  {
-        std::vector<IDescriptorLayoutObject*> descriptorLayoutObjects;
-        for (int i = 0; i < uniformBuffers.size(); ++i){
-            descriptorLayoutObjects.push_back(uniformBuffers[i]);
-        }
-        for (int i = 0; i < textureSamplers.size(); ++i){
-            descriptorLayoutObjects.push_back(textureSamplers[i]);
-        }
-        descriptors->writeDescriptor(descriptorLayoutObjects.data(), descriptorLayoutObjects.size(), renderingPipeline->getCurrentImage());
-        descriptors->bind(renderingPipeline->getCurrentImage(), renderingPipeline->getCurrentCommandBuffer(), renderingPipeline->getPipelineLayout());
-    }
-    void updatePushConstants(){
-        pushConstantDescriptionManager->loadConstantsToShader(renderingPipeline->getCurrentCommandBuffer(), renderingPipeline->getPipelineLayout());
-    }
-    void beginRender(){
-        renderingPipeline->beginRender();
-    }
-    void beginDraw(){
-        renderingPipeline->beginDraw();
-    }
-    void endRender(){
-        renderingPipeline->endRender();
-    }
-
-
 };
-
-

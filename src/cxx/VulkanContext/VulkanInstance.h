@@ -1,8 +1,9 @@
 #include <vulkan/vulkan.h>
 #include "GLFW/glfw3.h"
+#include "VulkanLogger/VulkanLogger.h"
 #include <vector>
 #include <unordered_set>
-#include "VulkanLogger/VulkanLogger.h"
+
 
 #pragma once
 
@@ -18,7 +19,7 @@ public:
         appInfo.applicationVersion = VK_MAKE_VERSION(1, 0, 0);
         appInfo.pEngineName = "KGAFTEngine";
         appInfo.engineVersion = VK_MAKE_VERSION(1, 0, 0);
-        appInfo.apiVersion = VK_API_VERSION_1_0;
+        appInfo.apiVersion = VK_API_VERSION_1_3;
 
         VkInstanceCreateInfo createInfo = {};
         createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
@@ -60,7 +61,6 @@ private:
                 return false;
             }
         }
-        return false;
     }
 
     std::vector<const char *> getRequiredExtensions(bool enableValidationLayers) {

@@ -51,12 +51,7 @@ public:
         vkFreeMemory(device->getDevice(), stagingBufferMemory, nullptr);
     }
 
-    ~VulkanImage(){
-        destroy();
-    }
-
     void destroy() {
-        vkDeviceWaitIdle(device->getDevice());
         vkDestroyImage(device->getDevice(), image, nullptr);
         vkFreeMemory(device->getDevice(), imageMemory, nullptr);
     }

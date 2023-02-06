@@ -18,27 +18,20 @@ public:
     VulkanDescriptors(VulkanDevice* device, VkDescriptorSetLayout layout, unsigned int instanceCount, IDescriptorLayoutObject** objects, unsigned int objectCount){
         this->device = device;
         std::vector<VkDescriptorPoolSize> sizes;
-        for (int i = 0; i < 100; ++i){
+        for (int i = 0; i < objectCount; ++i){
             VkDescriptorPoolSize poolSize{};
-            if(i%2==0){
-                poolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
-            }
-            else{
-                poolSize.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
-            }
+            poolSize.type = objects[i]->getPDescriptorSetLayoutBind()->descriptorType;
             poolSize.descriptorCount = instanceCount;
-            sizes.push_back(poolSize);
         }
         VkDescriptorPoolCreateInfo poolInfo{};
         poolInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
         poolInfo.poolSizeCount = sizes.size();
         poolInfo.pPoolSizes = sizes.data();
-        poolInfo.maxSets = 10*instanceCount;
+        poolInfo.maxSets = instanceCount;
 
         if (vkCreateDescriptorPool(device->getDevice(), &poolInfo, nullptr, &descriptorPool) != VK_SUCCESS) {
             throw std::runtime_error("failed to create descriptor pool!");
         }
-        vkResetDescriptorPool(device->getDevice(), descriptorPool, 0);
         createDescriptorSets(layout, instanceCount);
     }
 
@@ -60,9 +53,9 @@ public:
                 write.dstSet = descriptorSets[i];
                 write.dstBinding = 0;
                 write.dstArrayElement = 0;
-                write.descriptorType = VkDescriptorType(objects[oc].getNativeType());
+                write.descriptorType = objects[oc].getPDescriptorSetLayoutBind()->descriptorType;
                 write.descriptorCount = 1;
-                if(objects[oc].getNativeType() == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER){
+                if(objects[oc].getPDescriptorSetLayoutBind()->descriptorType == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER){
                     write.pBufferInfo = &info->first;
                 }
                 else{
@@ -88,9 +81,9 @@ public:
             write.dstSet = descriptorSets[currentInstance];
             write.dstBinding = objects[oc]->getPDescriptorSetLayoutBind()->binding;
             write.dstArrayElement = 0;
-            write.descriptorType = VkDescriptorType(objects[oc]->getNativeType());
+            write.descriptorType = objects[oc]->getPDescriptorSetLayoutBind()->descriptorType;
             write.descriptorCount = 1;
-            if(objects[oc]->getNativeType() == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER){
+            if(objects[oc]->getPDescriptorSetLayoutBind()->descriptorType == VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER){
                 write.pBufferInfo = &info->first;
             }
             else{
@@ -110,7 +103,7 @@ public:
 private:
     std::pair<VkDescriptorBufferInfo, VkDescriptorImageInfo> getChildOfObject(IDescriptorLayoutObject& object, unsigned int currentInstance){
         std::pair<VkDescriptorBufferInfo, VkDescriptorImageInfo> result;
-        if(object.getNativeType()==VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER){
+        if(object.getPDescriptorSetLayoutBind()->descriptorType==VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER){
             result.second = {};
             result.second.imageLayout = VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL;
             result.second.imageView = object.getSamplerImageView();
@@ -133,24 +126,7 @@ private:
         allocInfo.descriptorSetCount = instanceCount;
         allocInfo.pSetLayouts = layouts.data();
         descriptorSets.resize(instanceCount);
-        VkResult result  = vkAllocateDescriptorSets(device->getDevice(), &allocInfo, descriptorSets.data());
-        if (result != VK_SUCCESS) {
-            switch(result){
-                case VK_ERROR_OUT_OF_HOST_MEMORY:
-                    std::cerr<<"OHM"<<std::endl;
-                    break;
-                case VK_ERROR_OUT_OF_DEVICE_MEMORY:
-                    std::cerr<<"ODM"<<std::endl;
-                    break;
-                case VK_ERROR_FRAGMENTED_POOL:
-                    std::cerr<<"FM"<<std::endl;
-                    break;
-                case VK_ERROR_OUT_OF_POOL_MEMORY:
-                    std::cerr<<"OPM"<<std::endl;
-                    break;
-                default:
-                    break;
-            }
+        if (vkAllocateDescriptorSets(device->getDevice(), &allocInfo, descriptorSets.data()) != VK_SUCCESS) {
             throw std::runtime_error("failed to allocate descriptor sets!");
         }
     }

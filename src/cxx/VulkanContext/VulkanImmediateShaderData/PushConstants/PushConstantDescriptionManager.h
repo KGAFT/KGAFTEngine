@@ -2,14 +2,11 @@
 // Created by daniil on 28.01.23.
 //
 
-
-
 #include <vulkan/vulkan.h>
 #include <vector>
 #include <stdexcept>
 #include "PushConstant.h"
 
-#pragma once
 
 class PushConstantDescriptionManager{
 private:

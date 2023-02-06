@@ -26,6 +26,7 @@ public:
 
         for (size_t i = 0; i < instanceCount; i++) {
             device->createBuffer(bufferSize, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, uniformBuffers[i], uniformBuffersMemory[i]);
+            vkMapMemory(device->getDevice(), uniformBuffersMemory[i], 0, bufferSize, 0, &uniformBuffersMapped[i]);
         }
     }
 
@@ -41,10 +42,8 @@ public:
     }
 
     void write(void* data){
-        for (unsigned int i = 0; i<uniformBuffersMemory.size(); i++){
-            vkMapMemory(device->getDevice(), uniformBuffersMemory[i], 0, size, 0, &uniformBuffersMapped[i]);
-            memcpy(uniformBuffersMapped[i], data, size);
-            vkUnmapMemory(device->getDevice(), uniformBuffersMemory[i]);
+        for (const auto &item: uniformBuffersMapped){
+            memcpy(item, data, size);
         }
     }
 

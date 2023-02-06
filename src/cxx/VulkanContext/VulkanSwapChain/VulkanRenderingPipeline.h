@@ -10,28 +10,39 @@
 #include "../VulkanBuffers/VertexBuffer.h"
 #include "../VulkanBuffers/IndexBuffer.h"
 
+class PreRenderPassCallback {
+public:
+    virtual void invokePreRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) = 0;
+};
 
-class VulkanRenderingPipeline : public WindowResizeCallback {
+class RenderPassCallback {
+public:
+    virtual void invokeRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) = 0;
+};
+
+class VulkanRenderingPipeline : public WindowResizeCallback{
 private:
     VulkanSwapChainControl *control;
     VulkanRenderPass *renderPass;
-    GraphicsPipeline *pipeline;;
-
-    unsigned int currentImage = 0;
+    GraphicsPipeline* pipeline;;
 
     VulkanDevice *device;
     bool pause = false;
     std::vector<VkCommandBuffer> commandBuffers;
-
+    std::vector<PreRenderPassCallback*> preRenderPassCallbacks;
+    std::vector<RenderPassCallback*> renderPassCallbacks;
 public:
     VulkanRenderingPipeline(VulkanSwapChainControl *control, VulkanRenderPass *renderPass, GraphicsPipeline *pipeline,
                             VulkanDevice *device) : control(control), renderPass(renderPass), pipeline(pipeline),
                                                     device(device) {
         createCommandBuffers();
     }
-
-
-
+    void registerPreRenderPassCallback(PreRenderPassCallback* cb) {
+        preRenderPassCallbacks.push_back(cb);
+    }
+    void registerRenderPassCallback(RenderPassCallback* cb) {
+        renderPassCallbacks.push_back(cb);
+    }
 public:
     void createCommandBuffers() {
         commandBuffers.resize(control->swapChain->swapChainImages.size());
@@ -47,62 +58,68 @@ public:
             throw std::runtime_error("failed to allocate command buffers!");
         }
         unsigned int indices[]{
-                0, 1, 2
+            0,1,2
         };
     }
 
+    void redrawCommandBuffers() {
+        if (!pause) {
+            unsigned int i = control->acquireNextImage();
 
-    void beginRender() {
-        unsigned int i = control->acquireNextImage();
-        currentImage = i;
-        VkCommandBufferBeginInfo beginInfo{};
-        beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
-        if (vkBeginCommandBuffer(commandBuffers[i], &beginInfo) != VK_SUCCESS) {
-            throw std::runtime_error("failed to begin recording command buffer!");
+          
+
+            VkCommandBufferBeginInfo beginInfo{};
+            beginInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO;
+            if (vkBeginCommandBuffer(commandBuffers[i], &beginInfo) != VK_SUCCESS) {
+                throw std::runtime_error("failed to begin recording command buffer!");
+            }
+
+            for (const auto& item : preRenderPassCallbacks) {
+                item->invokePreRender(commandBuffers[i], pipeline->pipelineLayout, i);
+            }
+
+            VkRenderPassBeginInfo renderPassInfo{};
+            renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
+            renderPassInfo.renderPass = renderPass->renderPass;
+            renderPassInfo.framebuffer = renderPass->frameBuffers[i];
+            renderPassInfo.renderArea.offset = { 0, 0 };
+            renderPassInfo.renderArea.extent = control->swapChain->swapChainExtent;
+            std::array<VkClearValue, 2> clearValues{};
+            clearValues[0].color = { 0.1f, 0.5f, 0.3f, 1.0f };
+            clearValues[1].depthStencil = { 1.0f, 0 };
+            renderPassInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
+            renderPassInfo.pClearValues = clearValues.data();
+            
+            
+
+            vkCmdBeginRenderPass(commandBuffers[i], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
+
+            vkCmdBindPipeline(commandBuffers[i], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline->graphicsPipeline);
+            for (const auto& item : renderPassCallbacks) {
+                item->invokeRender(commandBuffers[i], pipeline->pipelineLayout, i);
+            }
+            vkCmdEndRenderPass(commandBuffers[i]);
+            if (vkEndCommandBuffer(commandBuffers[i]) != VK_SUCCESS) {
+                throw std::runtime_error("failed to record command buffer!");
+            }
+            control->submitCommandBuffers(&commandBuffers[i], &i);
         }
+        
     }
 
-    void beginDraw(){
-        VkRenderPassBeginInfo renderPassInfo{};
-        renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
-        renderPassInfo.renderPass = renderPass->renderPass;
-        renderPassInfo.framebuffer = renderPass->frameBuffers[currentImage];
-        renderPassInfo.renderArea.offset = {0, 0};
-        renderPassInfo.renderArea.extent = control->swapChain->swapChainExtent;
-        std::array<VkClearValue, 2> clearValues{};
-        clearValues[0].color = {0.1f, 0.5f, 0.3f, 1.0f};
-        clearValues[1].depthStencil = {1.0f, 0};
-        renderPassInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
-        renderPassInfo.pClearValues = clearValues.data();
-        vkCmdBeginRenderPass(commandBuffers[currentImage], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
-        vkCmdBindPipeline(commandBuffers[currentImage], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline->graphicsPipeline);
+    void update() {
+        unsigned int imageIndex = control->acquireNextImage();
+        control->submitCommandBuffers(&commandBuffers[imageIndex], &imageIndex);
     }
-    void endRender(){
-        vkCmdEndRenderPass(commandBuffers[currentImage]);
-        if (vkEndCommandBuffer(commandBuffers[currentImage]) != VK_SUCCESS) {
-            throw std::runtime_error("failed to record command buffer!");
-        }
-        control->submitCommandBuffers(&commandBuffers[currentImage], &currentImage);
-    }
+
     void prepareToDestroy() {
         vkDeviceWaitIdle(device->getDevice());
-    }
-    VkCommandBuffer getCurrentCommandBuffer(){
-        return commandBuffers[currentImage];
-    }
-
-    VkPipelineLayout getPipelineLayout(){
-        return pipeline->pipelineLayout;
-    }
-
-    unsigned int getCurrentImage()  {
-        return currentImage;
     }
 
     void resized(int width, int height) override {
         pause = true;
         prepareToDestroy();
-        control->swapChain->recreate((unsigned int) width, (unsigned int) height);
+        control->swapChain->recreate((unsigned int)width, (unsigned int)height);
         control->renderPass->recreate();
         pipeline->recreate(width, height, control->renderPass->getRenderPass());
         pause = false;

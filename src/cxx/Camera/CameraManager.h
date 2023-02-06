@@ -45,9 +45,5 @@ public:
         currentCameraMovementCallback->setCamera(this->currentCamera);
         cameraResizeCallBack->setCurrentCamera(this->currentCamera);
     }
-
-    Camera *getCurrentCamera()  {
-        return currentCamera;
-    }
 };
 

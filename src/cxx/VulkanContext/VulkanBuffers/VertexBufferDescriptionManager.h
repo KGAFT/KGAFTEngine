@@ -19,7 +19,6 @@ public:
         bindingDescription.push_back(bindDesc);
     }
     void registerAttribute(int binding, int location, unsigned int vertexCoordsAmount, size_t offset){
-
         VkVertexInputAttributeDescription attributeDescription{};
         attributeDescription.binding = binding;
         attributeDescription.offset = offset;

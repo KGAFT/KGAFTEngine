@@ -42,9 +42,10 @@ public:
     }
 
     void destroy() {
-
+        vkDestroyDescriptorSetLayout(device->getDevice(), descriptorSetLayout, nullptr);
         vkDestroyPipeline(device->getDevice(), graphicsPipeline, nullptr);
         vkDestroyPipelineLayout(device->getDevice(), pipelineLayout, nullptr);
+
     }
     void recreate(unsigned int width, unsigned int height, VkRenderPass renderPass) {
         PipelineConfiguration::PipelineConfigInfo config = PipelineConfiguration::defaultPipelineConfigInfo(width, height);
@@ -55,10 +56,6 @@ public:
 
     VkDescriptorSetLayout getDescriptorSetLayout() {
         return descriptorSetLayout;
-    }
-
-    ~GraphicsPipeline(){
-        destroy();
     }
 
 private:

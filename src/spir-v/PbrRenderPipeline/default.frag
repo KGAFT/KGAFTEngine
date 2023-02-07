@@ -8,7 +8,7 @@
 layout(location = 0) in vec3 fragmentPosition;
 layout(location = 1) in vec3 Normals;
 layout(location = 2) in vec2 UvsCoords;
-
+layout(location = 3) in vec3 cameraPosition;
 layout (location = 0) out vec4 FragColor;
 
 
@@ -16,12 +16,14 @@ struct PointLight{
     vec3 position;
     vec3 color;
     float intensity;
+    float add;
 };
 
 struct DirectLight{
     vec3 direction;
     vec3 color;
     float intensity;
+    float add;
 };
 
 layout(set = 0, binding = 1) uniform sampler2D albedoMap;
@@ -31,13 +33,14 @@ layout(set = 0, binding = 4) uniform sampler2D roughnessMap;
 layout(set = 0, binding = 5) uniform sampler2D aoMap;
 layout(set = 0, binding = 6) uniform sampler2D emissiveMap;
 
-layout(binding = 0) uniform LightUbo {
-    PointLight pointLights[LIGHT_BLOCKS_AMOUNT];
-    DirectLight directLights[LIGHT_BLOCKS_AMOUNT];
 
-    int enabledDirectionalLights;
-    int enabledPointLights;
-    vec3 cameraPosition;
+layout(binding = 0) uniform LightUbo {
+    DirectLight directLights[LIGHT_BLOCKS_AMOUNT];
+    PointLight pointLights[LIGHT_BLOCKS_AMOUNT];
+
+    vec4 enabledDirects;
+    vec4 enabledPoints;
+
 
     float emissiveIntensity;
     float emissiveShininess;
@@ -47,7 +50,8 @@ layout(binding = 0) uniform LightUbo {
 
 vec3 getNormalFromMap(vec2 uvsCoords, vec3 normals, vec3 fragmentPosition)
 {
-    vec3 tangentNormal = texture(normalMap, uvsCoords).xyz * 2.0 - 1.0;
+    vec4 baseNormal = texture(normalMap, uvsCoords);
+    vec3 tangentNormal = baseNormal.xyz * 2.0 - 1.0;
 
     vec3 Q1  = dFdx(fragmentPosition);
     vec3 Q2  = dFdy(fragmentPosition);
@@ -139,7 +143,7 @@ void main() {
     float ao = texture(aoMap, UvsCoords).r;
     vec4 emissive = texture(emissiveMap, UvsCoords);
     vec3 processedNormals = normalize(getNormalFromMap(UvsCoords, Normals, fragmentPosition));
-    vec3 worldViewVector = normalize(lightUbo.cameraPosition - fragmentPosition);
+    vec3 worldViewVector = normalize(cameraPosition - fragmentPosition);
 
 
     vec3 startFresnelSchlick = vec3(0.04);
@@ -147,24 +151,21 @@ void main() {
 
     vec3 Lo = vec3(0.0);
 
-    for(int i = 0; i<lightUbo.enabledDirectionalLights; i++){
-        Lo+=processDirectionaLight(lightUbo.directLights[i], processedNormals, worldViewVector, startFresnelSchlick, roughness, metallic, albedo);
+    for(int c = 0; c<lightUbo.enabledDirects.x; c++){
+        Lo+=processDirectionaLight(lightUbo.directLights[c], processedNormals, worldViewVector, startFresnelSchlick, roughness, metallic, albedo);
+    }
+    for(int c = 0; c<lightUbo.enabledPoints.x; c++){
+        Lo+=processPointLight(lightUbo.pointLights[c], processedNormals, worldViewVector, startFresnelSchlick, roughness, metallic, albedo);
     }
 
-    for(int i = 0; i<lightUbo.enabledPointLights; i++){
-        Lo+=processPointLight(lightUbo.pointLights[i], processedNormals, worldViewVector, startFresnelSchlick, roughness, metallic, albedo);
-    }
 
     vec3 ambient = vec3(lightUbo.ambientIntensity) * albedo * ao;
 
     vec3 color = ambient + Lo;
-    if(lightUbo.enabledPointLights == 0 && lightUbo.enabledDirectionalLights == 0){
-        FragColor = vec4(albedo, 1.0);
-    }
-    else{
-        color+=(emissive*pow(emissive.a, lightUbo.emissiveShininess)*lightUbo.emissiveIntensity).rgb;
-        color = postProcessColor(color);
-        FragColor = vec4(color, 1.0);
-    }
+
+    color+=(emissive*pow(emissive.a, lightUbo.emissiveShininess)*lightUbo.emissiveIntensity).rgb;
+    color = postProcessColor(color);
+    FragColor = vec4(color, 1.0);
+
 
 }

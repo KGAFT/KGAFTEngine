@@ -1,7 +1,3 @@
-//
-// Created by daniil on 26.01.23.
-//
-
 #include <vulkan/vulkan.h>
 #include "PipelineConfig.h"
 #include "../VulkanDevice/VulkanDevice.h"
@@ -20,7 +16,7 @@ private:
     VkPipeline graphicsPipeline;
     PushConstantDescriptionManager* pcDescs;
     VkPipelineLayout pipelineLayout;
-    
+
     VulkanShader* shader;
     VertexBufferDescriptionManager* manager;
 
@@ -29,7 +25,7 @@ public:
     GraphicsPipeline(VulkanShader* shader, VulkanDevice* device, PipelineConfiguration::PipelineConfigInfo& configInfo, VertexBufferDescriptionManager* manager, PushConstantDescriptionManager* pcDescs, IDescriptorLayoutObject** toLoad, unsigned int count){
         this->device = device;
         this->pcDescs = pcDescs;
-        
+
         this->shader = shader;
         this->manager = manager;
 
@@ -42,10 +38,9 @@ public:
     }
 
     void destroy() {
-        vkDestroyDescriptorSetLayout(device->getDevice(), descriptorSetLayout, nullptr);
+
         vkDestroyPipeline(device->getDevice(), graphicsPipeline, nullptr);
         vkDestroyPipelineLayout(device->getDevice(), pipelineLayout, nullptr);
-
     }
     void recreate(unsigned int width, unsigned int height, VkRenderPass renderPass) {
         PipelineConfiguration::PipelineConfigInfo config = PipelineConfiguration::defaultPipelineConfigInfo(width, height);
@@ -56,6 +51,10 @@ public:
 
     VkDescriptorSetLayout getDescriptorSetLayout() {
         return descriptorSetLayout;
+    }
+
+    ~GraphicsPipeline(){
+        destroy();
     }
 
 private:

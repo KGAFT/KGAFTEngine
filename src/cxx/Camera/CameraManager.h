@@ -13,6 +13,7 @@
 struct PushConstantData{
     glm::mat4 cameraMatrix;
     glm::mat4 modelMatrix;
+    glm::vec3 cameraPosition;
 };
 
 class CameraManager{
@@ -22,7 +23,7 @@ private:
 private:
     float fov = 120.0f;
     Camera* currentCamera = new Camera(glm::vec3(0, 0, 2.0f), Window::getWindowInstance()->getWidth(), Window::getWindowInstance()->getHeight());
-    CameraMovementCallBack* currentCameraMovementCallback = new CameraMovementCallBack(currentCamera, 0.002f);
+    CameraMovementCallBack* currentCameraMovementCallback = new CameraMovementCallBack(currentCamera, 0.2f);
     CameraRotationCallBack* currentCameraRotationCallBack = new CameraRotationCallBack(currentCamera, 0.5f);
     CameraResizeCallBack* cameraResizeCallBack = new CameraResizeCallBack(currentCamera);
     PushConstantData* data;
@@ -38,12 +39,17 @@ public:
         glm::mat4 camMat = currentCamera->getCameraMatrix(fov, 0.001f, 100.0f);
         data->cameraMatrix = camMat;
         data->modelMatrix = glm::mat4(1.0f);
+        data->cameraPosition = currentCamera->getPosition();
     }
     void setCurrentCamera(Camera* currentCamera){
         this->currentCamera = currentCamera;
         currentCameraRotationCallBack->setCamera(this->currentCamera);
         currentCameraMovementCallback->setCamera(this->currentCamera);
         cameraResizeCallBack->setCurrentCamera(this->currentCamera);
+    }
+
+    Camera *getCurrentCamera() {
+        return currentCamera;
     }
 };
 

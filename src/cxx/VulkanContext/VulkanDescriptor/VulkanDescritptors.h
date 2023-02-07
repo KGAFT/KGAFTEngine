@@ -18,10 +18,16 @@ public:
     VulkanDescriptors(VulkanDevice* device, VkDescriptorSetLayout layout, unsigned int instanceCount, IDescriptorLayoutObject** objects, unsigned int objectCount){
         this->device = device;
         std::vector<VkDescriptorPoolSize> sizes;
-        for (int i = 0; i < objectCount; ++i){
+        for (int i = 0; i < 100; ++i){
             VkDescriptorPoolSize poolSize{};
-            poolSize.type = objects[i]->getPDescriptorSetLayoutBind()->descriptorType;
+            if(i%2==0){
+                poolSize.type = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER;
+            }
+            else{
+                poolSize.type = VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER;
+            }
             poolSize.descriptorCount = instanceCount;
+            sizes.push_back(poolSize);
         }
         VkDescriptorPoolCreateInfo poolInfo{};
         poolInfo.sType = VK_STRUCTURE_TYPE_DESCRIPTOR_POOL_CREATE_INFO;
@@ -126,8 +132,26 @@ private:
         allocInfo.descriptorSetCount = instanceCount;
         allocInfo.pSetLayouts = layouts.data();
         descriptorSets.resize(instanceCount);
-        if (vkAllocateDescriptorSets(device->getDevice(), &allocInfo, descriptorSets.data()) != VK_SUCCESS) {
+        VkResult result  = vkAllocateDescriptorSets(device->getDevice(), &allocInfo, descriptorSets.data());
+        if (result != VK_SUCCESS) {
+            switch(result){
+                case VK_ERROR_OUT_OF_HOST_MEMORY:
+                    std::cerr<<"OHM"<<std::endl;
+                    break;
+                case VK_ERROR_OUT_OF_DEVICE_MEMORY:
+                    std::cerr<<"ODM"<<std::endl;
+                    break;
+                case VK_ERROR_FRAGMENTED_POOL:
+                    std::cerr<<"FM"<<std::endl;
+                    break;
+                case VK_ERROR_OUT_OF_POOL_MEMORY:
+                    std::cerr<<"OPM"<<std::endl;
+                    break;
+                default:
+                    break;
+            }
             throw std::runtime_error("failed to allocate descriptor sets!");
         }
+
     }
 };

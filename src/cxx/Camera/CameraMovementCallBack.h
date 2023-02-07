@@ -51,10 +51,10 @@ public:
                 leftRightAmplifier -= sensitivity;
                 break;
             case GLFW_KEY_SPACE:
-                upDownAmplifier += sensitivity;
+                upDownAmplifier -= sensitivity;
                 break;
             case GLFW_KEY_C:
-                upDownAmplifier -= sensitivity;
+                upDownAmplifier += sensitivity;
                 break;
         }
         camera->moveCam(fwbAmplifier, leftRightAmplifier, upDownAmplifier);

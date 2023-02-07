@@ -5,7 +5,7 @@
 class VulkanSampler : public IDescriptorLayoutObject
 {
 private:
-	VulkanTexture* texture;
+	VulkanTexture* texture = nullptr;
     VulkanDevice* device;
     VkSampler sampler;
 public:
@@ -27,6 +27,9 @@ public:
     }
 
     VkImageView getSamplerImageView() override {
+        if(texture==nullptr){
+            return VK_NULL_HANDLE;
+        }
         return texture->imageView;
     }
 

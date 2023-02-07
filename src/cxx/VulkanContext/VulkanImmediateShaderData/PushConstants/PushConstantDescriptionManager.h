@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include "PushConstant.h"
 
+#pragma once
 
 class PushConstantDescriptionManager{
 private:

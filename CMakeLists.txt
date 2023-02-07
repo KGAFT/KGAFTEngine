@@ -18,7 +18,7 @@ file(COPY src/spir-v DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 file(GLOB_RECURSE CPP_FILES src/cxx/*.cpp)
 file(GLOB_RECURSE HPP_FILES src/cxx/*.h)
-add_executable(${ProjectName} ${HPP_FILES} ${CPP_FILES} src/cxx/Engine/GraphicalObjects/Mesh.h src/cxx/Engine/Util/ModelLoader.h)
+add_executable(${ProjectName} ${HPP_FILES} ${CPP_FILES})
 
 add_subdirectory(lib/glfw)
 add_subdirectory(lib/glm)

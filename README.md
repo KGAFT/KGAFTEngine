@@ -9,6 +9,7 @@ git submodule init
 git submodule update
 
 cmake .
+
 cmake --build .
 
 
@@ -22,5 +23,6 @@ git submodule init
 git submodule update
 
 cmake .
+
 cmake --build .
 

@@ -49,7 +49,7 @@ int main() {
 
 
     renderPipeline.getPushConstant(0)->setData(&data);
-    renderPipeline.getLightInfo().enabledDirects = glm::vec4(1);
+    renderPipeline.getLightInfo().enabledDirects = 1;
     renderPipeline.getLightInfo().directLights[0].direction = glm::vec3(-1,-1,-1);
     renderPipeline.getLightInfo().directLights[0].color = glm::vec3(1,1,1);
     renderPipeline.getLightInfo().directLights[0].intensity = 20.0f;

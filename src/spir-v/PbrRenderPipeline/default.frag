@@ -16,14 +16,12 @@ struct PointLight{
     vec3 position;
     vec3 color;
     float intensity;
-    float add;
 };
 
 struct DirectLight{
     vec3 direction;
     vec3 color;
     float intensity;
-    float add;
 };
 
 layout(set = 0, binding = 1) uniform sampler2D albedoMap;
@@ -34,12 +32,12 @@ layout(set = 0, binding = 5) uniform sampler2D aoMap;
 layout(set = 0, binding = 6) uniform sampler2D emissiveMap;
 
 
-layout(binding = 0) uniform LightUbo {
+layout(std140, binding = 0) uniform LightUbo {
     DirectLight directLights[LIGHT_BLOCKS_AMOUNT];
     PointLight pointLights[LIGHT_BLOCKS_AMOUNT];
 
-    vec4 enabledDirects;
-    vec4 enabledPoints;
+    int enabledDirects;
+    int enabledPoints;
 
 
     float emissiveIntensity;

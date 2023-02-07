@@ -9,36 +9,34 @@
 #include "GraphicalObjects/Mesh.h"
 
 struct PointLight{
-    glm::vec3 position;
-    glm::vec3 color;
-    float intensity;
-    float add;
+    alignas(16) glm::vec3 position;
+    alignas(16) glm::vec3 color;
+    alignas(4) float intensity;
 };
 
 struct DirectLight{
-    glm::vec3 direction;
-    glm::vec3 color;
-    float intensity;
-    float add;
+    alignas(16) glm::vec3 direction;
+    alignas(16) glm::vec3 color;
+    alignas(4) float intensity;
 };
 
 struct LightInfo{
     DirectLight directLights[100];
     PointLight pointLights[100];
 
-    glm::vec4 enabledDirects;
-    glm::vec4 enabledPoints;
+    alignas(4) int enabledDirects;
+    alignas(4) int enabledPoints;
 
 
-    float emissiveIntensity = 2;
-    float emissiveShininess = 1;
-    float gammaCorrect  = 1.0f / 2.2f;
-    float ambientIntensity = 0.03f ;
+    alignas(4) float emissiveIntensity = 2;
+    alignas(4) float emissiveShininess = 1;
+    alignas(4) float gammaCorrect  = 1.0f / 2.2f;
+    alignas(4) float ambientIntensity = 0.03f ;
 };
 
 class PbrRenderPipeline : RenderPipeline{
 private:
-    alignas(16) LightInfo lightInfo{};
+    LightInfo lightInfo{};
     std::vector<Mesh*> meshes;
 public:
     PbrRenderPipeline(VulkanDevice* device, Window* window) : RenderPipeline(device){

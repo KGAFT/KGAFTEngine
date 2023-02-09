@@ -43,7 +43,7 @@ struct LightInfo{
 class PbrRenderPipeline : RenderPipeline{
 private:
     LightInfo lightInfo{};
-    std::vector<Mesh*> meshes;
+
 public:
     PbrRenderPipeline(VulkanDevice* device, Window* window) : RenderPipeline(device){
         VulkanShader* shader = VulkanShader::loadShaderBlock("spir-v/PbrRenderPipeline", device);
@@ -71,10 +71,22 @@ public:
 
         RenderPipeline::load(window, configuration);
     }
-
-    void update(){
+    void beginRender(){
         uniformBuffers[0]->write(&lightInfo);
-        RenderPipeline::update();
+        RenderPipeline::beginRender();
+    }
+    void beginDraw(unsigned int* currentImage, VkCommandBuffer* commandBuffer, VkPipelineLayout* layout){
+        RenderPipeline::beginDraw();
+        (*currentImage) = RenderPipeline::renderingPipeline->getCurrentImage();
+        (*commandBuffer) = RenderPipeline::renderingPipeline->getCurrentCommandBuffer();
+        (*layout) = RenderPipeline::renderingPipeline->getPipelineLayout();
+    }
+
+    void endDraw(){
+        RenderPipeline::endRender();
+    }
+    void updateShaderData(){
+        RenderPipeline::updateShaderData();
     }
     PushConstant* getPushConstant(unsigned int index){
         return pushConstants[index];
@@ -88,22 +100,8 @@ public:
             }
         }
     }
-    void addMesh(Mesh* mesh){
-        meshes.push_back(mesh);
-    }
 
     LightInfo &getLightInfo() {
         return lightInfo;
-    }
-
-private:
-    void preInvokeRender(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) override {
-
-    }
-
-    void invokeRenderImm(VkCommandBuffer commandBuffer, VkPipelineLayout layout, unsigned int imageIndex) override {
-        for(Mesh* mesh : meshes){
-            mesh->draw(commandBuffer);
-        }
     }
 };

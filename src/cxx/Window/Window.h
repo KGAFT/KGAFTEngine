@@ -28,7 +28,10 @@ private:
         windowInstance->width = width;
         windowInstance->height = height;
         for (const auto &item: windowInstance->resizeCallBacks) {
-            item->resized(width, height);
+            if(item!=nullptr){
+                item->resized(width, height);
+            }
+
         }
     }
 
@@ -71,7 +74,11 @@ private:
     }
 
     Window(int width, int height, const char *title, GLFWwindow *handle) : width(width), height(height), title(title),
-                                                                           handle(handle) {}
+                                                                           handle(handle) {
+        keyBoardCallBacks.clear();
+        resizeCallBacks.clear();
+        mouseMoveCallBacks.clear();
+    }
 
     ~Window() {
         glfwDestroyWindow(handle);
@@ -97,18 +104,24 @@ private:
         if (xChange != 0 or yChange != 0) {
             glfwSetCursorPos(handle, width / 2, height / 2);
             for (const auto &item: mouseMoveCallBacks) {
-                item->mouseMoved(-1 * xChange, -1 * yChange);
+                if(item!=nullptr){
+                    item->mouseMoved(-1 * xChange, -1 * yChange);
+                }
+
             }
         }
     }
 
     void checkKeyBoardCallBacks() {
         for (const auto &item: keyBoardCallBacks) {
-            for (unsigned int counter = 0; counter < item->getKeyCodeAmount(); counter++) {
-                if (glfwGetKey(handle, item->getKeyCodes()[counter])) {
-                    item->action(item->getKeyCodes()[counter]);
+            if(item!= nullptr){
+                for (unsigned int counter = 0; counter < item->getKeyCodeAmount(); counter++) {
+                    if (glfwGetKey(handle, item->getKeyCodes()[counter])) {
+                        item->action(item->getKeyCodes()[counter]);
+                    }
                 }
             }
+
         }
     }
 

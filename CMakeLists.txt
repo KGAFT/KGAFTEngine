@@ -3,7 +3,7 @@ set(ProjectName "KGAFTEngine")
 
 
 #insert path to your vulkan sdk here
-set(VulkanSDKPath C:/VulkanSDK/1.3.231.1)
+set(VulkanSDKPath C:/VulkanSDK/1.3.239.0)
 
 project(${ProjectName})
 
@@ -18,7 +18,7 @@ file(COPY src/spir-v DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 file(GLOB_RECURSE CPP_FILES src/cxx/*.cpp)
 file(GLOB_RECURSE HPP_FILES src/cxx/*.h)
-add_executable(${ProjectName} ${HPP_FILES} ${CPP_FILES})
+add_executable(${ProjectName} ${HPP_FILES} ${CPP_FILES} src/cxx/Engine/PbrEngine.h)
 
 add_subdirectory(lib/glfw)
 add_subdirectory(lib/glm)

@@ -1,20 +1,9 @@
 #include "VulkanContext/VulkanInstance.h"
 #include "VulkanContext/VulkanDevice/VulkanDevice.h"
-#include "VulkanContext/VulkanLogger/DefaultVulkanLoggerCallback.h"
-#include "VulkanContext/VulkanSwapChain/VulkanSwapChain.h"
-#include "VulkanContext/VulkanSwapChain/VulkanSwapChainControl.h"
-#include "VulkanContext/VulkanSwapChain/VulkanRenderingPipeline.h"
-#include <iostream>
-#include <glm/glm.hpp>
-#include "Camera/CameraManager.h"
-#include "VulkanContext/VulkanImmediateShaderData/UniformBuffers/UniformBuffer.h"
-#include "VulkanContext/VulkanDescriptor/VulkanDescritptors.h"
-#include "VulkanContext/VulkanImage/VulkanImage.h"
-#include "VulkanContext/VulkanImage/VulkanTexture.h"
-#include "VulkanContext/VulkanImage/VulkanSampler.h"
-#include "VulkanContext/VulkanLogger/VulkanLogger.h"
 #include "Engine/PbrRenderPipeline.h"
 #include "Engine/Util/ModelLoader.h"
+#include "Engine/PbrEngine.h"
+#include "VulkanContext/VulkanLogger/DefaultVulkanLoggerCallback.h"
 
 
 int main() {
@@ -24,42 +13,52 @@ int main() {
     VulkanLogger::registerCallback(new DefaultVulkanLoggerCallback());
     VkPhysicalDevice deviceToCreate = VulkanDevice::enumerateSupportedDevices(instance.getInstance(), Window::getWindowInstance()).crbegin()->first;
     VulkanDevice device(deviceToCreate, Window::getWindowInstance(), instance.getInstance(), true);
-    PbrRenderPipeline renderPipeline(&device, Window::getWindowInstance());
+    PbrEngine engine(Window::getWindowInstance(), &device);
 
-    PushConstantData data{};
-    CameraManager cameraManager(&data);
     ModelLoader loader(&device);
-    std::vector<Mesh*> meshes = loader.loadModel("models/grind/scene.gltf");
-    for (const auto &item: meshes){
-        renderPipeline.addMesh(item);
+    std::vector<Mesh*> grindMeshes = loader.loadModel("models/grind/scene.gltf");
+    VulkanImage albedoImGrind = VulkanImage::loadTextureFromFiles(&device, "models/grind/albedo.png");
+    VulkanImage metallicRoughnessGrind = VulkanImage::loadTextureFromFiles(&device, "models/grind/mr.png");
+    VulkanImage normalImGrind = VulkanImage::loadTextureFromFiles(&device, "models/grind/normal.png");
+
+    for (const auto &item: grindMeshes){
+        item->setAlbedoTexture(new VulkanTexture(&albedoImGrind, &device));
+        item->setNormalTexture(new VulkanTexture(&normalImGrind, &device));
+        item->setMetallicRoughnessTexture(new VulkanTexture(&metallicRoughnessGrind, &device));
+        engine.addMesh(item);
+
     }
-    VulkanImage albedoIm = VulkanImage::loadTextureFromFiles(&device, "models/grind/albedo.png");
+
+    loader.clear();
+
+    std::vector<Mesh*> pokedexMeshes = loader.loadModel("models/pokedex/pokedex.gltf");
+    VulkanImage albedoIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/basecolor.tga");
     VulkanImage emissiveIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/emissive.tga");
-    VulkanImage metallicRoughness = VulkanImage::loadTextureFromFiles(&device, "models/grind/mr.png");
-    VulkanImage normalIm = VulkanImage::loadTextureFromFiles(&device, "models/grind/normal.png");
+    VulkanImage metallic = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/metallic.tga");
+    VulkanImage normalIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/normal.tga");
+    VulkanImage roughnessIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/roughness.tga");
     VulkanImage aoIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/ao.tga");
 
-    renderPipeline.setSamplerTexture(new VulkanTexture(&albedoIm, &device), 1);
-    renderPipeline.setSamplerTexture(new VulkanTexture(&normalIm, &device), 2);
-    renderPipeline.setSamplerTexture(new VulkanTexture(&metallicRoughness, &device), 3);
-    renderPipeline.setSamplerTexture(new VulkanTexture(&metallicRoughness, &device), 4);
-    renderPipeline.setSamplerTexture( new VulkanTexture(&aoIm, &device), 5);
-    renderPipeline.setSamplerTexture(new VulkanTexture(&emissiveIm, &device), 6);
-    renderPipeline.setSamplerTexture(new VulkanTexture(&metallicRoughness, &device), 7);
+    pokedexMeshes[0]->setAlbedoTexture(new VulkanTexture(&albedoIm, &device));
+    pokedexMeshes[0]->setNormalTexture(new VulkanTexture(&normalIm, &device));
+    pokedexMeshes[0]->setMetallicTexture(new VulkanTexture(&metallic, &device));
+    pokedexMeshes[0]->setRoughnessTexture(new VulkanTexture(&roughnessIm, &device));
+    pokedexMeshes[0]->setAoTexture(new VulkanTexture(&aoIm, &device));
+    pokedexMeshes[0]->setEmissiveTexture(new VulkanTexture(&emissiveIm, &device));
+    pokedexMeshes[0]->setPosition(glm::vec3(-7, 0, 0));
+    pokedexMeshes[0]->scale(glm::vec3(0.1,0.1,0.1));
+    pokedexMeshes[0]->rotate(180, glm::vec3(0, 1, 0));
+    engine.addMesh(pokedexMeshes[0]);
 
-
-    renderPipeline.getPushConstant(0)->setData(&data);
-    renderPipeline.getLightInfo().enabledDirects = 1;
-    renderPipeline.getLightInfo().directLights[0].direction = glm::vec3(-1,-1,-1);
-    renderPipeline.getLightInfo().directLights[0].color = glm::vec3(1,1,1);
-    renderPipeline.getLightInfo().directLights[0].intensity = 20.0f;
+    engine.getLightInfo().enabledDirects = 1;
+    engine.getLightInfo().directLights[0].direction = glm::vec3(-1,-1,-1);
+    engine.getLightInfo().directLights[0].color = glm::vec3(1,1,1);
+    engine.getLightInfo().directLights[0].intensity = 10.0f;
     while(!Window::getWindowInstance()->isWindowNeedToClose()){
-        Window::getWindowInstance()->preRenderEvents();
-        cameraManager.update();
-
-        renderPipeline.update();
-
-        Window::getWindowInstance()->postRenderEvents();
+        for (const auto &item: engine.getMeshes()){
+            item->rotate(0.1, glm::vec3(0,1,0));
+        }
+        engine.update();
     }
     return 0;
 }

@@ -48,6 +48,7 @@ layout(std140, binding = 0) uniform LightUbo {
     int combinedMetallicRoughness;
     int emissiveEnabled;
     int aoEnabled;
+
 } lightUbo;
 
 vec3 getNormalFromMap(vec2 uvsCoords, vec3 normals, vec3 fragmentPosition)

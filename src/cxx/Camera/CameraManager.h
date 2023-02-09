@@ -23,7 +23,7 @@ private:
 private:
     float fov = 120.0f;
     Camera* currentCamera = new Camera(glm::vec3(0, 0, 2.0f), Window::getWindowInstance()->getWidth(), Window::getWindowInstance()->getHeight());
-    CameraMovementCallBack* currentCameraMovementCallback = new CameraMovementCallBack(currentCamera, 0.2f);
+    CameraMovementCallBack* currentCameraMovementCallback = new CameraMovementCallBack(currentCamera, 0.002f);
     CameraRotationCallBack* currentCameraRotationCallBack = new CameraRotationCallBack(currentCamera, 0.5f);
     CameraResizeCallBack* cameraResizeCallBack = new CameraResizeCallBack(currentCamera);
     PushConstantData* data;

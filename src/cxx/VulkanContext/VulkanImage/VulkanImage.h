@@ -27,7 +27,7 @@ public:
         VkDeviceSize imageSize = imageWidth * imageHeight * 4;
 
         if (!imageData) {
-            throw std::runtime_error("failed to load imageture image!");
+            throw std::runtime_error("failed to load texture image!");
         }
 
         VkBuffer stagingBuffer;

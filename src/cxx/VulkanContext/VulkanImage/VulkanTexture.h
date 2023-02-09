@@ -25,6 +25,11 @@ public:
 		vkDestroyImageView(device->getDevice(), imageView, nullptr);
 
 	}
+
+    VulkanImage *getImage() const {
+        return image;
+    }
+
 private:
     
 };

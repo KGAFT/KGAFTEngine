@@ -29,23 +29,23 @@ int main() {
     PushConstantData data{};
     CameraManager cameraManager(&data);
     ModelLoader loader(&device);
-    std::vector<Mesh*> meshes = loader.loadModel("models/pokedex/pokedex.gltf");
-
-    renderPipeline.addMesh(meshes[0]);
-
-    VulkanImage albedoIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/basecolor.tga");
+    std::vector<Mesh*> meshes = loader.loadModel("models/grind/scene.gltf");
+    for (const auto &item: meshes){
+        renderPipeline.addMesh(item);
+    }
+    VulkanImage albedoIm = VulkanImage::loadTextureFromFiles(&device, "models/grind/albedo.png");
     VulkanImage emissiveIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/emissive.tga");
-    VulkanImage metallic = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/metallic.tga");
-    VulkanImage normalIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/normal.tga");
-    VulkanImage roughnessIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/roughness.tga");
+    VulkanImage metallicRoughness = VulkanImage::loadTextureFromFiles(&device, "models/grind/mr.png");
+    VulkanImage normalIm = VulkanImage::loadTextureFromFiles(&device, "models/grind/normal.png");
     VulkanImage aoIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/ao.tga");
 
     renderPipeline.setSamplerTexture(new VulkanTexture(&albedoIm, &device), 1);
     renderPipeline.setSamplerTexture(new VulkanTexture(&normalIm, &device), 2);
-    renderPipeline.setSamplerTexture(new VulkanTexture(&metallic, &device), 3);
-    renderPipeline.setSamplerTexture(new VulkanTexture(&roughnessIm, &device), 4);
+    renderPipeline.setSamplerTexture(new VulkanTexture(&metallicRoughness, &device), 3);
+    renderPipeline.setSamplerTexture(new VulkanTexture(&metallicRoughness, &device), 4);
     renderPipeline.setSamplerTexture( new VulkanTexture(&aoIm, &device), 5);
     renderPipeline.setSamplerTexture(new VulkanTexture(&emissiveIm, &device), 6);
+    renderPipeline.setSamplerTexture(new VulkanTexture(&metallicRoughness, &device), 7);
 
 
     renderPipeline.getPushConstant(0)->setData(&data);

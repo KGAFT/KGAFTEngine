@@ -37,6 +37,15 @@ public:
         indices->bind(commandBuffer);
         indices->draw(commandBuffer);
     }
+
+    const glm::mat4 &getWorldMatrix() const {
+        return worldMatrix;
+    }
+
+    const std::vector<VulkanTexture *> &getTextures() const {
+        return textures;
+    }
+
     ~Mesh(){
         destroy();
     }

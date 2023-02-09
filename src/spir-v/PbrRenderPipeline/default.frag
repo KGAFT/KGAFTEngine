@@ -30,7 +30,7 @@ layout(set = 0, binding = 3) uniform sampler2D metallicMap;
 layout(set = 0, binding = 4) uniform sampler2D roughnessMap;
 layout(set = 0, binding = 5) uniform sampler2D aoMap;
 layout(set = 0, binding = 6) uniform sampler2D emissiveMap;
-
+layout(set = 0, binding = 7) uniform sampler2D metallicRoughness;
 
 layout(std140, binding = 0) uniform LightUbo {
     DirectLight directLights[LIGHT_BLOCKS_AMOUNT];
@@ -44,6 +44,10 @@ layout(std140, binding = 0) uniform LightUbo {
     float emissiveShininess;
     float gammaCorrect;
     float ambientIntensity;
+
+    int combinedMetallicRoughness;
+    int emissiveEnabled;
+    int aoEnabled;
 } lightUbo;
 
 vec3 getNormalFromMap(vec2 uvsCoords, vec3 normals, vec3 fragmentPosition)
@@ -136,11 +140,28 @@ vec3 postProcessColor(vec3 color){
 
 void main() {
     vec3 albedo = pow(texture(albedoMap, UvsCoords).rgb, vec3(2.2));
-    float metallic = texture(metallicMap, UvsCoords).r;
-    float roughness = texture(roughnessMap, UvsCoords).r;
-    float ao = texture(aoMap, UvsCoords).r;
-    vec4 emissive = texture(emissiveMap, UvsCoords);
     vec3 processedNormals = normalize(getNormalFromMap(UvsCoords, Normals, fragmentPosition));
+    float roughness = 0;
+    float metallic = 0;
+    float ao = 1;
+    vec4 emissive = vec4(0,0,0,0);
+    if(lightUbo.combinedMetallicRoughness==0){
+            roughness = texture(roughnessMap, UvsCoords).r;
+            metallic = texture(metallicMap, UvsCoords).r;
+    }
+    else{
+        vec4 cMetallicRoughness = texture(metallicRoughness, UvsCoords);
+        metallic = cMetallicRoughness.r;
+        roughness = cMetallicRoughness.g;
+    }
+    if(lightUbo.emissiveEnabled !=0){
+            emissive = texture(emissiveMap, UvsCoords);
+    }
+    if(lightUbo.aoEnabled != 0){
+            ao = texture(aoMap, UvsCoords).r;
+    }
+
+
     vec3 worldViewVector = normalize(cameraPosition - fragmentPosition);
 
 

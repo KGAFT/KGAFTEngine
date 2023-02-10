@@ -60,6 +60,7 @@ public:
         if(!std::strcmp(extension.c_str(), ".geom")){
             return shaderc_glsl_geometry_shader;
         }
+        return shaderc_glsl_fragment_shader;
     }
 
     static const char* compileShader(const char* pathToShader, shaderc_shader_kind shaderType, const char* fileName, size_t* size){
@@ -87,6 +88,7 @@ public:
             fileReader.close();
             return content;
         }
+        return std::string();
     }
 private:
     std::vector<VkShaderModule> shaders;
@@ -115,7 +117,7 @@ private:
             case shaderc_glsl_vertex_shader:
                 return VK_SHADER_STAGE_VERTEX_BIT;
             default:
-                break;
+                return VK_SHADER_STAGE_VERTEX_BIT;
         }
     }
 public:

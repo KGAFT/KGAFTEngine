@@ -32,6 +32,7 @@ private:
     }
     Mesh* processMesh(aiMesh *mesh, const aiScene *scene)
     {
+
         vector<unsigned int> indices;
         vector<float> data;
         for(unsigned int i = 0; i < mesh->mNumVertices; i++)
@@ -61,7 +62,6 @@ private:
 
         return new Mesh(vbo, ibo);
     }
-
 public:
     ModelLoader(VulkanDevice *device) : device(device) {}
 

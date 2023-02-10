@@ -86,6 +86,7 @@ public:
         RenderPipeline::endRender();
     }
     void updateShaderData(){
+       // uniformBuffers[0]->write(&lightInfo);
         RenderPipeline::updateShaderData();
     }
     PushConstant* getPushConstant(unsigned int index){

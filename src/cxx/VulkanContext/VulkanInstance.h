@@ -61,6 +61,7 @@ private:
                 return false;
             }
         }
+        return false;
     }
 
     std::vector<const char *> getRequiredExtensions(bool enableValidationLayers) {

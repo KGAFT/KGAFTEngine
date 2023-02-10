@@ -144,7 +144,7 @@ void main() {
     vec3 processedNormals = normalize(getNormalFromMap(UvsCoords, Normals, fragmentPosition));
     float roughness = 0;
     float metallic = 0;
-    float ao = 1;
+    float ao = 0;
     vec4 emissive = vec4(0,0,0,0);
     if(lightUbo.combinedMetallicRoughness==0){
             roughness = texture(roughnessMap, UvsCoords).r;

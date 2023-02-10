@@ -45,15 +45,15 @@ int main() {
     pokedexMeshes[0]->setRoughnessTexture(new VulkanTexture(&roughnessIm, &device));
     pokedexMeshes[0]->setAoTexture(new VulkanTexture(&aoIm, &device));
     pokedexMeshes[0]->setEmissiveTexture(new VulkanTexture(&emissiveIm, &device));
-    pokedexMeshes[0]->setPosition(glm::vec3(-7, 0, 0));
+    pokedexMeshes[0]->setPosition(glm::vec3(-3, 0, 0));
     pokedexMeshes[0]->scale(glm::vec3(0.1,0.1,0.1));
     pokedexMeshes[0]->rotate(180, glm::vec3(0, 1, 0));
     engine.addMesh(pokedexMeshes[0]);
 
-    engine.getLightInfo().enabledDirects = 1;
-    engine.getLightInfo().directLights[0].direction = glm::vec3(-1,-1,-1);
-    engine.getLightInfo().directLights[0].color = glm::vec3(1,1,1);
-    engine.getLightInfo().directLights[0].intensity = 10.0f;
+    engine.getLightInfo().enabledPoints = 1;
+    engine.getLightInfo().pointLights[0].color = glm::vec3(1,1,1);
+    engine.getLightInfo().pointLights[0].intensity = 3;
+    engine.getLightInfo().pointLights[0].position = glm::vec3(-2,0,0);
     while(!Window::getWindowInstance()->isWindowNeedToClose()){
         for (const auto &item: engine.getMeshes()){
             item->rotate(0.1, glm::vec3(0,1,0));

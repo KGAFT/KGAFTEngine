@@ -14,9 +14,9 @@ private:
     unsigned int verticesAmount;
 
 public:
-    VertexBuffer(unsigned int verticesAmount, size_t typeSize, unsigned int vertexCoordsAmount, VulkanDevice* device, void *data){
+    VertexBuffer(size_t stepSize, unsigned int verticesAmount, VulkanDevice* device, void *data){
         this->device = device;
-        createVertexBuffers(data, typeSize, vertexCoordsAmount, verticesAmount);
+        createVertexBuffers(data, stepSize, verticesAmount);
     }
     ~VertexBuffer(){
         destroy();
@@ -39,8 +39,8 @@ public:
     }
 
 private:
-    void createVertexBuffers(void* vertices, size_t typeSize,  unsigned int vertexCoordsAmount, unsigned int verticesAmount) {
-        VkDeviceSize bufferSize = typeSize * verticesAmount*vertexCoordsAmount;
+    void createVertexBuffers(void* vertices, size_t stepSize, unsigned int verticesAmount) {
+        VkDeviceSize bufferSize = stepSize*verticesAmount;
         this->verticesAmount = verticesAmount;
         VkBuffer stagingBuffer;
         VkDeviceMemory stagingBufferMemory;

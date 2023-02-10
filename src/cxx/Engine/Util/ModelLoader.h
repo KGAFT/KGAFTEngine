@@ -9,9 +9,18 @@
 #include <vector>
 
 #include "../GraphicalObjects/Mesh.h"
+#include "AssimpGLMHelper.h"
 
 
 using namespace std;
+
+struct BoneInfo
+{
+    int id;
+
+    glm::mat4 offset;
+
+};
 
 class ModelLoader {
 private:
@@ -19,6 +28,9 @@ private:
     string directory;
     VulkanDevice *device;
     map<string, VulkanTexture *> loadedTextures;
+    map<string, BoneInfo> m_BoneInfoMap;
+    int m_BoneCounter = 0;
+
 private:
     void processNode(aiNode *node, const aiScene *scene) {
         for (unsigned int i = 0; i < node->mNumMeshes; i++) {
@@ -34,20 +46,18 @@ private:
     Mesh *processMesh(aiMesh *mesh, const aiScene *scene) {
 
         vector<unsigned int> indices;
-        vector<float> data;
+        vector<MeshData> data;
         for (unsigned int i = 0; i < mesh->mNumVertices; i++) {
-            data.push_back(mesh->mVertices[i].x);
-            data.push_back(mesh->mVertices[i].y);
-            data.push_back(mesh->mVertices[i].z);
-            data.push_back(mesh->mNormals[i].x);
-            data.push_back(mesh->mNormals[i].y);
-            data.push_back(mesh->mNormals[i].z);
+            MeshData dataOfMesh{};
+
+            dataOfMesh.position = glm::vec3(mesh->mVertices[i].x, mesh->mVertices[i].y, mesh->mVertices[i].z);
+            dataOfMesh.normal = glm::vec3(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
 
             if (mesh->mTextureCoords[0]) // does the mesh contain texture coordinates?
             {
-                data.push_back(mesh->mTextureCoords[0][i].x);
-                data.push_back(mesh->mTextureCoords[0][i].y);
+                dataOfMesh.uv = glm::vec2(mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y);
             }
+            data.push_back(dataOfMesh);
         }
         for (unsigned int i = 0; i < mesh->mNumFaces; i++) {
             aiFace face = mesh->mFaces[i];
@@ -55,14 +65,69 @@ private:
                 indices.push_back(face.mIndices[j]);
         }
 
-        VertexBuffer *vbo = new VertexBuffer(data.size() / 8, sizeof(float), 8, device, data.data());
+        ExtractBoneWeightForVertices(data, mesh, scene);
+
+        VertexBuffer *vbo = new VertexBuffer(sizeof(float)*12+sizeof(int)*4, data.size(), device, data.data());
         IndexBuffer *ibo = new IndexBuffer(device, indices.data(), indices.size());
 
         Mesh *currentMesh = new Mesh(vbo, ibo);
 
         loadTextures(scene, mesh, currentMesh);
 
+
+
         return currentMesh;
+    }
+
+
+    void SetVertexBoneData(MeshData& vertex, int boneID, float weight)
+    {
+        for (int i = 0; i < 4; ++i)
+        {
+            if (vertex.boneIds[i] < 0)
+            {
+                vertex.weights[i] = weight;
+                vertex.boneIds[i] = boneID;
+                break;
+            }
+        }
+    }
+
+
+    void ExtractBoneWeightForVertices(std::vector<MeshData>& vertices, aiMesh* mesh, const aiScene* scene)
+    {
+        auto& boneInfoMap = m_BoneInfoMap;
+        int& boneCount = m_BoneCounter;
+
+        for (int boneIndex = 0; boneIndex < mesh->mNumBones; ++boneIndex)
+        {
+            int boneID = -1;
+            std::string boneName = mesh->mBones[boneIndex]->mName.C_Str();
+            if (boneInfoMap.find(boneName) == boneInfoMap.end())
+            {
+                BoneInfo newBoneInfo;
+                newBoneInfo.id = boneCount;
+                newBoneInfo.offset = AssimpGLMHelpers::ConvertMatrixToGLMFormat(mesh->mBones[boneIndex]->mOffsetMatrix);
+                boneInfoMap[boneName] = newBoneInfo;
+                boneID = boneCount;
+                boneCount++;
+            }
+            else
+            {
+                boneID = boneInfoMap[boneName].id;
+            }
+            assert(boneID != -1);
+            auto weights = mesh->mBones[boneIndex]->mWeights;
+            int numWeights = mesh->mBones[boneIndex]->mNumWeights;
+
+            for (int weightIndex = 0; weightIndex < numWeights; ++weightIndex)
+            {
+                int vertexId = weights[weightIndex].mVertexId;
+                float weight = weights[weightIndex].mWeight;
+                assert(vertexId <= vertices.size());
+                SetVertexBoneData(vertices[vertexId], boneID, weight);
+            }
+        }
     }
 
     void loadTextures(const aiScene *scene, aiMesh *mesh, Mesh *currentMesh) {

@@ -1,0 +1,48 @@
+newmtl body_TOP
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd CAPSULE_1_BaseColor.jpg
+map_Ks CAPSULE_1_Roughness.jpg
+bump CAPSULE_1_Displacement.jpg
+map_bump CAPSULE_1_Normal.jpg
+newmtl body_colo__LOW
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd CAPSULE_1_BaseColor.jpg
+map_Ks CAPSULE_1_Roughness.jpg
+bump CAPSULE_1_Displacement.jpg
+map_bump CAPSULE_1_Normal.jpg
+newmtl body_color.MID
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd CAPSULE_1_BaseColor.jpg
+map_Ks CAPSULE_1_Roughness.jpg
+bump CAPSULE_1_Displacement.jpg
+map_bump CAPSULE_1_Normal.jpg
+newmtl body_color._GLASS
+Ns 100.000
+d 1.00000
+illum 2
+Kd 1.00000 1.00000 1.00000
+Ka 0.00000 0.00000 0.00000
+Ks 1.00000 1.00000 1.00000
+Ke 0.00000e+0 0.00000e+0 0.00000e+0
+map_Kd CAPSULE_1_BaseColor.jpg
+map_Ks CAPSULE_1_Roughness.jpg
+bump CAPSULE_1_Displacement.jpg
+map_bump CAPSULE_1_Normal.jpg

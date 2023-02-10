@@ -16,20 +16,8 @@ int main() {
     PbrEngine engine(Window::getWindowInstance(), &device);
 
     ModelLoader loader(&device);
-    std::vector<Mesh*> grindMeshes = loader.loadModel("models/grind/scene.gltf");
-    VulkanImage albedoImGrind = VulkanImage::loadTextureFromFiles(&device, "models/grind/albedo.png");
-    VulkanImage metallicRoughnessGrind = VulkanImage::loadTextureFromFiles(&device, "models/grind/mr.png");
-    VulkanImage normalImGrind = VulkanImage::loadTextureFromFiles(&device, "models/grind/normal.png");
 
-    for (const auto &item: grindMeshes){
-        item->setAlbedoTexture(new VulkanTexture(&albedoImGrind, &device));
-        item->setNormalTexture(new VulkanTexture(&normalImGrind, &device));
-        item->setMetallicRoughnessTexture(new VulkanTexture(&metallicRoughnessGrind, &device));
-        engine.addMesh(item);
 
-    }
-
-    loader.clear();
 
     std::vector<Mesh*> pokedexMeshes = loader.loadModel("models/pokedex/pokedex.gltf");
     VulkanImage albedoIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/basecolor.tga");
@@ -50,13 +38,42 @@ int main() {
     pokedexMeshes[0]->rotate(180, glm::vec3(0, 1, 0));
     engine.addMesh(pokedexMeshes[0]);
 
+    loader.clear();
+
+    std::vector<Mesh*> stationMeshes = loader.loadModel("models/station/scene.gltf");
+
+    VulkanImage stationAlb = VulkanImage::loadTextureFromFiles(&device, "models/station/textures/albedo.jpeg");
+    VulkanImage stationEmissive = VulkanImage::loadTextureFromFiles(&device, "models/station/textures/emissive.jpeg");
+    VulkanImage metallicRoughnessSta = VulkanImage::loadTextureFromFiles(&device, "models/station/textures/metallicRoughness.png");
+    VulkanImage normalSta = VulkanImage::loadTextureFromFiles(&device, "models/station/textures/normal.png");
+    for (const auto &item: stationMeshes){
+        item->setPosition(glm::vec3(3,0,0));
+        if(item->getAlbedoTexture()==nullptr){
+            item->setAlbedoTexture(new VulkanTexture(&stationAlb, &device));
+        }
+        if(item->getNormalTexture()==nullptr){
+            item->setNormalTexture(new VulkanTexture(&normalSta, &device));
+        }
+        if(item->getMetallicRoughnessTexture()==nullptr){
+            item->setMetallicRoughnessTexture(new VulkanTexture(&metallicRoughnessSta, &device));
+        }
+        if(item->getEmissiveTexture()==nullptr){
+            item->setEmissiveTexture(new VulkanTexture(&stationEmissive, &device));
+        }
+        item->scale(glm::vec3(0.3,0.3,0.3));
+        engine.addMesh(item);
+    }
+
+    loader.clear();
+
+
     engine.getLightInfo().enabledPoints = 1;
     engine.getLightInfo().pointLights[0].color = glm::vec3(1,1,1);
-    engine.getLightInfo().pointLights[0].intensity = 3;
+    engine.getLightInfo().pointLights[0].intensity = 30;
     engine.getLightInfo().pointLights[0].position = glm::vec3(-2,0,0);
     while(!Window::getWindowInstance()->isWindowNeedToClose()){
         for (const auto &item: engine.getMeshes()){
-            item->rotate(0.1, glm::vec3(0,1,0));
+            //item->rotate(0.1, glm::vec3(0,1,0));
         }
         engine.update();
     }

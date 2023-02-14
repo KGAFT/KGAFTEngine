@@ -58,8 +58,6 @@ public:
         vboDescriptions.push_back({0, 3, 0});
         vboDescriptions.push_back({1, 3, 3 * sizeof(float)});
         vboDescriptions.push_back({2, 2, 6 * sizeof(float)});
-        vboDescriptions.push_back({3, 4, 8 * sizeof(float)});
-        vboDescriptions.push_back({4, 4, 8 * sizeof(float)+4*sizeof(int)});
         UniformBufferDescription uboDesc{0, sizeof(lightInfo), VK_SHADER_STAGE_FRAGMENT_BIT};
         PushConstantDescription pcDesc{VK_SHADER_STAGE_VERTEX_BIT, sizeof(PushConstantData)};
 

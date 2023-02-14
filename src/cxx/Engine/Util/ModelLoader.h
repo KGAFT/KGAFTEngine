@@ -14,13 +14,6 @@
 
 using namespace std;
 
-struct BoneInfo
-{
-    int id;
-
-    glm::mat4 offset;
-
-};
 
 class ModelLoader {
 private:
@@ -28,8 +21,6 @@ private:
     string directory;
     VulkanDevice *device;
     map<string, VulkanTexture *> loadedTextures;
-    map<string, BoneInfo> m_BoneInfoMap;
-    int m_BoneCounter = 0;
 
 private:
     void processNode(aiNode *node, const aiScene *scene) {
@@ -65,7 +56,6 @@ private:
                 indices.push_back(face.mIndices[j]);
         }
 
-        ExtractBoneWeightForVertices(data, mesh, scene);
 
         VertexBuffer *vbo = new VertexBuffer(sizeof(float)*12+sizeof(int)*4, data.size(), device, data.data());
         IndexBuffer *ibo = new IndexBuffer(device, indices.data(), indices.size());
@@ -79,56 +69,6 @@ private:
         return currentMesh;
     }
 
-
-    void SetVertexBoneData(MeshData& vertex, int boneID, float weight)
-    {
-        for (int i = 0; i < 4; ++i)
-        {
-            if (vertex.boneIds[i] < 0)
-            {
-                vertex.weights[i] = weight;
-                vertex.boneIds[i] = boneID;
-                break;
-            }
-        }
-    }
-
-
-    void ExtractBoneWeightForVertices(std::vector<MeshData>& vertices, aiMesh* mesh, const aiScene* scene)
-    {
-        auto& boneInfoMap = m_BoneInfoMap;
-        int& boneCount = m_BoneCounter;
-
-        for (int boneIndex = 0; boneIndex < mesh->mNumBones; ++boneIndex)
-        {
-            int boneID = -1;
-            std::string boneName = mesh->mBones[boneIndex]->mName.C_Str();
-            if (boneInfoMap.find(boneName) == boneInfoMap.end())
-            {
-                BoneInfo newBoneInfo;
-                newBoneInfo.id = boneCount;
-                newBoneInfo.offset = AssimpGLMHelpers::ConvertMatrixToGLMFormat(mesh->mBones[boneIndex]->mOffsetMatrix);
-                boneInfoMap[boneName] = newBoneInfo;
-                boneID = boneCount;
-                boneCount++;
-            }
-            else
-            {
-                boneID = boneInfoMap[boneName].id;
-            }
-            assert(boneID != -1);
-            auto weights = mesh->mBones[boneIndex]->mWeights;
-            int numWeights = mesh->mBones[boneIndex]->mNumWeights;
-
-            for (int weightIndex = 0; weightIndex < numWeights; ++weightIndex)
-            {
-                int vertexId = weights[weightIndex].mVertexId;
-                float weight = weights[weightIndex].mWeight;
-                assert(vertexId <= vertices.size());
-                SetVertexBoneData(vertices[vertexId], boneID, weight);
-            }
-        }
-    }
 
     void loadTextures(const aiScene *scene, aiMesh *mesh, Mesh *currentMesh) {
         VulkanTexture *currentTexture = nullptr;

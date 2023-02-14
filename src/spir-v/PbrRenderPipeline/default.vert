@@ -4,8 +4,6 @@
 layout(location = 0) in vec3 position;
 layout(location = 1) in vec3 normals;
 layout(location = 2) in vec2 textureCoordinates;
-layout(location = 3) in ivec4 boneIds;
-layout(location = 4) in vec4 weights;
 
 
 layout(location = 0)out vec3 fragmentPosition;

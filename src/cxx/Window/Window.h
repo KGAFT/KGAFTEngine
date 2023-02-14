@@ -102,14 +102,13 @@ private:
             yChange = (cursorY - height / 2) / abs(cursorY - height / 2);
         }
         if (xChange != 0 or yChange != 0) {
-            glfwSetCursorPos(handle, width / 2, height / 2);
             for (const auto &item: mouseMoveCallBacks) {
                 if(item!=nullptr){
                     item->mouseMoved(-1 * xChange, -1 * yChange);
                 }
-
             }
         }
+        glfwSetCursorPos(handle, width / 2, height / 2);
     }
 
     void checkKeyBoardCallBacks() {

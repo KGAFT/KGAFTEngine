@@ -15,8 +15,6 @@ struct MeshData{
     glm::vec3 position;
     glm::vec3 normal;
     glm::vec2 uv;
-    int boneIds[4];
-    float weights[4];
 };
 
 class Mesh{

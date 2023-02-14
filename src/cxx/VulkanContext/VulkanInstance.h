@@ -40,7 +40,7 @@ public:
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
             return false;
         }
-        return true && checkGlfwExtensions(enableLogging) && enableLogging ? VulkanLogger::init(instance) : true;
+        return !(checkGlfwExtensions(enableLogging) && enableLogging) || VulkanLogger::init(instance);
     }
 
 private:

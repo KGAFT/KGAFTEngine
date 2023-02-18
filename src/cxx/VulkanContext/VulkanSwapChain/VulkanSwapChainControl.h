@@ -11,6 +11,7 @@
 
 class VulkanSwapChainControl {
     friend class VulkanRenderingPipeline;
+
 private:
     unsigned int currentFrame = 0;
 

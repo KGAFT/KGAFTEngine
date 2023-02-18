@@ -6,23 +6,25 @@
 #include <vulkan/vulkan.h>
 
 #pragma once
-class VulkanImage
-{
+
+class VulkanImage {
     friend class VulkanTexture;
+
 public:
-    static VulkanImage loadTextureFromFiles(VulkanDevice* device, const char* pathToTexture) {
+    static VulkanImage loadTextureFromFiles(VulkanDevice *device, const char *pathToTexture) {
         int imageWidth, imageHeight, imageChannels;
-        stbi_uc* pixels = stbi_load(pathToTexture, &imageWidth, &imageHeight, &imageChannels, STBI_rgb_alpha);
+        stbi_uc *pixels = stbi_load(pathToTexture, &imageWidth, &imageHeight, &imageChannels, STBI_rgb_alpha);
         VulkanImage result(device, imageWidth, imageHeight, imageChannels, pixels);
 
         return result;
     }
+
 private:
     VkImage image;
     VkDeviceMemory imageMemory;
-    VulkanDevice* device;
+    VulkanDevice *device;
 public:
-    VulkanImage(VulkanDevice* device, int imageWidth, int imageHeight, int imageChannels, stbi_uc* imageData) {
+    VulkanImage(VulkanDevice *device, int imageWidth, int imageHeight, int imageChannels, stbi_uc *imageData) {
         this->device = device;
         VkDeviceSize imageSize = imageWidth * imageHeight * 4;
 
@@ -32,20 +34,26 @@ public:
 
         VkBuffer stagingBuffer;
         VkDeviceMemory stagingBufferMemory;
-        device->createBuffer(imageSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, stagingBuffer, stagingBufferMemory);
+        device->createBuffer(imageSize, VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                             VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, stagingBuffer,
+                             stagingBufferMemory);
 
-        void* data;
+        void *data;
         vkMapMemory(device->getDevice(), stagingBufferMemory, 0, imageSize, 0, &data);
         memcpy(data, imageData, static_cast<size_t>(imageSize));
         vkUnmapMemory(device->getDevice(), stagingBufferMemory);
 
         stbi_image_free(imageData);
 
-        createImage(device, imageWidth, imageHeight, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_TILING_OPTIMAL, VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT, image, imageMemory);
+        createImage(device, imageWidth, imageHeight, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_TILING_OPTIMAL,
+                    VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT, VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT,
+                    image, imageMemory);
 
-        transitionImageLayout(device, image, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_LAYOUT_UNDEFINED, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
+        transitionImageLayout(device, image, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_LAYOUT_UNDEFINED,
+                              VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL);
         copyBufferToImage(device, stagingBuffer, image, imageWidth, imageHeight);
-        transitionImageLayout(device, image, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
+        transitionImageLayout(device, image, VK_FORMAT_R8G8B8A8_SRGB, VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL,
+                              VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL);
 
         vkDestroyBuffer(device->getDevice(), stagingBuffer, nullptr);
         vkFreeMemory(device->getDevice(), stagingBufferMemory, nullptr);
@@ -57,7 +65,10 @@ public:
     }
 
 private:
-    void createImage(VulkanDevice* device, unsigned int width, unsigned int height, VkFormat format, VkImageTiling tiling, VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage& image, VkDeviceMemory& imageMemory) {
+    void
+    createImage(VulkanDevice *device, unsigned int width, unsigned int height, VkFormat format, VkImageTiling tiling,
+                VkImageUsageFlags usage, VkMemoryPropertyFlags properties, VkImage &image,
+                VkDeviceMemory &imageMemory) {
         VkImageCreateInfo imageInfo{};
         imageInfo.sType = VK_STRUCTURE_TYPE_IMAGE_CREATE_INFO;
         imageInfo.imageType = VK_IMAGE_TYPE_2D;
@@ -92,7 +103,8 @@ private:
         vkBindImageMemory(device->getDevice(), image, imageMemory, 0);
     }
 
-    void transitionImageLayout(VulkanDevice* device, VkImage image, VkFormat format, VkImageLayout oldLayout, VkImageLayout newLayout) {
+    void transitionImageLayout(VulkanDevice *device, VkImage image, VkFormat format, VkImageLayout oldLayout,
+                               VkImageLayout newLayout) {
         VkCommandBuffer commandBuffer = device->beginSingleTimeCommands();
 
         VkImageMemoryBarrier barrier{};
@@ -117,15 +129,14 @@ private:
 
             sourceStage = VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT;
             destinationStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
-        }
-        else if (oldLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL && newLayout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL) {
+        } else if (oldLayout == VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL &&
+                   newLayout == VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL) {
             barrier.srcAccessMask = VK_ACCESS_TRANSFER_WRITE_BIT;
             barrier.dstAccessMask = VK_ACCESS_SHADER_READ_BIT;
 
             sourceStage = VK_PIPELINE_STAGE_TRANSFER_BIT;
             destinationStage = VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT;
-        }
-        else {
+        } else {
             throw std::invalid_argument("unsupported layout transition!");
         }
 
@@ -141,7 +152,7 @@ private:
         device->endSingleTimeCommands(commandBuffer);
     }
 
-    void copyBufferToImage(VulkanDevice* device, VkBuffer buffer, VkImage image, uint32_t width, uint32_t height) {
+    void copyBufferToImage(VulkanDevice *device, VkBuffer buffer, VkImage image, uint32_t width, uint32_t height) {
         VkCommandBuffer commandBuffer = device->beginSingleTimeCommands();
 
         VkBufferImageCopy region{};
@@ -152,7 +163,7 @@ private:
         region.imageSubresource.mipLevel = 0;
         region.imageSubresource.baseArrayLayer = 0;
         region.imageSubresource.layerCount = 1;
-        region.imageOffset = { 0, 0, 0 };
+        region.imageOffset = {0, 0, 0};
         region.imageExtent = {
                 width,
                 height,

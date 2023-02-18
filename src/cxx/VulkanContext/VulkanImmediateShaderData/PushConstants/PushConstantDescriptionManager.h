@@ -9,14 +9,14 @@
 
 #pragma once
 
-class PushConstantDescriptionManager{
+class PushConstantDescriptionManager {
 private:
     std::vector<VkPushConstantRange> pushConstantRanges;
-    std::vector<PushConstant*> pushConstants;
+    std::vector<PushConstant *> pushConstants;
 public:
-    void registerPushConstant(PushConstant* pushConstant){
-        for (const auto &item: pushConstantRanges){
-            if(item.stageFlags == pushConstant->getShaderStages()){
+    void registerPushConstant(PushConstant *pushConstant) {
+        for (const auto &item: pushConstantRanges) {
+            if (item.stageFlags == pushConstant->getShaderStages()) {
                 throw std::runtime_error("Error: you cannot add push constant with already existing flags");
             }
         }
@@ -31,8 +31,9 @@ public:
     std::vector<VkPushConstantRange> &getPushConstantRanges() {
         return pushConstantRanges;
     }
-    void loadConstantsToShader(VkCommandBuffer commandBuffer, VkPipelineLayout pipelineLayout){
-        for (const auto &item: pushConstants){
+
+    void loadConstantsToShader(VkCommandBuffer commandBuffer, VkPipelineLayout pipelineLayout) {
+        for (const auto &item: pushConstants) {
             vkCmdPushConstants(
                     commandBuffer,
                     pipelineLayout,

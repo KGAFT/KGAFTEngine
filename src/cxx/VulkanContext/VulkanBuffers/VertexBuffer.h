@@ -6,23 +6,24 @@
 #include <cstring>
 #include "../VulkanDevice/VulkanDevice.h"
 
-class VertexBuffer{
+class VertexBuffer {
 private:
     VkBuffer vertexBuffer;
     VkDeviceMemory vertexBufferMemory;
-    VulkanDevice* device;
+    VulkanDevice *device;
     unsigned int verticesAmount;
 
 public:
-    VertexBuffer(size_t stepSize, unsigned int verticesAmount, VulkanDevice* device, void *data){
+    VertexBuffer(size_t stepSize, unsigned int verticesAmount, VulkanDevice *device, void *data) {
         this->device = device;
         createVertexBuffers(data, stepSize, verticesAmount);
     }
-    ~VertexBuffer(){
+
+    ~VertexBuffer() {
         destroy();
     }
 
-    void destroy(){
+    void destroy() {
         vkDestroyBuffer(device->getDevice(), vertexBuffer, nullptr);
         //vkFreeMemory(device->getDevice(), vertexBufferMemory, nullptr);
     }
@@ -39,8 +40,8 @@ public:
     }
 
 private:
-    void createVertexBuffers(void* vertices, size_t stepSize, unsigned int verticesAmount) {
-        VkDeviceSize bufferSize = stepSize*verticesAmount;
+    void createVertexBuffers(void *vertices, size_t stepSize, unsigned int verticesAmount) {
+        VkDeviceSize bufferSize = stepSize * verticesAmount;
         this->verticesAmount = verticesAmount;
         VkBuffer stagingBuffer;
         VkDeviceMemory stagingBufferMemory;

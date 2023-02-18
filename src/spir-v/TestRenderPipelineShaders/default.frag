@@ -17,5 +17,5 @@ layout(binding = 0) uniform UniformBufferObject {
 
 
 void main() {
-  outColor = texture(baseColorSampler, uv);
+    outColor = texture(baseColorSampler, uv);
 }

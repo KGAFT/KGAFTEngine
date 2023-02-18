@@ -4,21 +4,23 @@
 #include <vector>
 #include <vulkan/vulkan.h>
 #include <stdexcept>
+
 #pragma once
 
-class VertexBufferDescriptionManager{
+class VertexBufferDescriptionManager {
 private:
     std::vector<VkVertexInputAttributeDescription> attributeDescriptions;
     std::vector<VkVertexInputBindingDescription> bindingDescription;
 public:
-    void createBinding(int binding, size_t perStepSize){
+    void createBinding(int binding, size_t perStepSize) {
         VkVertexInputBindingDescription bindDesc{};
         bindDesc.binding = binding;
         bindDesc.stride = perStepSize;
         bindDesc.inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
         bindingDescription.push_back(bindDesc);
     }
-    void registerAttribute(int binding, int location, unsigned int vertexCoordsAmount, size_t offset){
+
+    void registerAttribute(int binding, int location, unsigned int vertexCoordsAmount, size_t offset) {
         VkVertexInputAttributeDescription attributeDescription{};
         attributeDescription.binding = binding;
         attributeDescription.offset = offset;
@@ -27,16 +29,16 @@ public:
         attributeDescriptions.push_back(attributeDescription);
     }
 
-     std::vector<VkVertexInputAttributeDescription> &getAttributeDescriptions(){
+    std::vector<VkVertexInputAttributeDescription> &getAttributeDescriptions() {
         return attributeDescriptions;
     }
 
-   std::vector<VkVertexInputBindingDescription> &getBindingDescription(){
+    std::vector<VkVertexInputBindingDescription> &getBindingDescription() {
         return bindingDescription;
     }
 
 private:
-    VkFormat prepareFormatForVertexCoordsAmount(unsigned int vertexCoordsAmount){
+    VkFormat prepareFormatForVertexCoordsAmount(unsigned int vertexCoordsAmount) {
         switch (vertexCoordsAmount) {
             case 2:
                 return VK_FORMAT_R32G32_SFLOAT;

@@ -4,6 +4,7 @@
 
 
 #define GLFW_INCLUDE_VULKAN
+
 #include "GLFW/glfw3.h"
 
 #include "GLFW/glfw3native.h"
@@ -28,7 +29,7 @@ private:
         windowInstance->width = width;
         windowInstance->height = height;
         for (const auto &item: windowInstance->resizeCallBacks) {
-            if(item!=nullptr){
+            if (item != nullptr) {
                 item->resized(width, height);
             }
 
@@ -43,7 +44,7 @@ public:
 
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
-        GLFWwindow * windowHandle = glfwCreateWindow(width, height, title, nullptr, nullptr);
+        GLFWwindow *windowHandle = glfwCreateWindow(width, height, title, nullptr, nullptr);
         if (windowHandle != nullptr) {
             windowInstance = new Window(width, height, title, windowHandle);
             glfwSetWindowSizeCallback(windowHandle, resized);
@@ -69,6 +70,7 @@ private:
     std::vector<MouseMovedCallBack *> mouseMoveCallBacks;
     std::vector<KeyBoardCallBack *> keyBoardCallBacks;
     VkSurfaceKHR surface = VK_NULL_HANDLE;
+
     Window() {
 
     }
@@ -103,7 +105,7 @@ private:
         }
         if (xChange != 0 or yChange != 0) {
             for (const auto &item: mouseMoveCallBacks) {
-                if(item!=nullptr){
+                if (item != nullptr) {
                     item->mouseMoved(-1 * xChange, -1 * yChange);
                 }
             }
@@ -113,7 +115,7 @@ private:
 
     void checkKeyBoardCallBacks() {
         for (const auto &item: keyBoardCallBacks) {
-            if(item!= nullptr){
+            if (item != nullptr) {
                 for (unsigned int counter = 0; counter < item->getKeyCodeAmount(); counter++) {
                     if (glfwGetKey(handle, item->getKeyCodes()[counter])) {
                         item->action(item->getKeyCodes()[counter]);
@@ -130,7 +132,7 @@ public:
     }
 
     VkSurfaceKHR getWindowSurface(VkInstance instance) {
-        if(surface==VK_NULL_HANDLE){
+        if (surface == VK_NULL_HANDLE) {
             glfwCreateWindowSurface(instance, handle, nullptr, &surface);
         }
         return surface;
@@ -140,12 +142,15 @@ public:
         checkKeyBoardCallBacks();
         checkMouseCallBacks();
     }
-    void registerMouseCallBack(MouseMovedCallBack* mouseCallback){
+
+    void registerMouseCallBack(MouseMovedCallBack *mouseCallback) {
         mouseMoveCallBacks.push_back(mouseCallback);
     }
-    void registerKeyboardCallBack(KeyBoardCallBack* keyBoardCallBack){
+
+    void registerKeyboardCallBack(KeyBoardCallBack *keyBoardCallBack) {
         keyBoardCallBacks.push_back(keyBoardCallBack);
     }
+
     void removeResizeCallBack(WindowResizeCallback *callBack) {
         std::vector<WindowResizeCallback *> newCallBacks;
         for (int i = 0; i < (unsigned int) resizeCallBacks.size(); i++) {
@@ -165,7 +170,7 @@ public:
 
     void setTitle(const char *title) {
         this->title = title;
-        if(!fpsCounter){
+        if (!fpsCounter) {
             glfwSetWindowTitle(handle, title);
         }
 
@@ -177,16 +182,15 @@ public:
 
     void postRenderEvents() {
         glfwPollEvents();
-        if(fpsCounter){
+        if (fpsCounter) {
             double crntTime = glfwGetTime();
             double timeDiff = crntTime - prevTime;
             counter++;
 
-            if (timeDiff >= 1.0 / 30.0)
-            {
-                std::string FPS = std::to_string((int)((1.0 / timeDiff) * counter));
+            if (timeDiff >= 1.0 / 30.0) {
+                std::string FPS = std::to_string((int) ((1.0 / timeDiff) * counter));
                 std::string ms = std::to_string((timeDiff / counter) * 1000);
-                glfwSetWindowTitle(handle, (std::string(title)+" FPS: "+FPS+" ms: "+ms).c_str());
+                glfwSetWindowTitle(handle, (std::string(title) + " FPS: " + FPS + " ms: " + ms).c_str());
 
                 prevTime = crntTime;
                 counter = 0;

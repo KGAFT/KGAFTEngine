@@ -6,11 +6,11 @@
 
 #pragma once
 
-class IDescriptorLayoutObject{
+class IDescriptorLayoutObject {
 protected:
-    VkDescriptorSetLayoutBinding  descriptorSetLayoutBind;
+    VkDescriptorSetLayoutBinding descriptorSetLayoutBind;
 public:
-    IDescriptorLayoutObject(unsigned int binding, VkDescriptorType type, VkShaderStageFlags shaderStages){
+    IDescriptorLayoutObject(unsigned int binding, VkDescriptorType type, VkShaderStageFlags shaderStages) {
         descriptorSetLayoutBind = {};
         descriptorSetLayoutBind.binding = binding;
         descriptorSetLayoutBind.descriptorType = type;
@@ -18,14 +18,19 @@ public:
         descriptorSetLayoutBind.stageFlags = shaderStages;
     }
 
-    VkDescriptorSetLayoutBinding getDescriptorSetLayoutBind(){
+    VkDescriptorSetLayoutBinding getDescriptorSetLayoutBind() {
         return descriptorSetLayoutBind;
     }
-    VkDescriptorSetLayoutBinding* getPDescriptorSetLayoutBind(){
+
+    VkDescriptorSetLayoutBinding *getPDescriptorSetLayoutBind() {
         return &descriptorSetLayoutBind;
     }
+
     virtual VkBuffer getBuffer(unsigned int number) = 0;
+
     virtual VkSampler getSampler() = 0;
+
     virtual VkImageView getSamplerImageView() = 0;
+
     virtual size_t getBufferSize() = 0;
 };

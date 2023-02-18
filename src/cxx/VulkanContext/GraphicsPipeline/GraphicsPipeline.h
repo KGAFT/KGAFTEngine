@@ -9,20 +9,23 @@
 
 #pragma once
 
-class GraphicsPipeline{
+class GraphicsPipeline {
     friend class VulkanRenderingPipeline;
+
 private:
-    VulkanDevice* device;
+    VulkanDevice *device;
     VkPipeline graphicsPipeline;
-    PushConstantDescriptionManager* pcDescs;
+    PushConstantDescriptionManager *pcDescs;
     VkPipelineLayout pipelineLayout;
 
-    VulkanShader* shader;
-    VertexBufferDescriptionManager* manager;
+    VulkanShader *shader;
+    VertexBufferDescriptionManager *manager;
 
     VkDescriptorSetLayout descriptorSetLayout;
 public:
-    GraphicsPipeline(VulkanShader* shader, VulkanDevice* device, PipelineConfiguration::PipelineConfigInfo& configInfo, VertexBufferDescriptionManager* manager, PushConstantDescriptionManager* pcDescs, IDescriptorLayoutObject** toLoad, unsigned int count){
+    GraphicsPipeline(VulkanShader *shader, VulkanDevice *device, PipelineConfiguration::PipelineConfigInfo &configInfo,
+                     VertexBufferDescriptionManager *manager, PushConstantDescriptionManager *pcDescs,
+                     IDescriptorLayoutObject **toLoad, unsigned int count) {
         this->device = device;
         this->pcDescs = pcDescs;
 
@@ -30,7 +33,7 @@ public:
         this->manager = manager;
 
         VkDescriptorSetLayout layout = VK_NULL_HANDLE;
-        if(count!=0 and toLoad!=nullptr){
+        if (count != 0 and toLoad != nullptr) {
             layout = loadDescriptors(toLoad, count);
         }
         createPipelineLayout(layout);
@@ -42,8 +45,10 @@ public:
         vkDestroyPipeline(device->getDevice(), graphicsPipeline, nullptr);
         vkDestroyPipelineLayout(device->getDevice(), pipelineLayout, nullptr);
     }
+
     void recreate(unsigned int width, unsigned int height, VkRenderPass renderPass) {
-        PipelineConfiguration::PipelineConfigInfo config = PipelineConfiguration::defaultPipelineConfigInfo(width, height);
+        PipelineConfiguration::PipelineConfigInfo config = PipelineConfiguration::defaultPipelineConfigInfo(width,
+                                                                                                            height);
         config.renderPass = renderPass;
         vkDestroyPipeline(device->getDevice(), graphicsPipeline, nullptr);
         create(shader, config, manager);
@@ -53,15 +58,15 @@ public:
         return descriptorSetLayout;
     }
 
-    ~GraphicsPipeline(){
+    ~GraphicsPipeline() {
         destroy();
     }
 
 private:
-    VkDescriptorSetLayout loadDescriptors(IDescriptorLayoutObject** toLoad, unsigned int count){
+    VkDescriptorSetLayout loadDescriptors(IDescriptorLayoutObject **toLoad, unsigned int count) {
         VkDescriptorSetLayout descriptorSetLayout;
         std::vector<VkDescriptorSetLayoutBinding> bindings;
-        for (unsigned int i = 0; i < count; i++){
+        for (unsigned int i = 0; i < count; i++) {
             bindings.push_back(toLoad[i]->getDescriptorSetLayoutBind());
         }
         VkDescriptorSetLayoutCreateInfo layoutInfo{};
@@ -69,17 +74,19 @@ private:
         layoutInfo.bindingCount = bindings.size();
         layoutInfo.pBindings = bindings.data();
 
-        if (vkCreateDescriptorSetLayout(device->getDevice(), &layoutInfo, nullptr, &descriptorSetLayout) != VK_SUCCESS) {
+        if (vkCreateDescriptorSetLayout(device->getDevice(), &layoutInfo, nullptr, &descriptorSetLayout) !=
+            VK_SUCCESS) {
             throw std::runtime_error("failed to create descriptor set layout!");
         }
         return descriptorSetLayout;
     }
-    void createPipelineLayout(VkDescriptorSetLayout layout){
+
+    void createPipelineLayout(VkDescriptorSetLayout layout) {
         this->descriptorSetLayout = layout;
         VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
         pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
         pipelineLayoutInfo.setLayoutCount = 0;
-        if(layout!=VK_NULL_HANDLE){
+        if (layout != VK_NULL_HANDLE) {
             pipelineLayoutInfo.setLayoutCount = 1;
             pipelineLayoutInfo.pSetLayouts = &layout;
         }
@@ -92,7 +99,8 @@ private:
         }
     }
 
-    void create(VulkanShader* shader, PipelineConfiguration::PipelineConfigInfo& configInfo, VertexBufferDescriptionManager* manager){
+    void create(VulkanShader *shader, PipelineConfiguration::PipelineConfigInfo &configInfo,
+                VertexBufferDescriptionManager *manager) {
 
 
         VkPipelineVertexInputStateCreateInfo vertexInputInfo{};

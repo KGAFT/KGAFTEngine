@@ -11,15 +11,15 @@
 
 #pragma once
 
-class VulkanShader{
+class VulkanShader {
 private:
     static inline shaderc_compiler_t compiler = shaderc_compiler_initialize();
 public:
-    static VulkanShader* loadShaderBlock(const char* directoryPath, VulkanDevice* device){
+    static VulkanShader *loadShaderBlock(const char *directoryPath, VulkanDevice *device) {
         std::vector<VkShaderModule> shaders;
         std::vector<shaderc_shader_kind> types;
         try {
-            for (const auto& entry : std::filesystem::directory_iterator(directoryPath)) {
+            for (const auto &entry: std::filesystem::directory_iterator(directoryPath)) {
                 shaderc_shader_kind type;
                 shaders.push_back(loadShaderFromFile(entry.path(), device, &type));
                 types.push_back(type);
@@ -29,14 +29,16 @@ public:
             std::cerr << e.what() << std::endl;
             return nullptr;
         }
-        
+
         return new VulkanShader(device, shaders, types);
     }
-    static VkShaderModule loadShaderFromFile(std::filesystem::path path, VulkanDevice* device, shaderc_shader_kind* outType){
+
+    static VkShaderModule
+    loadShaderFromFile(std::filesystem::path path, VulkanDevice *device, shaderc_shader_kind *outType) {
         shaderc_shader_kind type = getShaderType(path.extension().string());
         *outType = type;
         size_t size = 0;
-        const char* content = compileShader(path.string().c_str(), type, path.filename().string().c_str(), &size);
+        const char *content = compileShader(path.string().c_str(), type, path.filename().string().c_str(), &size);
         VkShaderModuleCreateInfo createInfo = {};
         createInfo.codeSize = size;
         createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
@@ -49,37 +51,42 @@ public:
 
         return result;
     }
-    static shaderc_shader_kind getShaderType(std::string extension){
-       
-        if(!std::strcmp(extension.c_str(), ".frag")){
+
+    static shaderc_shader_kind getShaderType(std::string extension) {
+
+        if (!std::strcmp(extension.c_str(), ".frag")) {
             return shaderc_glsl_fragment_shader;
         }
-        if(!std::strcmp(extension.c_str(), ".vert")){
+        if (!std::strcmp(extension.c_str(), ".vert")) {
             return shaderc_glsl_vertex_shader;
         }
-        if(!std::strcmp(extension.c_str(), ".geom")){
+        if (!std::strcmp(extension.c_str(), ".geom")) {
             return shaderc_glsl_geometry_shader;
         }
         return shaderc_glsl_fragment_shader;
     }
 
-    static const char* compileShader(const char* pathToShader, shaderc_shader_kind shaderType, const char* fileName, size_t* size){
+    static const char *
+    compileShader(const char *pathToShader, shaderc_shader_kind shaderType, const char *fileName, size_t *size) {
         std::string shaderCode = readCode(pathToShader);
-        shaderc_compilation_result_t result = shaderc_compile_into_spv(compiler, shaderCode.c_str(), shaderCode.size()*sizeof(char),
-                                 shaderType, fileName, "main", nullptr);
-        if(result == nullptr){
-            throw std::runtime_error("Failed to compile shader: "+std::string(fileName));
+        shaderc_compilation_result_t result = shaderc_compile_into_spv(compiler, shaderCode.c_str(),
+                                                                       shaderCode.size() * sizeof(char),
+                                                                       shaderType, fileName, "main", nullptr);
+        if (result == nullptr) {
+            throw std::runtime_error("Failed to compile shader: " + std::string(fileName));
         }
-        if(shaderc_result_get_compilation_status(result) != shaderc_compilation_status_success){
-            throw std::runtime_error("Failed to compile shader " + std::string(fileName) + "into SPIR-V:\n " + shaderc_result_get_error_message(result));
+        if (shaderc_result_get_compilation_status(result) != shaderc_compilation_status_success) {
+            throw std::runtime_error("Failed to compile shader " + std::string(fileName) + "into SPIR-V:\n " +
+                                     shaderc_result_get_error_message(result));
         }
-        const char* code = shaderc_result_get_bytes(result);
+        const char *code = shaderc_result_get_bytes(result);
         *size = shaderc_result_get_length(result);
         return code;
     }
-    static std::string readCode(const char* filePath){
+
+    static std::string readCode(const char *filePath) {
         std::ifstream fileReader(filePath, std::ios::binary);
-        if(fileReader){
+        if (fileReader) {
             std::string content;
             fileReader.seekg(0, std::ios::end);
             content.resize(fileReader.tellg());
@@ -90,14 +97,16 @@ public:
         }
         return std::string();
     }
+
 private:
     std::vector<VkShaderModule> shaders;
     std::vector<VkPipelineShaderStageCreateInfo> stages;
-    VulkanDevice* device;
-    VulkanShader(VulkanDevice* device, std::vector<VkShaderModule> shaders, std::vector<shaderc_shader_kind>& types){
+    VulkanDevice *device;
+
+    VulkanShader(VulkanDevice *device, std::vector<VkShaderModule> shaders, std::vector<shaderc_shader_kind> &types) {
         this->shaders = shaders;
-        this->device=device;
-        for(unsigned int i = 0; i<shaders.size(); i++){
+        this->device = device;
+        for (unsigned int i = 0; i < shaders.size(); i++) {
             VkPipelineShaderStageCreateInfo stage = {};
             stage.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
             stage.stage = getShaderStage(types[i]);
@@ -108,8 +117,9 @@ private:
             stages.push_back(stage);
         }
     }
-    VkShaderStageFlagBits getShaderStage(shaderc_shader_kind type){
-        switch(type){
+
+    VkShaderStageFlagBits getShaderStage(shaderc_shader_kind type) {
+        switch (type) {
             case shaderc_glsl_fragment_shader:
                 return VK_SHADER_STAGE_FRAGMENT_BIT;
             case shaderc_glsl_geometry_shader:
@@ -120,16 +130,19 @@ private:
                 return VK_SHADER_STAGE_VERTEX_BIT;
         }
     }
+
 public:
-    VkPipelineShaderStageCreateInfo* getStages(){
+    VkPipelineShaderStageCreateInfo *getStages() {
         return stages.data();
     }
-    void destroy(){
-        for (const auto &item: shaders){
+
+    void destroy() {
+        for (const auto &item: shaders) {
             vkDestroyShaderModule(device->getDevice(), item, nullptr);
         }
     }
-    ~VulkanShader(){
+
+    ~VulkanShader() {
         destroy();
     }
 };

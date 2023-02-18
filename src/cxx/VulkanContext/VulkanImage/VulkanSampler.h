@@ -2,18 +2,21 @@
 #include "VulkanTexture.h"
 
 #pragma once
-class VulkanSampler : public IDescriptorLayoutObject
-{
+
+class VulkanSampler : public IDescriptorLayoutObject {
 private:
-	VulkanTexture* texture = nullptr;
-    VulkanDevice* device;
+    VulkanTexture *texture = nullptr;
+    VulkanDevice *device;
     VkSampler sampler;
 public:
-    VulkanSampler(VulkanDevice* device, unsigned int binding) : IDescriptorLayoutObject(binding, VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_SHADER_STAGE_FRAGMENT_BIT) {
+    VulkanSampler(VulkanDevice *device, unsigned int binding) : IDescriptorLayoutObject(binding,
+                                                                                        VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+                                                                                        VK_SHADER_STAGE_FRAGMENT_BIT) {
         this->device = device;
         createTextureSampler();
-       
+
     }
+
     void destroy() {
         vkDestroySampler(device->getDevice(), sampler, nullptr);
     }
@@ -27,7 +30,7 @@ public:
     }
 
     VkImageView getSamplerImageView() override {
-        if(texture==nullptr){
+        if (texture == nullptr) {
             return VK_NULL_HANDLE;
         }
         return texture->imageView;

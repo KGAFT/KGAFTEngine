@@ -9,15 +9,17 @@
 #pragma once
 
 
-class UniformBuffer : public IDescriptorLayoutObject{
+class UniformBuffer : public IDescriptorLayoutObject {
 private:
     std::vector<VkBuffer> uniformBuffers;
     std::vector<VkDeviceMemory> uniformBuffersMemory;
-    std::vector<void*> uniformBuffersMapped;
-    VulkanDevice* device;
+    std::vector<void *> uniformBuffersMapped;
+    VulkanDevice *device;
     size_t size;
 public:
-    UniformBuffer(VulkanDevice* device, size_t bufferSize, VkShaderStageFlags targetShaders, unsigned int binding, unsigned int instanceCount) : IDescriptorLayoutObject(binding, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, targetShaders){
+    UniformBuffer(VulkanDevice *device, size_t bufferSize, VkShaderStageFlags targetShaders, unsigned int binding,
+                  unsigned int instanceCount) : IDescriptorLayoutObject(binding, VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER,
+                                                                        targetShaders) {
         this->device = device;
         this->size = bufferSize;
         uniformBuffers.resize(instanceCount);
@@ -25,24 +27,26 @@ public:
         uniformBuffersMapped.resize(instanceCount);
 
         for (size_t i = 0; i < instanceCount; i++) {
-            device->createBuffer(bufferSize, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT, VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT, uniformBuffers[i], uniformBuffersMemory[i]);
+            device->createBuffer(bufferSize, VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT,
+                                 VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT,
+                                 uniformBuffers[i], uniformBuffersMemory[i]);
             vkMapMemory(device->getDevice(), uniformBuffersMemory[i], 0, bufferSize, 0, &uniformBuffersMapped[i]);
         }
     }
 
-    ~UniformBuffer(){
+    ~UniformBuffer() {
         destroy();
     }
 
-    void destroy(){
-        for (int i = 0; i < uniformBuffers.size(); ++i){
+    void destroy() {
+        for (int i = 0; i < uniformBuffers.size(); ++i) {
             vkDestroyBuffer(device->getDevice(), uniformBuffers[i], nullptr);
             vkFreeMemory(device->getDevice(), uniformBuffersMemory[i], nullptr);
         }
     }
 
-    void write(void* data){
-        for (const auto &item: uniformBuffersMapped){
+    void write(void *data) {
+        for (const auto &item: uniformBuffersMapped) {
             memcpy(item, data, size);
         }
     }

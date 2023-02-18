@@ -57,13 +57,12 @@ private:
         }
 
 
-        VertexBuffer *vbo = new VertexBuffer(sizeof(float)*12+sizeof(int)*4, data.size(), device, data.data());
+        VertexBuffer *vbo = new VertexBuffer(sizeof(float) * 12 + sizeof(int) * 4, data.size(), device, data.data());
         IndexBuffer *ibo = new IndexBuffer(device, indices.data(), indices.size());
 
         Mesh *currentMesh = new Mesh(vbo, ibo);
 
         loadTextures(scene, mesh, currentMesh);
-
 
 
         return currentMesh;
@@ -104,7 +103,7 @@ private:
         currentTexture = tryGetLoadedMaterial(path.C_Str());
 
         currentMesh->setNormalTexture(currentTexture);
-     
+
         scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_EMISSIVE, 0, &path, NULL, NULL, NULL, NULL,
                                                             NULL);
 
@@ -125,7 +124,7 @@ private:
         currentTexture = tryGetLoadedMaterial(path.C_Str());
 
         currentMesh->setAoTexture(currentTexture);
-        
+
         scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_METALNESS, 0, &path, NULL, NULL, NULL, NULL,
                                                             NULL);
         currentTexture = tryGetLoadedMaterial(path.C_Str());

@@ -8,35 +8,38 @@
 
 #include "../VulkanDevice/VulkanDevice.h"
 
-class IndexBuffer{
+class IndexBuffer {
 private:
     VkBuffer indexBuffer;
     VkDeviceMemory indexBufferMemory;
-    VulkanDevice* device;
+    VulkanDevice *device;
     unsigned int indicesCount;
 public:
-    IndexBuffer(VulkanDevice *device, unsigned int* indices, unsigned int indicesAmount) : device(device) {
+    IndexBuffer(VulkanDevice *device, unsigned int *indices, unsigned int indicesAmount) : device(device) {
         createIndexBuffer(indices, indicesAmount);
     }
 
-    ~IndexBuffer(){
+    ~IndexBuffer() {
         destroy();
     }
 
-    void destroy(){
+    void destroy() {
         vkDestroyBuffer(device->getDevice(), indexBuffer, nullptr);
         vkFreeMemory(device->getDevice(), indexBufferMemory, nullptr);
     }
-    void bind(VkCommandBuffer commandBuffer){
+
+    void bind(VkCommandBuffer commandBuffer) {
         vkCmdBindIndexBuffer(commandBuffer, indexBuffer, 0, VK_INDEX_TYPE_UINT32);
     }
-    void draw(VkCommandBuffer commandBuffer){
+
+    void draw(VkCommandBuffer commandBuffer) {
         vkCmdDrawIndexed(commandBuffer, indicesCount, 1, 0, 0, 0);
     }
+
 private:
-    void createIndexBuffer(unsigned int* indices, unsigned int amount){
+    void createIndexBuffer(unsigned int *indices, unsigned int amount) {
         indicesCount = amount;
-        VkDeviceSize bufferSize = sizeof(unsigned int)*amount;
+        VkDeviceSize bufferSize = sizeof(unsigned int) * amount;
         VkBuffer stagingBuffer;
         VkDeviceMemory stagingBufferMemory;
         device->createBuffer(

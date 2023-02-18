@@ -3,37 +3,38 @@
 //
 #include  <vulkan/vulkan.h>
 #include "../../VulkanContext/GraphicsPipeline/VulkanShader.h"
+
 #pragma once
 
 
-struct UniformBufferDescription{
+struct UniformBufferDescription {
     unsigned int targetBinding;
     size_t bufferSize;
     VkShaderStageFlags shaderLocation;
 };
 
-struct PushConstantDescription{
+struct PushConstantDescription {
     VkShaderStageFlags shaderStages;
     size_t constantSize;
 };
 
-struct VertexBufferDescription{
+struct VertexBufferDescription {
     unsigned int location;
     unsigned int vertexCoordinatesAmount;
     size_t offset;
 };
 
-struct SamplerDescription{
+struct SamplerDescription {
     unsigned int binding;
 };
 
-struct ShaderInputDataConfiguration{
-    SamplerDescription* pSamplerDescriptions;
-    UniformBufferDescription* pUniformBufferDescription;
-    VertexBufferDescription* pVertexBufferDescription;
-    PushConstantDescription* pushConstantDescription;
+struct ShaderInputDataConfiguration {
+    SamplerDescription *pSamplerDescriptions;
+    UniformBufferDescription *pUniformBufferDescription;
+    VertexBufferDescription *pVertexBufferDescription;
+    PushConstantDescription *pushConstantDescription;
 
-    VulkanShader* shader;
+    VulkanShader *shader;
 
     unsigned int samplerDescAmount = 0;
     unsigned int uniformBufferDescriptionAmount = 0;

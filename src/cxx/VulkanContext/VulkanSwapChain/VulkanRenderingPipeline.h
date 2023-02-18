@@ -11,11 +11,11 @@
 #include "../VulkanBuffers/IndexBuffer.h"
 
 
-class VulkanRenderingPipeline : public WindowResizeCallback{
+class VulkanRenderingPipeline : public WindowResizeCallback {
 private:
     VulkanSwapChainControl *control;
     VulkanRenderPass *renderPass;
-    GraphicsPipeline* pipeline;;
+    GraphicsPipeline *pipeline;;
 
     VulkanDevice *device;
     bool pause = false;
@@ -24,13 +24,14 @@ private:
 
     std::vector<VkCommandBuffer> commandBuffers;
 
-    float clearColorValues[4] = {0,0,0,1};
+    float clearColorValues[4] = {0, 0, 0, 1};
 public:
     VulkanRenderingPipeline(VulkanSwapChainControl *control, VulkanRenderPass *renderPass, GraphicsPipeline *pipeline,
                             VulkanDevice *device) : control(control), renderPass(renderPass), pipeline(pipeline),
                                                     device(device) {
         createCommandBuffers();
     }
+
 public:
     void createCommandBuffers() {
         commandBuffers.resize(control->swapChain->swapChainImages.size());
@@ -46,7 +47,8 @@ public:
             throw std::runtime_error("failed to allocate command buffers!");
         }
     }
-    void beginRender(){
+
+    void beginRender() {
         currentImage = control->acquireNextImage();
 
         VkCommandBufferBeginInfo beginInfo{};
@@ -56,40 +58,38 @@ public:
         }
     }
 
-    void setClearColorValues(float r, float g, float b, float a){
+    void setClearColorValues(float r, float g, float b, float a) {
         clearColorValues[0] = r;
         clearColorValues[1] = g;
         clearColorValues[2] = b;
         clearColorValues[3] = a;
     }
 
-    void beginDraw(){
+    void beginDraw() {
         VkRenderPassBeginInfo renderPassInfo{};
         renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
         renderPassInfo.renderPass = renderPass->renderPass;
         renderPassInfo.framebuffer = renderPass->frameBuffers[currentImage];
-        renderPassInfo.renderArea.offset = { 0, 0 };
+        renderPassInfo.renderArea.offset = {0, 0};
         renderPassInfo.renderArea.extent = control->swapChain->swapChainExtent;
         std::array<VkClearValue, 2> clearValues{};
-        clearValues[0].color = { clearColorValues[0], clearColorValues[1], clearColorValues[2], clearColorValues[3] };
-        clearValues[1].depthStencil = { 1.0f, 0 };
+        clearValues[0].color = {clearColorValues[0], clearColorValues[1], clearColorValues[2], clearColorValues[3]};
+        clearValues[1].depthStencil = {1.0f, 0};
         renderPassInfo.clearValueCount = static_cast<uint32_t>(clearValues.size());
         renderPassInfo.pClearValues = clearValues.data();
-
 
 
         vkCmdBeginRenderPass(commandBuffers[currentImage], &renderPassInfo, VK_SUBPASS_CONTENTS_INLINE);
         vkCmdBindPipeline(commandBuffers[currentImage], VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline->graphicsPipeline);
     }
-    void endDraw(){
+
+    void endDraw() {
         vkCmdEndRenderPass(commandBuffers[currentImage]);
         if (vkEndCommandBuffer(commandBuffers[currentImage]) != VK_SUCCESS) {
             throw std::runtime_error("failed to record command buffer!");
         }
         control->submitCommandBuffers(&commandBuffers[currentImage], &currentImage);
     }
-
-        
 
 
     void update() {
@@ -101,19 +101,22 @@ public:
         vkDeviceWaitIdle(device->getDevice());
     }
 
-    unsigned int getCurrentImage(){
+    unsigned int getCurrentImage() {
         return currentImage;
     }
-    VkCommandBuffer getCurrentCommandBuffer(){
+
+    VkCommandBuffer getCurrentCommandBuffer() {
         return commandBuffers[currentImage];
     }
-    VkPipelineLayout getPipelineLayout(){
+
+    VkPipelineLayout getPipelineLayout() {
         return pipeline->pipelineLayout;
     }
+
     void resized(int width, int height) override {
         pause = true;
         prepareToDestroy();
-        control->swapChain->recreate((unsigned int)width, (unsigned int)height);
+        control->swapChain->recreate((unsigned int) width, (unsigned int) height);
         control->renderPass->recreate();
         pipeline->recreate(width, height, control->renderPass->getRenderPass());
         pause = false;

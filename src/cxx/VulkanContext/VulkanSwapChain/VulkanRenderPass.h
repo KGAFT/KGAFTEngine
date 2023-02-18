@@ -10,20 +10,22 @@
 
 class VulkanRenderPass {
     friend class VulkanRenderingPipeline;
+
 public:
     VulkanRenderPass(VulkanDevice *device, VulkanSwapChain *swapChain) : device(device), swapChain(swapChain) {
         createRenderPass();
         createDepthResources();
         createFrameBuffers();
     }
-    void destroy(){
-        for (const auto &item: frameBuffers){
+
+    void destroy() {
+        for (const auto &item: frameBuffers) {
             vkDestroyFramebuffer(device->getDevice(), item, nullptr);
         }
-        for (const auto& item : depthImageViews) {
+        for (const auto &item: depthImageViews) {
             vkDestroyImageView(device->getDevice(), item, nullptr);
         }
-        for (const auto &item: depthImageMemories){
+        for (const auto &item: depthImageMemories) {
             vkFreeMemory(device->getDevice(), item, nullptr);
         }
 
@@ -34,13 +36,15 @@ public:
         depthImageMemories.clear();
 
     }
-    ~VulkanRenderPass(){
+
+    ~VulkanRenderPass() {
         destroy();
     }
 
     VkRenderPass getRenderPass() {
         return renderPass;
     }
+
     void recreate() {
         destroy();
         createRenderPass();
@@ -57,7 +61,6 @@ private:
     std::vector<VkDeviceMemory> depthImageMemories;
     std::vector<VkImageView> depthImageViews;
     VkFormat depthFormat;
-
 
 
     void createDepthResources() {

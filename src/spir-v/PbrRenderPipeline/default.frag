@@ -109,7 +109,7 @@ vec3 processPointLight(PointLight light, vec3 normals, vec3 worldViewVector, vec
     float geometrySmith   = smithGeometry(normals, worldViewVector, processedLightPos, roughness);
     vec3 fresnelSchlick    = fresnelSchlick(clamp(dot(halfWay, worldViewVector), 0.0, 1.0), startFresnelSchlick);
     vec3 numerator    = halfWayGGX * geometrySmith * fresnelSchlick;
-    float denominator = 4.0 * max(dot(normals, worldViewVector), 0.0) * max(dot(normals, processedLightPos), 0.0) + 0.0001; // + 0.0001 to prevent divide by zero
+    float denominator = 4.0 * max(dot(normals, worldViewVector), 0.0) * max(dot(normals, processedLightPos), 0.0) + 0.0001;// + 0.0001 to prevent divide by zero
     vec3 specular = numerator / denominator;
     vec3 finalFresnelSchlick = vec3(1.0) - fresnelSchlick;
     finalFresnelSchlick *= 1.0 - metallic;
@@ -125,7 +125,7 @@ vec3 processDirectionaLight(DirectLight light, vec3 normals, vec3 worldViewVecto
     float geometrySmith   = smithGeometry(normals, worldViewVector, processedLightPos, roughness);
     vec3 fresnelSchlick    = fresnelSchlick(clamp(dot(halfWay, worldViewVector), 0.0, 1.0), startFresnelSchlick);
     vec3 numerator    = halfWayGGX * geometrySmith * fresnelSchlick;
-    float denominator = 4.0 * max(dot(normals, worldViewVector), 0.0) * max(dot(normals, processedLightPos), 0.0) + 0.0001; // + 0.0001 to prevent divide by zero
+    float denominator = 4.0 * max(dot(normals, worldViewVector), 0.0) * max(dot(normals, processedLightPos), 0.0) + 0.0001;// + 0.0001 to prevent divide by zero
     vec3 specular = numerator / denominator;
     vec3 finalFresnelSchlick = vec3(1.0) - fresnelSchlick;
     finalFresnelSchlick *= 1.0 - metallic;
@@ -145,21 +145,21 @@ void main() {
     float roughness = 0;
     float metallic = 0;
     float ao = 0;
-    vec4 emissive = vec4(0,0,0,0);
-    if(lightUbo.combinedMetallicRoughness==0){
-            roughness = texture(roughnessMap, UvsCoords).r;
-            metallic = texture(metallicMap, UvsCoords).r;
+    vec4 emissive = vec4(0, 0, 0, 0);
+    if (lightUbo.combinedMetallicRoughness==0){
+        roughness = texture(roughnessMap, UvsCoords).r;
+        metallic = texture(metallicMap, UvsCoords).r;
     }
-    else{
+    else {
         vec4 cMetallicRoughness = texture(metallicRoughness, UvsCoords);
         metallic = cMetallicRoughness.r;
         roughness = cMetallicRoughness.g;
     }
-    if(lightUbo.emissiveEnabled !=0){
-            emissive = texture(emissiveMap, UvsCoords);
+    if (lightUbo.emissiveEnabled !=0){
+        emissive = texture(emissiveMap, UvsCoords);
     }
-    if(lightUbo.aoEnabled != 0){
-            ao = texture(aoMap, UvsCoords).r;
+    if (lightUbo.aoEnabled != 0){
+        ao = texture(aoMap, UvsCoords).r;
     }
 
 
@@ -171,10 +171,10 @@ void main() {
 
     vec3 Lo = vec3(0.0);
 
-    for(int c = 0; c<lightUbo.enabledDirects.x; c++){
+    for (int c = 0; c<lightUbo.enabledDirects.x; c++){
         Lo+=processDirectionaLight(lightUbo.directLights[c], processedNormals, worldViewVector, startFresnelSchlick, roughness, metallic, albedo);
     }
-    for(int c = 0; c<lightUbo.enabledPoints.x; c++){
+    for (int c = 0; c<lightUbo.enabledPoints.x; c++){
         Lo+=processPointLight(lightUbo.pointLights[c], processedNormals, worldViewVector, startFresnelSchlick, roughness, metallic, albedo);
     }
 

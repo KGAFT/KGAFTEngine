@@ -10,7 +10,9 @@
 
 class VulkanSwapChain {
     friend class VulkanRenderPass;
+
     friend class VulkanRenderingPipeline;
+
     friend class VulkanSwapChainControl;
 
 private:
@@ -23,7 +25,8 @@ private:
     VkFormat swapChainImageFormat;
     VkExtent2D swapChainExtent;
 public:
-    VulkanSwapChain(VulkanDevice *device, unsigned int width, unsigned int height) : device(device), width(width), height(height) {
+    VulkanSwapChain(VulkanDevice *device, unsigned int width, unsigned int height) : device(device), width(width),
+                                                                                     height(height) {
         createSwapChain();
         createImageViews();
     }
@@ -44,6 +47,7 @@ public:
         }
         swapChainImages.clear();
     }
+
     void recreate(unsigned int width, unsigned int height) {
         this->width = width;
         this->height = height;

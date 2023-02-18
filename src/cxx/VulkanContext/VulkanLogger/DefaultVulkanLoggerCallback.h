@@ -7,7 +7,7 @@
 
 #pragma once
 
-class DefaultVulkanLoggerCallback : public IVulkanLoggerCallback{
+class DefaultVulkanLoggerCallback : public IVulkanLoggerCallback {
 public:
     int getCallBackMode() override {
         return TRANSLATED_DEFS;
@@ -22,14 +22,13 @@ public:
         auto currentTime = std::chrono::system_clock::now();
         auto time = std::chrono::system_clock::to_time_t(currentTime);
         std::string outputTime = std::string(ctime(&time));
-        outputTime[outputTime.size()-1]='\0';
-        std::string outputMessage = outputTime + "VULKAN "+" ["+severity+"] "+type+" "+message;
+        outputTime[outputTime.size() - 1] = '\0';
+        std::string outputMessage = outputTime + "VULKAN " + " [" + severity + "] " + type + " " + message;
         std::string severityS = severity;
-        if(!severityS.compare("ERROR")){
-            std::cerr<<outputMessage<<std::endl;
-        }
-        else{
-            std::cout<<outputMessage<<std::endl;
+        if (!severityS.compare("ERROR")) {
+            std::cerr << outputMessage << std::endl;
+        } else {
+            std::cout << outputMessage << std::endl;
         }
     }
 };

@@ -2,6 +2,7 @@
 // Created by daniil on 28.01.23.
 //
 #pragma once
+
 #include <vulkan/vulkan.h>
 
 
@@ -9,21 +10,23 @@
 #define FRAGMENT_SHADER_PUSH_CONSTANT VK_SHADER_STAGE_FRAGMENT_BIT
 #define GEOMETRY_SHADER_PUSH_CONSTANT VK_SHADER_STAGE_GEOMETRY_BIT
 
-class PushConstant{
+class PushConstant {
     friend class PushConstantDescriptionManager;
+
 private:
     size_t size;
     VkShaderStageFlags shaderStages;
-    void* data;
+    void *data;
 public:
     PushConstant(size_t size, VkShaderStageFlags shaderStages) : size(size), shaderStages(shaderStages) {
-        
+
     }
 
-    size_t getSize(){
+    size_t getSize() {
         return size;
     }
-    VkShaderStageFlags getShaderStages(){
+
+    VkShaderStageFlags getShaderStages() {
         return shaderStages;
     }
 

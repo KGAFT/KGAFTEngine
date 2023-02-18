@@ -11,38 +11,41 @@
 
 #pragma once
 
-struct MeshData{
+struct MeshData {
     glm::vec3 position;
     glm::vec3 normal;
     glm::vec2 uv;
 };
 
-class Mesh{
+class Mesh {
 private:
     glm::mat4 worldMatrix = glm::mat4(1.0f);
-    VertexBuffer* data;
-    IndexBuffer* indices;
-    VulkanTexture* albedoTexture = nullptr;
-    VulkanTexture* normalTexture= nullptr;
-    VulkanTexture* metallicTexture= nullptr;
-    VulkanTexture* roughnessTexture= nullptr;
-    VulkanTexture* aoTexture= nullptr;
-    VulkanTexture* emissiveTexture= nullptr;
-    VulkanTexture* metallicRoughnessTexture= nullptr;
+    VertexBuffer *data;
+    IndexBuffer *indices;
+    VulkanTexture *albedoTexture = nullptr;
+    VulkanTexture *normalTexture = nullptr;
+    VulkanTexture *metallicTexture = nullptr;
+    VulkanTexture *roughnessTexture = nullptr;
+    VulkanTexture *aoTexture = nullptr;
+    VulkanTexture *emissiveTexture = nullptr;
+    VulkanTexture *metallicRoughnessTexture = nullptr;
 public:
-    Mesh(VertexBuffer *data,  IndexBuffer *indices) : data(data),
-                                                         indices(indices) {}
+    Mesh(VertexBuffer *data, IndexBuffer *indices) : data(data),
+                                                     indices(indices) {}
 
-    void rotate(float degrees, glm::vec3 axesToRotate){
+    void rotate(float degrees, glm::vec3 axesToRotate) {
         worldMatrix = glm::rotate(worldMatrix, glm::radians(degrees), axesToRotate);
     }
-    void scale(glm::vec3 scaling){
+
+    void scale(glm::vec3 scaling) {
         worldMatrix = glm::scale(worldMatrix, scaling);
     }
-    void setPosition(glm::vec3 position){
+
+    void setPosition(glm::vec3 position) {
         worldMatrix = glm::translate(worldMatrix, position);
     }
-    void draw(VkCommandBuffer commandBuffer){
+
+    void draw(VkCommandBuffer commandBuffer) {
         data->bind(commandBuffer);
         indices->bind(commandBuffer);
         indices->draw(commandBuffer);
@@ -108,11 +111,11 @@ public:
         Mesh::metallicRoughnessTexture = metallicRoughnessTexture;
     }
 
-    ~Mesh(){
+    ~Mesh() {
         destroy();
     }
 
-    void destroy(){
+    void destroy() {
 
         delete data;
         delete indices;

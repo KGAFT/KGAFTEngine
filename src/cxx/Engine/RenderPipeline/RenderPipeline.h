@@ -17,7 +17,7 @@
 #include "../../VulkanContext/VulkanDescriptor/VulkanDescritptors.h"
 #include "ShaderInputDataConfiguration.h"
 
-class RenderPipeline{
+class RenderPipeline {
 protected:
     VulkanDevice *device;
     VulkanSwapChain *swapChain;
@@ -83,7 +83,7 @@ protected:
 
     }
 
-    void updateShaderData(){
+    void updateShaderData() {
         std::vector<IDescriptorLayoutObject *> objectsToWrite;
         for (VulkanSampler *sampler: samplers) {
             objectsToWrite.push_back(sampler);
@@ -103,8 +103,8 @@ protected:
         renderingPipeline->endDraw();
     }
 
-    void setClearColorValues(float r, float g, float b, float a){
-        renderingPipeline->setClearColorValues(r,g,b,a);
+    void setClearColorValues(float r, float g, float b, float a) {
+        renderingPipeline->setClearColorValues(r, g, b, a);
     }
 
 

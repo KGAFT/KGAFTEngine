@@ -48,7 +48,7 @@ public:
         if (windowHandle != nullptr) {
             windowInstance = new Window(width, height, title, windowHandle);
             glfwSetWindowSizeCallback(windowHandle, resized);
-            glfwSetInputMode(windowHandle, GLFW_CURSOR_HIDDEN, GLFW_TRUE);
+            glfwSetInputMode(windowHandle, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
             return true;
         }
         return false;

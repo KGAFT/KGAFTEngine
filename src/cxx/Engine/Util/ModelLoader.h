@@ -57,7 +57,7 @@ private:
         }
 
 
-        VertexBuffer *vbo = new VertexBuffer(sizeof(float) * 12 + sizeof(int) * 4, data.size(), device, data.data());
+        VertexBuffer *vbo = new VertexBuffer(sizeof(float) * 8, data.size(), device, data.data());
         IndexBuffer *ibo = new IndexBuffer(device, indices.data(), indices.size());
 
         Mesh *currentMesh = new Mesh(vbo, ibo);

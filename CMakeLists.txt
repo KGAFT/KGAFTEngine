@@ -3,7 +3,7 @@ set(ProjectName "KGAFTEngine")
 
 
 #insert path to your vulkan sdk here
-set(VulkanSDKPath /home/kgaft/Documents/TarBalls/VulkanSDK/vulkansdk-linux-x86_64-1.3.239.0/1.3.239.0/x86_64/)
+set(VulkanSDKPath C:/VulkanSDK/1.3.239.0)
 
 project(${ProjectName})
 
@@ -14,6 +14,7 @@ if(WIN32)
 
     set(VulkanLibList shaderc_shared vulkan-1)
     set(NativesLibs libassimpd.dll)
+    set(SystemNatives -static-libgcc -static-libstdc++ -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic)
 endif()
 
 if(UNIX)
@@ -23,6 +24,7 @@ if(UNIX)
 
     set(VulkanLibList vulkan libshaderc_combined.a)
     set(NativesLibs libassimp.so)
+    set(SystemNatives -static-libgcc -Wl,-Bstatic -lpthread -Wl,-Bdynamic)
 endif()
 
 file(COPY ${BINARIES} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
@@ -36,4 +38,4 @@ add_executable(${ProjectName} ${HPP_FILES} ${CPP_FILES} src/cxx/Engine/PbrEngine
 add_subdirectory(lib/glfw)
 add_subdirectory(lib/glm)
 
-target_link_libraries(${ProjectName} ${VulkanLibList} glfw glm ${NativesLibs} -static-libgcc -Wl,-Bstatic -lpthread -Wl,-Bdynamic)
+target_link_libraries(${ProjectName} ${VulkanLibList} glfw glm ${NativesLibs} ${SystemNatives})

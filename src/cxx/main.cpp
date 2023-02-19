@@ -31,7 +31,7 @@ int main() {
 
     ModelLoader loader(&device);
 
-
+    std::cout<<"Loading models..."<<std::endl;
     std::vector<Mesh *> pokedexMeshes = loader.loadModel("models/pokedex/pokedex.gltf");
     VulkanImage albedoIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/basecolor.tga");
     VulkanImage emissiveIm = VulkanImage::loadTextureFromFiles(&device, "models/pokedex/textures/emissive.tga");
@@ -83,12 +83,45 @@ int main() {
     }
 
     loader.clear();
+    std::vector<Mesh*> garageMeshes = loader.loadModel("models/garage/garage.obj");
+    for (const auto &item : garageMeshes){
+        item->scale(glm::vec3(0.15f, 0.15f, 0.15f));
+        item->rotate(-90, glm::vec3(1, 0, 0));
+        engine.addMesh(item);
+    }
+    loader.clear();
 
+    std::vector<Mesh*> binocular = loader.loadModel("models/binocular/Binoculars from World War.obj");
+    loader.clear();
+    for (const auto &item : binocular){
+        item->scale(glm::vec3(0.15, 0.15, 0.15));
+        item->setPosition(glm::vec3(-8, 0, 0));
+        item->rotate(-90, glm::vec3(1,0,0));
+        engine.addMesh(item);
+    }
+    std::vector<Mesh*> grindMeshes = loader.loadModel("models/grind/scene.gltf");
+    VulkanTexture* grindBaseColor = new VulkanTexture(new VulkanImage(VulkanImage::loadTextureFromFiles(&device, "models/grind/textures/Main_baseColor.png")), &device);
+    VulkanTexture* grindNormal = new VulkanTexture(new VulkanImage(VulkanImage::loadTextureFromFiles(&device, "models/grind/textures/Main_normal.png")), &device);
+    VulkanTexture* grindMetallicRoughness = new VulkanTexture(new VulkanImage(VulkanImage::loadTextureFromFiles(&device, "models/grind/textures/Main_metallicRoughness.png")), &device);
 
-    engine.getLightInfo().enabledPoints = 1;
-    engine.getLightInfo().pointLights[0].color = glm::vec3(1, 1, 1);
-    engine.getLightInfo().pointLights[0].intensity = 500;
-    engine.getLightInfo().pointLights[0].position = glm::vec3(-2, 10, 5);
+    for (const auto &item : grindMeshes){
+        item->setAlbedoTexture(grindBaseColor);
+        item->setNormalTexture(grindNormal);
+        item->setMetallicRoughnessTexture(grindMetallicRoughness);
+        item->setAoTexture(nullptr);
+        item->setEmissiveTexture(nullptr);
+        item->setMetallicTexture(nullptr);
+        item->setRoughnessTexture(nullptr);
+        item->setPosition(glm::vec3(-6, 0, 0));
+        engine.addMesh(item);
+    }
+    engine.getLightInfo().enabledDirects = 1;
+    engine.getLightInfo().directLights[0].color = glm::vec3(1, 1, 1);
+    engine.getLightInfo().directLights[0].intensity = 100;
+    engine.getLightInfo().directLights[0].direction = glm::vec3(-1,-1,-1);
+
+    std::cout<<"Loaded!"<<std::endl;
+
     while (!Window::getWindowInstance()->isWindowNeedToClose()) {
         for (const auto &item: engine.getMeshes()) {
             //item->rotate(0.1, glm::vec3(0,1,0));

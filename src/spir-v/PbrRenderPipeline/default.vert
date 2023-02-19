@@ -35,7 +35,6 @@ void main() {
     UvsCoords = textureCoordinates;
     Normals = (vec4(normals, 0.0f)*worldTransformData.worldMatrix).xyz;
     fragmentPosition = vec3(worldTransformData.worldMatrix*vec4(position, 1.0));
-    vec4 temp = boneIds*weights;
     cameraPosition = worldTransformData.cameraPosition;
     gl_Position = fixVectorPositioning(worldTransformData.viewMatrix*worldTransformData.worldMatrix*vec4(position, 1.0));
 }

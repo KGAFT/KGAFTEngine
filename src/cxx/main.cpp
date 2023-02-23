@@ -7,7 +7,7 @@
 
 
 int main() {
-    Window::initWindow("KGAFTEngine", 1024, 768);
+    Window::initWindow("KGAFTEngine", 2560, 1440);
     VulkanInstance instance;
     instance.createInstance("KGAFTEngine", false);
     VulkanLogger::registerCallback(new DefaultVulkanLoggerCallback());
@@ -46,6 +46,7 @@ int main() {
     pokedexMeshes[0]->setRoughnessTexture(new VulkanTexture(&roughnessIm, &device));
     pokedexMeshes[0]->setAoTexture(new VulkanTexture(&aoIm, &device));
     pokedexMeshes[0]->setEmissiveTexture(new VulkanTexture(&emissiveIm, &device));
+    pokedexMeshes[0]->setOpacityTexture(nullptr);
     pokedexMeshes[0]->setPosition(glm::vec3(-3, 0, 0));
     pokedexMeshes[0]->scale(glm::vec3(0.1, 0.1, 0.1));
     pokedexMeshes[0]->rotate(180, glm::vec3(0, 1, 0));
@@ -53,7 +54,7 @@ int main() {
 
     loader.clear();
 
-
+/*
     std::vector<Mesh *> stationMeshes = loader.loadModel("models/station/scene.gltf");
 
     VulkanImage stationAlb = VulkanImage::loadTextureFromFiles(&device,
@@ -81,7 +82,8 @@ int main() {
         item->scale(glm::vec3(0.3, 0.3, 0.3));
         engine.addMesh(item);
     }
-
+    */
+/*
     loader.clear();
     std::vector<Mesh*> garageMeshes = loader.loadModel("models/garage/garage.obj");
     for (const auto &item : garageMeshes){
@@ -115,6 +117,37 @@ int main() {
         item->setPosition(glm::vec3(-6, 0, 0));
         engine.addMesh(item);
     }
+*/
+    loader.clear();
+    VulkanTexture* blackTexture = new VulkanTexture(new VulkanImage(VulkanImage::loadTextureFromFiles(&device, "models/blackTexture.png")), &device);
+    VulkanTexture* secondBlackTexture = new VulkanTexture(new VulkanImage(VulkanImage::loadTextureFromFiles(&device, "models/blackTexture.png")), &device);
+    VulkanTexture* thirdBlackTexture = new VulkanTexture(new VulkanImage(VulkanImage::loadTextureFromFiles(&device, "models/blackTexture.png")), &device);
+    VulkanTexture* fourthTexture = new VulkanTexture(new VulkanImage(VulkanImage::loadTextureFromFiles(&device, "models/blackTexture.png")), &device);
+
+
+    loader.clear();
+    std::vector<Mesh*> underWater = loader.loadModel("models/UnderWater/scene.gltf");
+    for (const auto &item: underWater){
+        if(item->getAlbedoTexture()==nullptr){
+            item->setAlbedoTexture(blackTexture);
+        }
+        if(item->getNormalTexture()==nullptr){
+            item->setNormalTexture(secondBlackTexture);
+        }
+        if(item->getMetallicRoughnessTexture()==nullptr && item->getMetallicTexture()==nullptr && item->getRoughnessTexture() == nullptr){
+            item->setMetallicRoughnessTexture(thirdBlackTexture);
+        }
+        if(item->getEmissiveTexture()==item->getNormalTexture()){
+            item->setEmissiveTexture(nullptr);
+        }
+        item->setPosition(glm::vec3(5, 0, 0));
+        if(item->getAoTexture()== nullptr){
+            item->setAoTexture(fourthTexture);
+        }
+        item->setOpacityTexture(nullptr);
+        engine.addMesh(item);
+    }
+
     engine.getLightInfo().enabledDirects = 1;
     engine.getLightInfo().directLights[0].color = glm::vec3(1, 1, 1);
     engine.getLightInfo().directLights[0].intensity = 100;

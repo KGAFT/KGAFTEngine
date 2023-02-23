@@ -36,8 +36,8 @@ struct LightInfo {
 
     alignas(4) int combinedMetallicRoughness = 1;
     alignas(4) int emissiveEnabled = 0;
-    int aoEnabled = 0;
-
+    alignas(4) int aoEnabled = 0;
+    int opacityEnabled = 0;
 
 };
 
@@ -50,8 +50,8 @@ public:
         VulkanShader *shader = VulkanShader::loadShaderBlock("spir-v/PbrRenderPipeline", device);
         ShaderInputDataConfiguration configuration{};
         configuration.shader = shader;
-        SamplerDescription samplerDescription[7];
-        for (unsigned int i = 0; i < 7; i++) {
+        SamplerDescription samplerDescription[8];
+        for (unsigned int i = 0; i < 8; i++) {
             samplerDescription[i] = {i + 1};
         }
         std::vector<VertexBufferDescription> vboDescriptions;
@@ -61,7 +61,7 @@ public:
         UniformBufferDescription uboDesc{0, sizeof(lightInfo), VK_SHADER_STAGE_FRAGMENT_BIT};
         PushConstantDescription pcDesc{VK_SHADER_STAGE_VERTEX_BIT, sizeof(PushConstantData)};
 
-        configuration.samplerDescAmount = 7;
+        configuration.samplerDescAmount = 8;
         configuration.pushConstantDescriptionAmount = 1;
         configuration.vertexBufferDescriptionAmount = vboDescriptions.size();
         configuration.uniformBufferDescriptionAmount = 1;

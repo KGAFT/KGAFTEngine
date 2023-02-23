@@ -43,12 +43,13 @@ public:
         glfwInit();
 
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-
         GLFWwindow *windowHandle = glfwCreateWindow(width, height, title, nullptr, nullptr);
         if (windowHandle != nullptr) {
             windowInstance = new Window(width, height, title, windowHandle);
             glfwSetWindowSizeCallback(windowHandle, resized);
             glfwSetInputMode(windowHandle, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+
+
             return true;
         }
         return false;

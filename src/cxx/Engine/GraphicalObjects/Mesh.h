@@ -29,6 +29,7 @@ private:
     VulkanTexture *aoTexture = nullptr;
     VulkanTexture *emissiveTexture = nullptr;
     VulkanTexture *metallicRoughnessTexture = nullptr;
+    VulkanTexture* opacityTexture = nullptr;
 public:
     Mesh(VertexBuffer *data, IndexBuffer *indices) : data(data),
                                                      indices(indices) {}
@@ -109,6 +110,14 @@ public:
 
     void setMetallicRoughnessTexture(VulkanTexture *metallicRoughnessTexture) {
         Mesh::metallicRoughnessTexture = metallicRoughnessTexture;
+    }
+
+    VulkanTexture *getOpacityTexture() {
+        return opacityTexture;
+    }
+
+    void setOpacityTexture(VulkanTexture *opacityTexture) {
+        Mesh::opacityTexture = opacityTexture;
     }
 
     ~Mesh() {

@@ -24,7 +24,7 @@ private:
 
     std::vector<VkCommandBuffer> commandBuffers;
 
-    float clearColorValues[4] = {0, 0, 0, 1};
+    float clearColorValues[4] = {0, 0, 0, 0};
 public:
     VulkanRenderingPipeline(VulkanSwapChainControl *control, VulkanRenderPass *renderPass, GraphicsPipeline *pipeline,
                             VulkanDevice *device) : control(control), renderPass(renderPass), pipeline(pipeline),

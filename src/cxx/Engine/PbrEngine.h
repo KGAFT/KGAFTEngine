@@ -60,7 +60,7 @@ private:
         pbrRenderPipeline->getLightInfo().aoEnabled = mesh->getAoTexture() != nullptr;
         pbrRenderPipeline->getLightInfo().emissiveEnabled = mesh->getEmissiveTexture() != nullptr;
         pbrRenderPipeline->getLightInfo().combinedMetallicRoughness = mesh->getMetallicRoughnessTexture() != nullptr;
-
+        pbrRenderPipeline->getLightInfo().opacityEnabled = mesh->getOpacityTexture()!=nullptr;
         if (mesh->getAlbedoTexture() == nullptr) {
             throw std::runtime_error("Error: you need to specify albedo for your mesh");
         }
@@ -98,6 +98,6 @@ private:
         } else {
             pbrRenderPipeline->setSamplerTexture(mesh->getEmissiveTexture(), 6);
         }
-
+        pbrRenderPipeline->setSamplerTexture(mesh->getOpacityTexture(), 8);
     }
 };

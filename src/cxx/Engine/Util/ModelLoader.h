@@ -135,6 +135,15 @@ private:
         currentMesh->setMetallicRoughnessTexture(currentTexture);
 
 
+        scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_OPACITY, 0, &path, NULL, NULL, NULL, NULL,
+                                                            NULL);
+        currentTexture = tryGetLoadedMaterial(path.C_Str());
+        if (currentTexture == nullptr) {
+            loadTexture(path.C_Str());
+        }
+        currentTexture = tryGetLoadedMaterial(path.C_Str());
+        currentMesh->setOpacityTexture(currentTexture);
+
     }
 
     VulkanTexture *tryGetLoadedMaterial(const char *path) {

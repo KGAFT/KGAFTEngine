@@ -166,7 +166,7 @@ void main() {
         ao = texture(aoMap, UvsCoords).r;
     }
     if(lightUbo.opacityEnabled!=0){
-        opacity = 1-texture(opacityMap, UvsCoords).r;
+        opacity = texture(opacityMap, UvsCoords).r;
     }
 
 

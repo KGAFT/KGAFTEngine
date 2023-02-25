@@ -33,7 +33,7 @@ public:
         this->manager = manager;
 
         VkDescriptorSetLayout layout = VK_NULL_HANDLE;
-        if (count != 0 and toLoad != nullptr) {
+        if (count != 0 || toLoad != nullptr) {
             layout = loadDescriptors(toLoad, count);
         }
         createPipelineLayout(layout);

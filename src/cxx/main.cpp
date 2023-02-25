@@ -145,6 +145,7 @@ int main() {
             item->setAoTexture(fourthTexture);
         }
         item->setOpacityTexture(nullptr);
+        item->rotate(-90, glm::vec3(1,0,0));
         engine.addMesh(item);
     }
 

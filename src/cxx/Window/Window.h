@@ -104,7 +104,7 @@ private:
         if (abs(cursorY - height / 2) > 0) {
             yChange = (cursorY - height / 2) / abs(cursorY - height / 2);
         }
-        if (xChange != 0 or yChange != 0) {
+        if (xChange != 0 || yChange != 0) {
             for (const auto &item: mouseMoveCallBacks) {
                 if (item != nullptr) {
                     item->mouseMoved(-1 * xChange, -1 * yChange);

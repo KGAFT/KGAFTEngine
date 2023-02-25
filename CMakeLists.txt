@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.24)
 set(ProjectName "KGAFTEngine")
 
+set(CMAKE_CXX_STANDARD 17)
 
 #insert path to your vulkan sdk here
 set(VulkanSDKPath C:/VulkanSDK/1.3.239.0)

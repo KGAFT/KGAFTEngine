@@ -9,7 +9,7 @@
 int main() {
     Window::initWindow("KGAFTEngine", 2560, 1440);
     VulkanInstance instance;
-    instance.createInstance("KGAFTEngine", false);
+    instance.createInstance("KGAFTEngine", true);
     VulkanLogger::registerCallback(new DefaultVulkanLoggerCallback());
     VkPhysicalDevice deviceToCreate;
     std::vector<VkPhysicalDevice> devices;
@@ -26,7 +26,7 @@ int main() {
     std::cin >> i;
     deviceToCreate = devices[i];
 
-    VulkanDevice device(deviceToCreate, Window::getWindowInstance(), instance.getInstance(), false);
+    VulkanDevice device(deviceToCreate, Window::getWindowInstance(), instance.getInstance(), true);
     PbrEngine engine(Window::getWindowInstance(), &device);
 
     ModelLoader loader(&device);

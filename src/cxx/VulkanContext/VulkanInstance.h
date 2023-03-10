@@ -1,11 +1,14 @@
+//
+// Created by KGAFT on 3/10/2023.
+//
+#pragma once
+
 #include <vulkan/vulkan.h>
 #include "GLFW/glfw3.h"
 #include "VulkanLogger/VulkanLogger.h"
 #include <vector>
 #include <unordered_set>
 
-
-#pragma once
 
 class VulkanInstance {
 private:
@@ -40,7 +43,13 @@ public:
         if (vkCreateInstance(&createInfo, nullptr, &instance) != VK_SUCCESS) {
             return false;
         }
-        return !(checkGlfwExtensions(enableLogging) && enableLogging) || VulkanLogger::init(instance);
+        if(enableLogging && checkGlfwExtensions(true)){
+            return VulkanLogger::init(instance);
+        }
+        else if(enableLogging){
+            return false;
+        }
+        return true;
     }
 
 private:
@@ -61,7 +70,7 @@ private:
                 return false;
             }
         }
-        return false;
+        return true;
     }
 
     std::vector<const char *> getRequiredExtensions(bool enableValidationLayers) {

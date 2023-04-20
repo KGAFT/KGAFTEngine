@@ -1,6 +1,10 @@
-cmake-build-debug/
-LibNativeWin/
-LibNativeLin/
-x64/
-x32/
-.vs/
+/out
+/.vs
+/cmake-build-debug
+/cmake-build-release
+/LibNativeWin
+/LibNativeLin
+/.idea
+/build
+/.vscode
+/modules

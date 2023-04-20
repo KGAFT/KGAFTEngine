@@ -98,11 +98,11 @@ private:
         glfwGetCursorPos(handle, &cursorX, &cursorY);
         int xChange = 0;
         int yChange = 0;
-        if (abs(cursorX - width / 2) > 0) {
-            xChange = (cursorX - width / 2) / abs(cursorX - width / 2);
+        if (std::abs(cursorX - width / 2) > 0) {
+            xChange = (cursorX - width / 2) / std::abs(cursorX - width / 2);
         }
-        if (abs(cursorY - height / 2) > 0) {
-            yChange = (cursorY - height / 2) / abs(cursorY - height / 2);
+        if (std::abs(cursorY - height / 2) > 0) {
+            yChange = (cursorY - height / 2) / std::abs(cursorY - height / 2);
         }
         if (xChange != 0 || yChange != 0) {
             for (const auto &item: mouseMoveCallBacks) {

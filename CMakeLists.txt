@@ -36,6 +36,6 @@ add_executable(${ProjectName} ${HPP_FILES} ${CPP_FILES})
 
 add_subdirectory(lib/glfw)
 add_subdirectory(lib/glm)
-add_subdirectory(src/modules/VulkanContext)
+add_subdirectory(src/modules/VulkanTools)
 
 target_link_libraries(${ProjectName} VulkanContext  glfw glm ${NativesLibs} ${SystemNatives})

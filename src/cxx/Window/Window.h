@@ -10,7 +10,7 @@
 #include "GLFW/glfw3native.h"
 #include <vector>
 #include <cstdlib>
-#include <vulkan/vulkan_core.h>
+#include <Vulkan/VulkanInstance.h>
 #include <stdexcept>
 
 #include "KeyBoardCallBack.h"
@@ -134,7 +134,9 @@ public:
 
     VkSurfaceKHR getWindowSurface(VkInstance instance) {
         if (surface == VK_NULL_HANDLE) {
-            glfwCreateWindowSurface(instance, handle, nullptr, &surface);
+            if(glfwCreateWindowSurface(instance, handle, nullptr, &surface)!=VK_SUCCESS){
+                throw std::runtime_error("failed to create surface");
+            }
         }
         return surface;
     }

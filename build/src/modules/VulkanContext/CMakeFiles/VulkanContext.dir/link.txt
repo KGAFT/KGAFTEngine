@@ -1,0 +1,2 @@
+/usr/bin/ar qc libVulkanContext.a CMakeFiles/VulkanContext.dir/src/cxx/External/stb_image.cpp.o CMakeFiles/VulkanContext.dir/src/cxx/implementation.cpp.o
+/usr/bin/ranlib libVulkanContext.a

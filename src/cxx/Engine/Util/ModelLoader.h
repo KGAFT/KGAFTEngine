@@ -20,7 +20,7 @@ private:
     vector<Mesh *> meshes;
     string directory;
     VulkanDevice *device;
-    map<string, VulkanTexture *> loadedTextures;
+    map<string, VulkanImage *> loadedTextures;
 
 private:
     void processNode(aiNode *node, const aiScene *scene) {
@@ -70,7 +70,7 @@ private:
 
 
     void loadTextures(const aiScene *scene, aiMesh *mesh, Mesh *currentMesh) {
-        VulkanTexture *currentTexture = nullptr;
+        VulkanImage *currentTexture = nullptr;
         aiString path;
         scene->mMaterials[mesh->mMaterialIndex]->GetTexture(aiTextureType_DIFFUSE, 0, &path, NULL, NULL, NULL, NULL,
                                                             NULL);
@@ -146,7 +146,7 @@ private:
 
     }
 
-    VulkanTexture *tryGetLoadedMaterial(const char *path) {
+    VulkanImage *tryGetLoadedMaterial(const char *path) {
 
         for (const auto item: loadedTextures) {
             if (!item.first.compare(path)) {
@@ -159,10 +159,8 @@ private:
     void loadTexture(const char *path) {
         try {
             string fullPath = (directory + '/' + path);
-            VulkanImage texture = VulkanImage::loadTextureFromFiles(device, fullPath.c_str());
-            loadedTextures.insert(std::pair<string, VulkanTexture *>(string(path),
-                                                                     new VulkanTexture(new VulkanImage(texture),
-                                                                                       device)));
+            VulkanImage* texture = VulkanImage::loadTexture(fullPath.c_str(), device);
+            loadedTextures.insert(std::pair<string, VulkanImage *>(string(path), texture));
 
         } catch (std::runtime_error &ex) {
 

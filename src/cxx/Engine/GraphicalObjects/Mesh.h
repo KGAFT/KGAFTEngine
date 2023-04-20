@@ -5,9 +5,10 @@
 #include <vector>
 #include<glm/gtc/matrix_transform.hpp>
 #include<glm/gtc/type_ptr.hpp>
-#include "../../VulkanContext/VulkanBuffers/VertexBuffer.h"
-#include "../../VulkanContext/VulkanBuffers/IndexBuffer.h"
-#include "../../VulkanContext/VulkanImage/VulkanTexture.h"
+#include <Vulkan/VulkanBuffers/VertexBuffer.h>
+
+#include <Vulkan/VulkanBuffers/IndexBuffer.h>
+#include <Vulkan/VulkanImage/VulkanImage.h>
 
 #pragma once
 
@@ -22,14 +23,14 @@ private:
     glm::mat4 worldMatrix = glm::mat4(1.0f);
     VertexBuffer *data;
     IndexBuffer *indices;
-    VulkanTexture *albedoTexture = nullptr;
-    VulkanTexture *normalTexture = nullptr;
-    VulkanTexture *metallicTexture = nullptr;
-    VulkanTexture *roughnessTexture = nullptr;
-    VulkanTexture *aoTexture = nullptr;
-    VulkanTexture *emissiveTexture = nullptr;
-    VulkanTexture *metallicRoughnessTexture = nullptr;
-    VulkanTexture* opacityTexture = nullptr;
+    VulkanImage *albedoTexture = nullptr;
+    VulkanImage *normalTexture = nullptr;
+    VulkanImage *metallicTexture = nullptr;
+    VulkanImage *roughnessTexture = nullptr;
+    VulkanImage *aoTexture = nullptr;
+    VulkanImage *emissiveTexture = nullptr;
+    VulkanImage *metallicRoughnessTexture = nullptr;
+    VulkanImage* opacityTexture = nullptr;
 public:
     Mesh(VertexBuffer *data, IndexBuffer *indices) : data(data),
                                                      indices(indices) {}
@@ -56,67 +57,67 @@ public:
         return worldMatrix;
     }
 
-    VulkanTexture *getAlbedoTexture() const {
+    VulkanImage *getAlbedoTexture() const {
         return albedoTexture;
     }
 
-    VulkanTexture *getNormalTexture() const {
+    VulkanImage *getNormalTexture() const {
         return normalTexture;
     }
 
-    VulkanTexture *getMetallicTexture() const {
+    VulkanImage *getMetallicTexture() const {
         return metallicTexture;
     }
 
-    VulkanTexture *getRoughnessTexture() const {
+    VulkanImage *getRoughnessTexture() const {
         return roughnessTexture;
     }
 
-    VulkanTexture *getAoTexture() const {
+    VulkanImage *getAoTexture() const {
         return aoTexture;
     }
 
-    VulkanTexture *getEmissiveTexture() const {
+    VulkanImage *getEmissiveTexture() const {
         return emissiveTexture;
     }
 
-    VulkanTexture *getMetallicRoughnessTexture() const {
+    VulkanImage *getMetallicRoughnessTexture() const {
         return metallicRoughnessTexture;
     }
 
-    void setAlbedoTexture(VulkanTexture *albedoTexture) {
+    void setAlbedoTexture(VulkanImage *albedoTexture) {
         Mesh::albedoTexture = albedoTexture;
     }
 
-    void setNormalTexture(VulkanTexture *normalTexture) {
+    void setNormalTexture(VulkanImage *normalTexture) {
         Mesh::normalTexture = normalTexture;
     }
 
-    void setMetallicTexture(VulkanTexture *metallicTexture) {
+    void setMetallicTexture(VulkanImage *metallicTexture) {
         Mesh::metallicTexture = metallicTexture;
     }
 
-    void setRoughnessTexture(VulkanTexture *roughnessTexture) {
+    void setRoughnessTexture(VulkanImage *roughnessTexture) {
         Mesh::roughnessTexture = roughnessTexture;
     }
 
-    void setAoTexture(VulkanTexture *aoTexture) {
+    void setAoTexture(VulkanImage *aoTexture) {
         Mesh::aoTexture = aoTexture;
     }
 
-    void setEmissiveTexture(VulkanTexture *emissiveTexture) {
+    void setEmissiveTexture(VulkanImage *emissiveTexture) {
         Mesh::emissiveTexture = emissiveTexture;
     }
 
-    void setMetallicRoughnessTexture(VulkanTexture *metallicRoughnessTexture) {
+    void setMetallicRoughnessTexture(VulkanImage *metallicRoughnessTexture) {
         Mesh::metallicRoughnessTexture = metallicRoughnessTexture;
     }
 
-    VulkanTexture *getOpacityTexture() {
+    VulkanImage *getOpacityTexture() {
         return opacityTexture;
     }
 
-    void setOpacityTexture(VulkanTexture *opacityTexture) {
+    void setOpacityTexture(VulkanImage *opacityTexture) {
         Mesh::opacityTexture = opacityTexture;
     }
 

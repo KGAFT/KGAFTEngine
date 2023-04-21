@@ -7,7 +7,7 @@
 
 int main()
 {
-    Window::initWindow("KGAFTEngine", 800, 600);
+    Window::initWindow("KGAFTEngine", 2560, 1440);
     VulkanInstance instance;
     const char **exts;
     uint32_t extsAmount;
@@ -50,7 +50,7 @@ int main()
     pokedexMeshes[0]->setNormalTexture(normalIm);
     pokedexMeshes[0]->setMetallicTexture(metallic);
     pokedexMeshes[0]->setRoughnessTexture(roughnessIm);
-    pokedexMeshes[0]->setAoTexture(aoIm);
+    pokedexMeshes[0]->setAoTexture(nullptr);
     pokedexMeshes[0]->setEmissiveTexture(emissiveIm);
     pokedexMeshes[0]->setOpacityTexture(nullptr);
     pokedexMeshes[0]->setPosition(glm::vec3(-3, 0, 0));
@@ -58,11 +58,29 @@ int main()
     pokedexMeshes[0]->rotate(180, glm::vec3(0, 1, 0));
     engine.addMesh(pokedexMeshes[0]);
 
-    engine.getLightInfo().enabledDirects = 1;
-    engine.getLightInfo().directLights[0].color = glm::vec3(1, 1, 1);
-    engine.getLightInfo().directLights[0].intensity = 100;
-    engine.getLightInfo().directLights[0].direction = glm::vec3(-1, -1, -1);
+    std::vector<Mesh*> helmetMeshes = loader.loadModel("models/Helmet/DamagedHelmet.gltf");
+    helmetMeshes[1]->setMetallicRoughnessTexture(VulkanImage::loadTexture("models/Helmet/Default_metalRoughness.jpg", &device));
+    helmetMeshes[1]->setMetallicTexture(nullptr);
+    helmetMeshes[1]->setRoughnessTexture(nullptr);
+    helmetMeshes[1]->setAoTexture(VulkanImage::loadTexture("models/Helmet/Default_AO.jpg", &device));
 
+    helmetMeshes[0]->setMetallicRoughnessTexture(helmetMeshes[1]->getMetallicRoughnessTexture());
+    helmetMeshes[0]->setMetallicTexture(nullptr);
+    helmetMeshes[0]->setRoughnessTexture(nullptr);
+    helmetMeshes[0]->setAoTexture(helmetMeshes[1]->getAoTexture());
+    for (const auto &item: helmetMeshes){
+        item->setPosition(glm::vec3(5, 0, 0));
+
+        item->setOpacityTexture(nullptr);
+        engine.addMesh(item);
+    }
+
+    engine.getLightInfo().enabledPoints = 1;
+    engine.getLightInfo().pointLights[0].color = glm::vec3(1, 1, 1);
+    engine.getLightInfo().pointLights[0].intensity = 100;
+    engine.getLightInfo().pointLights[0].position = glm::vec3(-3, -1, -5);
+    engine.getLightInfo().ambientIntensity = 0.01f;
+    engine.getLightInfo().gammaCorrect = 1.0/2.5f;
     while (!Window::getWindowInstance()->isWindowNeedToClose())
     {
         engine.update();

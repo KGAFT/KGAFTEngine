@@ -65,6 +65,10 @@ public:
         return endRenderPipeline->getPushConstants();
     }
 
+    void updatePushConstants(){
+        endRenderPipeline->updatePcs();
+    }
+
     VkCommandBuffer beginRender(bool isSamplersUpdate, bool isNewUniformBuffers)
     {
         if (isSamplersUpdate)
@@ -91,7 +95,9 @@ public:
     {
         endRenderPipeline->updateSamplers();
     }
-
+    void bindImmediate(){
+        endRenderPipeline->bindImmediate();
+    }
     void endRender()
     {
         endRenderPipeline->endRender();

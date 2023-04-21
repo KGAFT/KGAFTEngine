@@ -71,7 +71,12 @@ public:
         firstFrame = false;
         return cmd;
     }
-
+    void updatePushConstants(){
+        RenderPipeline::updatePushConstants();
+    }
+    void bindImmediate(){
+        RenderPipeline::bindImmediate();
+    }
     void endRender(){
         RenderPipeline::endRender();
     }

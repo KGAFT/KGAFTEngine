@@ -4,7 +4,7 @@ set(ProjectName "KGAFTEngine")
 set(CMAKE_CXX_STANDARD 17)
 
 #insert path to your vulkan sdk here
-set(VulkanSDKPath /home/kgaft/VulkanSDK/1.3.243.0/x86_64/)
+set(VulkanSDKPath C:/VulkanSDK/1.3.243.0)
 
 project(${ProjectName})
 

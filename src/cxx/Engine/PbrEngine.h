@@ -6,6 +6,8 @@
 
 #include "PbrRenderPipeline.h"
 #include "GraphicalObjects/Mesh.h"
+#include <glm/gtx/matrix_transform_2d.hpp>
+
 class PbrEngine
 {
 private:
@@ -26,18 +28,19 @@ public:
     void drawMeshes()
     {
         cameraManager->update();
-        processMeshTextures(meshes[0]);
         VkCommandBuffer cmd = pbrRenderPipeline->beginRender(true);
-        meshes[0]->draw(cmd);
-        for (int i = 1; i < meshes.size(); i++)
+        for (int i = 0; i < meshes.size(); i++)
         {
-            processMeshTextures(meshes[1]);
+            processMeshTextures(meshes[i]);
             pbrRenderPipeline->updateSamplers();
+            pushConstantData.modelMatrix = meshes[i]->getWorldMatrix();
+            pbrRenderPipeline->updatePushConstants();
+            pbrRenderPipeline->bindImmediate();
             meshes[i]->draw(cmd);
         }
         pbrRenderPipeline->endRender();
     }
-   
+
     void update()
     {
         Window::getWindowInstance()->preRenderEvents();

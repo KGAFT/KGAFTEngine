@@ -1,5 +1,5 @@
 # KGAFTEngine Graphics Engine
-Made for vulkan and cmake
+Made with vulkan and cmake
 
 How to build:
 
